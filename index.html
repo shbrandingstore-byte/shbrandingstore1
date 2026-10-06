@@ -612,7 +612,7 @@ main{padding-top:98px!important}
 /* ===== Announcement bar + Hiba hero ===== */
 :root{--bar-h:40px;--nav-h:calc(98px + var(--bar-h))}
 .announce{height:var(--bar-h);display:flex;align-items:center;justify-content:center;gap:18px;padding:0 10px;background:#8FA998;color:#fff;font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-align:center}
-.announce p{margin:0;line-height:1.2;flex:0 1 auto}
+.announce p{margin:0;line-height:1.2;flex:0 1 auto;min-width:0}
 .announce-btn{background:none;border:0;color:#fff;font-size:24px;line-height:1;cursor:pointer;padding:0 10px}
 main{padding-top:var(--nav-h)!important}
 .v2-hero{width:100%;height:min(56.25vw,calc(100svh - var(--nav-h)))!important;min-height:440px}
@@ -661,7 +661,7 @@ main{padding-top:var(--nav-h)!important}
 <header class="nav">
   <div class="announce" role="region" aria-label="Announcements">
     <button class="announce-btn" type="button" id="annPrev" aria-label="Previous announcement">&#8249;</button>
-    <p id="annText">Free delivery on all orders above 100 AED</p>
+    <p id="annText">Free delivery on clothing orders above 200 AED</p>
     <button class="announce-btn" type="button" id="annNext" aria-label="Next announcement">&#8250;</button>
   </div>
   <div class="wrap">
@@ -782,10 +782,10 @@ var IMAGES = {
   logo: "images/logo1.png",                 // logo in the top menu bar
 
   heroBanner:        "images/hiba1.jpg",    // big photo at the top of the homepage
-  categoryJewellery: "images/jewellery.jpg",// "Jewellery" photo card on the homepage
-  categoryClothing:  "images/clothing.jpg", // "Clothing" photo card on the homepage
-  storyClothing:     "images/story-clothing.jpg",   // "Our story" – left photo
-  storyJewellery:    "images/story-jewellery.jpg"   // "Our story" – right photo
+  categoryJewellery: "images/new2.jpg",// "Jewellery" photo card on the homepage
+  categoryClothing:  "images/new1.jpg", // "Clothing" photo card on the homepage
+  storyClothing:     "images/image1.jpg",   // "Our story" – left photo
+  storyJewellery:    "images/image2.jpg"   // "Our story" – right photo
 };
 
 /* =====================================================================
@@ -1405,7 +1405,7 @@ addProducts({
 /* ---------- ANKLETS – 390 AED (12 pieces) ---------- */
 addProducts({
   category:"jewellery", subcategory:"anklets",
-  folder:"images/jewellery/Anklets/",
+  folder:"images/jewellery/anklets/",
   price:30, stock:1,
   sizes:["One Size"],
   style:"gold-tone",
@@ -2156,7 +2156,7 @@ renderFooter(); renderNavDropdowns(); updateBadge(); route(); flushQueue();
 </script>
 <script>
 (function(){
-  var msgs=["Free delivery on all orders above 100 AED","Cash on delivery available across the UAE"],i=0,t=document.getElementById("annText");
+  var msgs=["Free delivery on clothing orders above 200 AED","Free delivery on jewellery orders above 100 AED","Cash on delivery available across the UAE"],i=0,t=document.getElementById("annText");
   if(!t)return;
   function show(n){i=(n+msgs.length)%msgs.length;t.textContent=msgs[i]}
   document.getElementById("annPrev").addEventListener("click",function(){show(i-1)});
