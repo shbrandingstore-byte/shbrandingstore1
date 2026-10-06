@@ -1089,7 +1089,7 @@ addProducts({
 /* ---------- KURTA – 280 AED (7 pieces) ---------- */ 
 addProducts({
   category:"clothing", subcategory:"kurta",
-  folder:"images/clothing/kurta/",
+  folder:"images/clothing/Kurta/",
   price:30, stock:1,
   sizes:["S","M","L","XL","XXL","XXXL"], pos:"50% 45%",
   style:"",
@@ -1465,7 +1465,7 @@ function addProducts(group, items) {
     for (var k in group) o[k] = group[k];
     for (var k2 in extra) o[k2] = extra[k2];
 
-    function path(f) { return f.indexOf("/") > -1 ? f : (group.folder || "") + f; }   // full path or just a file name
+    function path(f) { return encodeURI(f.indexOf("/") > -1 ? f : (group.folder || "") + f); }   // encodeURI makes spaces / special characters safe on GitHub Pages   // full path or just a file name
 
     var id = o.id || name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
     var n = 2, base = id;
@@ -2163,6 +2163,34 @@ renderFooter(); renderNavDropdowns(); updateBadge(); route(); flushQueue();
   document.getElementById("annPrev").addEventListener("click",function(){show(i-1)});
   document.getElementById("annNext").addEventListener("click",function(){show(i+1)});
   setInterval(function(){show(i+1)},5000);
+})();
+</script>
+<script>
+/* ---- Image fallback (GitHub Pages is CASE-SENSITIVE, VS Code Live Server is not) ----
+   If a product photo fails to load, quietly retry it with other common
+   spellings of the same file (lower-case name, .jpg/.jpeg/.png/.webp, any case)
+   before giving up. Best long-term fix: name image files in lower-case with
+   hyphens, e.g. "blue-printed-short-top.jpg", and make sure the name in
+   index.html matches the real file name exactly. */
+(function(){
+  var EXT=["jpg","jpeg","png","webp","JPG","JPEG","PNG","WEBP"];
+  function variants(src){
+    var q=src.split("?")[0], m=q.match(/^(.*\/)([^\/]+?)\.([A-Za-z0-9]+)$/);
+    if(!m) return [];
+    var dir=m[1], file=m[2], ext=m[3], names=[file];
+    var dec; try{dec=decodeURIComponent(file);}catch(e){dec=file;}
+    var low=dec.toLowerCase(), hy=low.replace(/[\s_]+/g,"-");
+    [low,hy,dec].forEach(function(n){ n=encodeURIComponent(n).replace(/%2F/g,"/"); if(names.indexOf(n)<0) names.push(n); });
+    var out=[];
+    names.forEach(function(n){ [ext].concat(EXT).forEach(function(e){ var u=dir+n+"."+e; if(out.indexOf(u)<0 && u!==q) out.push(u); }); });
+    return out;
+  }
+  document.addEventListener("error",function(ev){
+    var img=ev.target;
+    if(!img||img.tagName!=="IMG"||!img.getAttribute("src")||img.src.indexOf("data:")===0) return;
+    var list=img._v||(img._v=variants(img.getAttribute("src"))), i=img._i||0;
+    if(i<list.length){ img._i=i+1; img.src=list[i]; }
+  },true);
 })();
 </script>
 </body>
