@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SH Branding Store | Fine Jewellery &amp; Clothing</title>
+<meta name="description" content="SH Branding Store – fine jewellery and luxury clothing, in Abu Dhabi, UAE. Cash on delivery available across the Emirates.">
+<link rel="icon" href="images/logo1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2C211B; --ink-2:#3d2f26;
+  --sand:#F7F3ED; --sand-2:#E8DED1;
+  --gold:#B49A72; --gold-soft:#B49A72; --gold-deep:#9A7F55;
+  --taupe:#8B7969;
+  --text-on-sand:#2C211B; --text-on-ink:#F7F3ED; --muted-on-ink:#8B7969;
+  --field-bg:#FFFFFF; --line:rgba(180,154,114,.28); --err:#a3372c;
+  --serif:"Playfair Display","Didot",Georgia,serif;
+  --sans:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --script:"Beau Rivage","Segoe Script","Brush Script MT",cursive;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  --nav-h:76px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--sand:#F7F3ED;--sand-2:#E8DED1;--text-on-sand:#2C211B;--taupe:#8B7969;--field-bg:#FFFFFF;--line:rgba(180,154,114,.28);--err:#a3372c}
+}
+:root[data-theme="dark"]{--sand:#F7F3ED;--sand-2:#E8DED1;--text-on-sand:#2C211B;--taupe:#8B7969;--field-bg:#FFFFFF;--line:rgba(180,154,114,.28);--err:#a3372c}
+
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:calc(var(--nav-h) + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100%;background:var(--sand);color:var(--text-on-sand);font-family:var(--sans);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1280px,100% - 56px);margin-inline:auto}
+.narrow{width:min(820px,100% - 48px);margin-inline:auto}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+
+/* ---------- Header ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);background:rgba(247,243,237,.97);border-bottom:1px solid rgba(180,154,114,.25)}
+.nav .wrap{height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:inline-flex;align-items:center;gap:2px;text-decoration:none;color:#2C211B;line-height:1}
+.brand-mark{height:42px;width:auto;margin-right:10px;filter:brightness(0) invert(1);opacity:.92}
+.brand .w{font-family:var(--script);font-size:44px;letter-spacing:.02em;color:#2C211B}
+.brand .s{display:flex;flex-direction:column;line-height:1.25;margin-left:2px;font-size:15px;letter-spacing:.22em;color:var(--gold-soft)}
+.brand .s em{font-style:normal;font-size:11px;letter-spacing:.28em;color:var(--muted-on-ink)}
+.menu{display:flex;gap:40px;list-style:none;margin:0;padding:0;font-size:15px;letter-spacing:.08em}
+.menu a{text-decoration:none;color:#8B7969;padding:8px 0;border-bottom:1px solid transparent;transition:color .25s,border-color .25s}
+.menu a:hover,.menu a[aria-current="page"]{color:#2C211B;border-color:var(--gold)}
+
+/* ---------- Jewellery / Clothing the dropdown menus in the nav ----------
+   These lists are filled in automatically by renderNavDropdowns() using
+   the CATEGORIES object further down, so you only ever need to edit the
+   sub-category names in ONE place (the CATEGORIES object). */
+.has-dropdown{position:relative}
+.dropdown{list-style:none;margin:0;padding:8px 0;position:absolute;top:100%;left:50%;transform:translate(-50%,6px);min-width:200px;background:var(--sand);border:1px solid var(--line);box-shadow:0 16px 34px rgba(30,20,10,.14);opacity:0;visibility:hidden;transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:60}
+.has-dropdown:hover .dropdown,.has-dropdown:focus-within .dropdown{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.dropdown li{margin:0}
+.dropdown a{display:block;padding:10px 22px;font-size:13px;letter-spacing:.05em;white-space:nowrap;border-bottom:0!important}
+.dropdown a:hover{background:var(--sand-2)}
+.nav-right{display:flex;align-items:center;gap:22px}
+.cart-link{position:relative;display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-size:15px;letter-spacing:.08em;color:#2C211B;padding:8px 0}
+.cart-link svg{width:24px;height:24px}
+.badge{min-width:20px;height:20px;padding:0 6px;border-radius:10px;background:var(--gold);color:var(--ink);font-size:12px;line-height:20px;text-align:center}
+.burger{all:unset;display:none;cursor:pointer;width:44px;height:44px;place-items:center}
+.burger span,.burger span::before,.burger span::after{display:block;width:24px;height:1.5px;background:#2C211B;position:relative;content:""}
+.burger span::before{position:absolute;top:-7px}.burger span::after{position:absolute;top:7px}
+.burger:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+main{flex:1;padding-top:calc(var(--nav-h) + env(safe-area-inset-top,0px))}
+main:focus{outline:none}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;font-family:var(--sans);font-size:14px;letter-spacing:.16em;text-decoration:none;padding:17px 34px;border:1px solid var(--gold);color:var(--text-on-ink);background:transparent;cursor:pointer;transition:background .3s,color .3s,border-color .3s;text-align:center}
+.on-sand .btn{color:var(--text-on-sand);border-color:var(--gold-deep)}
+.btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.btn.block{width:100%}
+.link{background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;color:inherit}
+
+/* ---------- Home hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);min-height:calc(100svh - var(--nav-h))}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,96px);align-items:flex-start}
+.wordmark{font-size:clamp(70px,9.6vw,172px);line-height:.95;letter-spacing:.01em;color:#2C211B;white-space:nowrap}
+.wordmark.script{font-family:var(--script);font-size:clamp(110px,14vw,240px);line-height:.8}
+.lockup{display:flex;align-items:center;gap:18px;margin:34px 0 0;width:min(460px,100%);color:var(--gold)}
+.lockup i{flex:1;height:1px;background:currentColor;opacity:.75;transform-origin:left}
+.lockup b{width:9px;height:9px;transform:rotate(45deg);border:1px solid currentColor;flex:none}
+.hero-sub{font-size:14px;letter-spacing:.32em;color:var(--gold-soft);margin:22px 0 0}
+.hero-line{font-family:var(--serif);font-size:clamp(24px,2.4vw,34px);line-height:1.3;max-width:20ch;margin:52px 0 38px;color:var(--text-on-ink)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px}
+.hero-media{position:relative;overflow:hidden;min-height:60vh}
+.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(44,33,27,.18),rgba(44,33,27,0) 30%)}
+@media (prefers-reduced-motion:no-preference){
+  .lockup i{transform:scaleX(0);animation:draw 1.2s .3s cubic-bezier(.2,.7,.2,1) forwards}
+  .hero-media img{clip-path:inset(0 0 0 100%);transform:scale(1.06);animation:reveal 1.5s .1s cubic-bezier(.7,0,.2,1) forwards}
+  @keyframes draw{to{transform:scaleX(1)}}
+  @keyframes reveal{to{clip-path:inset(0);transform:none}}
+}
+
+/* ---------- Entrance / page-load animations ---------- */
+@media (prefers-reduced-motion:no-preference){
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  @keyframes dropIn{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+
+  .nav{animation:dropIn .55s cubic-bezier(.2,.7,.2,1) both}
+
+  /* Home hero: headline, copy and image cascade in on first paint */
+  .v2-hero-copy .v2-kicker,.v2-hero-copy h1,.v2-hero-copy .v2-lead,.v2-hero-copy .v2-button{
+    opacity:0;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both;
+  }
+  .v2-hero-copy .v2-kicker{animation-delay:.15s}
+  .v2-hero-copy h1{animation-delay:.28s}
+  .v2-hero-copy .v2-lead{animation-delay:.42s}
+  .v2-hero-copy .v2-button{animation-delay:.56s}
+  .v2-hero-image{opacity:0;animation:fadeIn 1s .2s both}
+  .v2-categories .v2-category{opacity:0;animation:fadeUp .7s cubic-bezier(.2,.7,.2,1) both}
+  .v2-categories .v2-category:nth-child(1){animation-delay:.5s}
+  .v2-categories .v2-category:nth-child(2){animation-delay:.62s}
+  .v2-trust{opacity:0;animation:fadeUp .7s .72s cubic-bezier(.2,.7,.2,1) both}
+
+  /* Every route change fades the new page content in */
+  main.page-in{animation:fadeUp .5s cubic-bezier(.2,.7,.2,1) both}
+
+  /* Cards and sections animate in as they scroll into view */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+}
+@media (prefers-reduced-motion:reduce){
+  main.page-in{animation:none}
+}
+
+/* ---------- Sand pages ---------- */
+.on-sand{background:var(--sand);color:var(--text-on-sand)}
+.statement{padding:clamp(80px,12vw,170px) 0}
+.statement p{font-family:var(--serif);font-size:clamp(34px,5.2vw,78px);line-height:1.12;margin:0;max-width:17ch}
+.statement small{display:block;margin-top:40px;font-size:17px;line-height:1.8;max-width:46ch;color:var(--taupe)}
+.trust{background:var(--sand-2);color:var(--text-on-sand);border-block:1px solid var(--line)}
+.trust ul{list-style:none;margin:0;padding:26px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;font-size:15px}
+.trust strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;color:var(--text-on-sand)}
+.trust span{color:var(--taupe)}
+
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;border-top:1px solid var(--line);padding-top:28px;margin-bottom:clamp(40px,6vw,80px)}
+.sec-head h2{font-size:clamp(38px,5vw,68px);line-height:1}
+.sec-head p{margin:0;color:var(--taupe);font-size:16px;max-width:32ch;text-align:right}
+.section{padding:clamp(70px,10vw,140px) 0}
+.page-head{padding:clamp(50px,7vw,90px) 0 clamp(30px,4vw,50px)}
+.page-head h1{font-size:clamp(44px,6.5vw,92px);line-height:1}
+.page-head p{margin:18px 0 0;color:var(--taupe);max-width:52ch}
+.crumbs{font-size:14px;color:var(--taupe);margin-bottom:26px}
+.crumbs a{text-decoration:none;border-bottom:1px solid var(--line)}
+.crumbs span{margin:0 8px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}
+.tabs .tab{text-decoration:none;font-size:14px;letter-spacing:.1em;color:var(--taupe);padding:10px 22px;border:1px solid var(--line);transition:all .2s}
+.tabs .tab:hover{border-color:var(--gold-deep);color:var(--text-on-sand)}
+.tabs .tab.active{background:var(--sand-2);color:var(--sand);border-color:var(--ink)}
+
+/* Sub-category chips (Necklaces / Rings / etc.) shown under the main tabs
+   once a department is selected. Generated from CATEGORIES. */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 clamp(36px,5vw,54px)}
+.chips .chip{text-decoration:none;font-size:12.5px;letter-spacing:.06em;color:var(--taupe);padding:8px 16px;border:1px solid var(--line);border-radius:100px;transition:all .2s}
+.chips .chip:hover{border-color:var(--gold-deep);color:var(--text-on-sand)}
+.chips .chip.active{background:var(--gold-deep);color:#fff;border-color:var(--gold-deep)}
+
+/* product cards */
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 26px}
+.cards.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{display:block;text-decoration:none;color:inherit;position:relative}
+.card .ph{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--sand-2)}
+.card.oos .ph img{opacity:.5}
+.tag-oos{position:absolute;top:14px;left:14px;z-index:2;background:#3d2f26;color:#F7F3ED;font-size:12px;letter-spacing:.14em;padding:7px 13px}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform 1.3s cubic-bezier(.2,.7,.2,1)}
+.card:hover img{transform:scale(1.04)}
+.card .quick{position:absolute;left:0;right:0;bottom:0;padding:14px;text-align:center;background:rgba(44,33,27,.92);color:#F7F3ED;font-size:14px;letter-spacing:.16em;transform:translateY(100%);transition:transform .4s}
+.card:hover .quick,.card:focus-visible .quick{transform:none}
+.card .meta{display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding-top:18px}
+.card h3{font-size:clamp(24px,2vw,30px);line-height:1.15}
+.card .price{white-space:nowrap;font-size:16px}
+.card p{margin:6px 0 0;font-size:15px;color:var(--taupe);line-height:1.55}
+.card .stock,.pdp .stock{display:block;margin-top:8px;font-size:13.5px;letter-spacing:.06em;color:var(--gold-deep)}
+.card .stock.oos,.pdp .stock.oos{color:var(--err)}
+@media (hover:none){.card .quick{transform:none;opacity:.96}}
+
+/* detail band */
+.detail{position:relative;min-height:80vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink)}
+.detail img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%}
+.detail::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(44,33,27,.72) 0%,rgba(44,33,27,.35) 32%,rgba(44,33,27,0) 62%)}
+.detail .wrap{position:relative;z-index:2;padding-bottom:clamp(50px,7vw,100px)}
+.detail h2{font-size:clamp(38px,5.6vw,84px);line-height:1.05;max-width:16ch;color:#2C211B}
+.detail p{margin:22px 0 0;max-width:44ch;color:var(--text-on-ink)}
+
+/* steps */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;counter-reset:s}
+.steps li{counter-increment:s;border-top:1px solid var(--gold-deep);padding-top:20px}
+.steps li::before{content:counter(s);display:block;font-family:var(--serif);font-size:44px;line-height:1;color:var(--gold-deep);margin-bottom:12px}
+.steps h3{font-size:24px;margin-bottom:8px}
+.steps p{margin:0;font-size:15.5px;color:var(--taupe);line-height:1.6}
+
+/* ---------- Product page ---------- */
+.pdp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:start;padding-bottom:clamp(60px,8vw,110px)}
+.pdp-media{position:sticky;top:calc(var(--nav-h) + 24px)}
+.pdp-img{aspect-ratio:3/4;overflow:hidden;background:var(--sand-2)}
+.pdp-img.oos img{opacity:.55}
+.pdp-img img{width:100%;height:100%;object-fit:cover}
+.pdp-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:8px}
+.pdp-gallery img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--sand-2)}
+.pdp h1{font-size:clamp(40px,4.6vw,66px);line-height:1.02}
+.pdp .price{font-size:24px;margin:14px 0 0}
+.pdp .short{margin:22px 0 0;color:var(--taupe);max-width:50ch}
+.opt{margin-top:32px}
+.opt-label{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;margin-bottom:12px}
+.sizes{display:flex;flex-wrap:wrap;gap:10px;border:0;padding:0;margin:0}
+.sizes label{position:relative}
+.sizes input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer;margin:0}
+.sizes span{display:grid;place-items:center;min-width:56px;height:48px;padding:0 14px;border:1px solid var(--line);background:var(--field-bg);cursor:pointer;transition:all .2s}
+.sizes input:checked + span{background:var(--sand-2);color:var(--sand);border-color:var(--ink)}
+.sizes input:focus-visible + span{outline:2px solid var(--gold);outline-offset:3px}
+.sizes input:hover + span{border-color:var(--gold-deep)}
+.sizes label.unavailable span{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+.sizes label.unavailable input{cursor:not-allowed}
+.err{color:var(--err);font-size:14.5px;margin:8px 0 0;min-height:0}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--field-bg)}
+.qty button{all:unset;cursor:pointer;width:46px;height:46px;display:grid;place-items:center;font-size:22px}
+.qty button:hover{background:var(--sand-2)}
+.qty button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+.qty output{min-width:38px;text-align:center}
+.buy{display:grid;gap:12px;margin-top:30px}
+.assure{list-style:none;margin:28px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:grid;gap:8px;font-size:15px;color:var(--taupe)}
+.assure li::before{content:"";display:inline-block;width:6px;height:6px;border:1px solid var(--gold-deep);transform:rotate(45deg);margin-right:12px;vertical-align:middle}
+details.acc{border-top:1px solid var(--line)}
+details.acc:last-of-type{border-bottom:1px solid var(--line)}
+details.acc summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-family:var(--serif);font-size:24px}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font-family:var(--sans);font-size:24px;color:var(--gold-deep);transition:transform .25s}
+details.acc[open] summary::after{transform:rotate(45deg)}
+details.acc summary:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+details.acc .body{padding:0 0 22px;color:var(--taupe);font-size:16px}
+details.acc .body p{margin:0 0 12px}
+details.acc .body ul{margin:0;padding-left:20px}
+.accs{margin-top:34px}
+table.sz{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+table.sz th,table.sz td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+
+/* ---------- Cart ---------- */
+.cart-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:clamp(30px,5vw,70px);align-items:start;padding-bottom:clamp(70px,9vw,120px)}
+.line{display:grid;grid-template-columns:110px 1fr auto;gap:22px;padding:24px 0;border-top:1px solid var(--line)}
+.line:last-child{border-bottom:1px solid var(--line)}
+.line img{width:110px;aspect-ratio:3/4;object-fit:cover}
+.line h3{font-size:26px;line-height:1.1}
+.line .sub{color:var(--taupe);font-size:15px;margin:6px 0 14px}
+.line .rm{font-size:14px;color:var(--taupe)}
+.line .tot{text-align:right;white-space:nowrap}
+.summary{background:var(--sand-2);padding:30px;border:1px solid var(--line);position:sticky;top:calc(var(--nav-h) + 24px)}
+.summary h2{font-size:30px;margin-bottom:18px}
+.sum-row{display:flex;justify-content:space-between;gap:16px;padding:8px 0;font-size:16px}
+.sum-row.total{border-top:1px solid var(--line);margin-top:10px;padding-top:16px;font-size:20px}
+.sum-note{font-size:14.5px;color:var(--taupe);margin:14px 0 20px}
+.mini{display:grid;grid-template-columns:60px 1fr auto;gap:14px;align-items:center;padding:8px 0;font-size:15px}
+.mini img{width:60px;aspect-ratio:3/4;object-fit:cover}
+.mini small{display:block;color:var(--taupe);font-size:13.5px}
+.empty{text-align:center;padding:clamp(60px,9vw,120px) 0}
+.empty p{color:var(--taupe);margin:14px auto 30px;max-width:40ch}
+
+/* ---------- Forms ---------- */
+form fieldset{border:0;padding:0;margin:0 0 42px}
+form legend{font-family:var(--serif);font-size:30px;padding:0;margin-bottom:6px}
+.hint{color:var(--taupe);font-size:15px;margin:0 0 22px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.f{display:flex;flex-direction:column;gap:7px}
+.f.full{grid-column:1 / -1}
+.f label{font-size:15px}
+.f label i{font-style:normal;color:var(--taupe);font-size:13.5px}
+.f input,.f select,.f textarea{font:inherit;font-size:16px;color:var(--text-on-sand);background:var(--field-bg);border:1px solid var(--line);padding:14px 16px;border-radius:0;width:100%;-webkit-appearance:none;appearance:none}
+.f select{background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 22px) 55%,calc(100% - 16px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:42px}
+.f select option{color:#231b13;background:#fff}
+.f textarea{min-height:100px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--gold);outline-offset:0;border-color:var(--gold-deep)}
+.f [aria-invalid="true"]{border-color:var(--err)}
+.f .err{margin:0}
+.pay{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--line);background:var(--field-bg);padding:20px;cursor:pointer;margin-bottom:12px}
+.pay input{margin-top:6px;accent-color:var(--gold-deep);width:18px;height:18px;flex:none}
+.pay strong{display:block;font-family:var(--serif);font-weight:400;font-size:24px;line-height:1.2}
+.pay span{color:var(--taupe);font-size:15px}
+.pay:has(input:checked){border-color:var(--gold-deep);box-shadow:inset 0 0 0 1px var(--gold-deep)}
+.check{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;margin:0 0 10px;cursor:pointer}
+.check input{margin-top:5px;accent-color:var(--gold-deep);width:18px;height:18px;flex:none}
+.notice{border-left:2px solid var(--gold);background:var(--sand-2);padding:16px 20px;margin:0 0 34px;font-size:15.5px}
+.checkout-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);gap:clamp(30px,5vw,70px);align-items:start;padding-bottom:clamp(70px,9vw,120px)}
+
+/* confirmation / prose */
+.done h1{font-size:clamp(40px,5.6vw,80px);line-height:1.05}
+.done .lede{color:var(--taupe);margin:18px 0 0;max-width:56ch}
+.orderid{display:inline-block;margin-top:26px;border:1px solid var(--gold-deep);padding:10px 20px;font-size:18px;letter-spacing:.14em}
+.box{background:var(--sand-2);border:1px solid var(--line);padding:28px;margin-top:34px}
+.box h2{font-size:28px;margin-bottom:14px}
+.box dl{margin:0;display:grid;grid-template-columns:150px 1fr;gap:8px 20px;font-size:16px}
+.box dt{color:var(--taupe)}.box dd{margin:0}
+.next{margin:36px 0 0;padding:0;list-style:none;display:grid;gap:14px}
+.next li{padding-left:34px;position:relative}
+.next li::before{content:"";position:absolute;left:5px;top:12px;width:8px;height:8px;border:1px solid var(--gold-deep);transform:rotate(45deg)}
+.prose h2{font-size:32px;margin:44px 0 12px}
+.prose p,.prose li{color:var(--text-on-sand)}
+.prose ul{padding-left:22px}
+.prose .upd{color:var(--taupe);font-size:15px}
+.cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-bottom:60px}
+.ccard{border:1px solid var(--line);padding:26px;background:var(--field-bg)}
+.ccard h3{font-size:26px;margin-bottom:8px}
+.ccard p{margin:0 0 6px;color:var(--taupe);font-size:15.5px;overflow-wrap:anywhere}
+.ccard a{text-decoration:none;border-bottom:1px solid var(--gold-deep);color:var(--text-on-sand)}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,90px);padding-bottom:clamp(70px,9vw,120px);align-items:start}
+
+/* ---------- Contact CTA + footer ---------- */
+.contact-cta{background:var(--sand-2);text-align:center;padding:clamp(80px,11vw,160px) 0}
+.contact-cta h2{font-size:clamp(34px,4.6vw,64px);line-height:1.1;margin:20px auto 0;max-width:18ch;color:#2C211B}
+.contact-cta p.lead{margin:22px auto 0;max-width:42ch;color:var(--muted-on-ink)}
+.actions{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:40px}
+footer{background:var(--sand-2);border-top:1px solid rgba(180,154,114,.25);color:var(--muted-on-ink);padding:64px 0 0;font-size:15.5px}
+.fgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1.2fr;gap:34px;padding-bottom:50px}
+footer h4{font-family:var(--serif);font-weight:400;font-size:22px;color:#2C211B;margin:0 0 16px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+footer a{text-decoration:none}
+footer a:hover{color:var(--gold-soft)}
+footer .brand .w{font-size:50px}
+footer .brand img{height:40px;width:auto;display:block}
+.contact-list li{display:flex;gap:10px}
+.contact-list b{font-weight:400;color:var(--gold-soft);min-width:78px}
+.fbar{border-top:1px solid rgba(180,154,114,.22);padding:22px 0 26px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:14px}
+.fbar nav{display:flex;gap:22px;flex-wrap:wrap}
+
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);opacity:0;pointer-events:none;background:var(--sand-2);color:#2C211B;border:1px solid var(--gold);padding:14px 22px;z-index:80;transition:all .35s;display:flex;gap:18px;align-items:center;max-width:calc(100% - 32px);font-size:15.5px}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast a{color:var(--gold-soft);white-space:nowrap}
+
+@media print{.nav,footer,.toast,.no-print{display:none!important}main{padding:0}body{background:#fff}}
+
+
+/* ---------- Responsive ----------- */
+@media (max-width:1000px){
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .cgrid{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  body{font-size:16px}
+  .wrap{width:min(1280px,100% - 40px)}
+  :root{--nav-h:68px}
+  .brand .w{font-size:32px}
+  .burger{display:grid}
+  .menu{position:absolute;top:calc(100% - 0px);left:0;right:0;flex-direction:column;gap:0;background:var(--sand-2);border-bottom:1px solid rgba(180,154,114,.25);padding:8px 20px 18px;display:none}
+  .menu.open{display:flex}
+  .menu a{display:block;padding:16px 0;font-size:18px;border-bottom:1px solid rgba(180,154,114,.18)}
+  /* On mobile there's no hover, so the dropdown just becomes a plain
+     nested list under Jewellery / Clothing, always visible. */
+  .dropdown{position:static;opacity:1;visibility:visible;transform:none;box-shadow:none;border:0;background:none;padding:0 0 6px 18px;display:block}
+  .dropdown a{padding:12px 0;font-size:15px;border-bottom:1px solid rgba(180,154,114,.12)!important}
+  .cart-link .t{display:none}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-media{order:-1;min-height:0;aspect-ratio:4/5}
+  .hero-copy{padding:44px 24px 60px}
+  .hero-media::after{background:linear-gradient(0deg,rgba(21,16,12,.6),rgba(21,16,12,0) 30%)}
+  .sec-head{flex-direction:column;align-items:flex-start}.sec-head p{text-align:left}
+  .trust ul{grid-template-columns:1fr;gap:14px;padding:22px 0}
+  .pdp{grid-template-columns:1fr}
+  .pdp-media{position:static}
+  .cart-grid,.checkout-grid,.cols2{grid-template-columns:1fr}
+  .summary{position:static}
+  .fields{grid-template-columns:1fr}
+  .line{grid-template-columns:84px 1fr;gap:16px}
+  .line img{width:84px}
+  .line .tot{grid-column:2;text-align:left}
+  .box dl{grid-template-columns:1fr;gap:2px}.box dt{margin-top:10px}
+  .fgrid{grid-template-columns:1fr;gap:34px}
+  .detail{min-height:70vh}
+}
+@media (max-width:520px){
+  .cards{gap:28px 14px}
+  .card h3{font-size:22px}
+  .card .meta{flex-direction:column;gap:2px}
+  .steps{grid-template-columns:1fr}
+  .cards.two{grid-template-columns:1fr}
+}
+</style>
+<style>
+/* ===================== Screenshot-matched landing page ===================== */
+:root{
+  --v2-bg:#F7F3ED;
+  --v2-ink:#2C211B;
+  --v2-muted:#8B7969;
+  --v2-brown:#2C211B;
+  --v2-footer:#E8DED1;
+}
+body{background:var(--v2-bg)!important;color:var(--v2-ink)!important}
+.nav{
+  position:fixed!important;
+  background:rgba(244,239,231,.98)!important;
+  border-bottom:0!important;
+  box-shadow:none!important;
+}
+.nav .wrap{width:min(860px,calc(100% - 64px));height:84px}
+.brand-image{width:126px;height:64px;display:flex!important;align-items:center}
+.brand-image img{width:124px;height:64px;object-fit:contain}
+.menu{gap:34px!important;font-size:13px!important;letter-spacing:.02em!important}
+.menu a{color:var(--v2-ink)!important;border-bottom:1px solid transparent!important}
+.menu a:hover,.menu a[aria-current="page"]{color:var(--v2-ink)!important;border-color:var(--v2-ink)!important}
+.nav-right{gap:16px!important}
+.nav-icon{display:inline-flex;width:25px;height:25px;align-items:center;justify-content:center;text-decoration:none}
+.nav-icon svg,.cart-link svg{width:22px;height:22px}
+.cart-link{padding:0!important}
+.cart-link .badge{position:absolute;top:-7px;right:-9px;min-width:15px;height:15px;line-height:15px;padding:0 4px;font-size:9px;background:var(--v2-ink);color:#fff!important}
+.burger span,.burger span::before,.burger span::after{background:var(--v2-ink)!important}
+
+main{padding-top:84px!important}
+.home-v2{background:var(--v2-bg);color:var(--v2-ink)}
+.v2-hero{display:grid;grid-template-columns:42% 58%;height:465px;overflow:hidden}
+.v2-hero-copy{padding:112px 40px 50px max(6vw,64px);display:flex;flex-direction:column;justify-content:center;align-items:flex-start}
+.v2-kicker{font-family:var(--sans);font-size:11px;letter-spacing:.28em;margin:0 0 20px;color:var(--v2-ink)!important}
+.v2-hero h1{font-family:var(--serif);font-size:48px;line-height:1.03;font-weight:400;letter-spacing:-.025em;margin:0;color:var(--v2-ink)!important}
+.v2-hero h1 em,.v2-story-copy h2 em{font-style:italic}
+.v2-lead{font-family:var(--sans);font-size:15px;line-height:1.65;margin:20px 0 26px;color:var(--v2-ink)!important}
+.v2-button{display:inline-flex;align-items:center;gap:14px;background:var(--v2-brown);color:#fff!important;text-decoration:none;padding:14px 22px;font-size:10px;letter-spacing:.22em}
+.v2-button span{font-size:16px;line-height:0}
+.v2-hero-image{overflow:hidden}
+.v2-hero-image img{width:100%;height:100%;object-fit:cover;object-position:center center}
+.v2-categories{display:grid;grid-template-columns:1fr 1fr;gap:26px;padding:35px 60px 30px}
+.v2-category{position:relative;display:block;overflow:hidden;text-decoration:none}
+.v2-category img{display:block;width:100%;aspect-ratio:438/269;object-fit:cover;transition:transform .6s ease}
+.v2-category:hover img{transform:scale(1.025)}
+/* Soft dark gradient behind the text so white lettering stays readable
+   on top of any photo, without needing the words baked into the image. */
+.v2-category::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,14,8,.58) 0%,rgba(20,14,8,.22) 42%,rgba(20,14,8,0) 68%);pointer-events:none}
+.v2-category-label{position:absolute;left:28px;bottom:24px;z-index:2;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.v2-category-title{font-family:var(--serif);font-size:28px;line-height:1;color:#fff!important}
+.v2-category-cta{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:10px;letter-spacing:.24em;color:#fff!important}
+.v2-category-cta i{font-style:normal}
+.v2-trust{display:grid;grid-template-columns:repeat(4,1fr);margin:0 60px;padding:18px 0 30px;border-bottom:1px solid rgba(180,154,114,.22)}
+.v2-trust>div{min-height:72px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid rgba(180,154,114,.22);text-align:center}
+.v2-trust>div:last-child{border-right:0}
+.v2-trust-icon{font-family:var(--serif);font-size:26px;line-height:1;color:var(--v2-ink);margin-bottom:6px}
+.v2-trust strong,.v2-trust small{font-family:var(--sans);font-weight:400;color:var(--v2-ink)!important}
+.v2-trust strong{font-size:12px;line-height:1.3}
+.v2-trust small{font-size:12px;line-height:1.3}
+.v2-story{display:grid;grid-template-columns:1fr 1.18fr 1fr;min-height:377px;margin-top:0}
+.v2-story-image{overflow:hidden}
+.v2-story-image img{width:100%;height:100%;object-fit:cover}
+.v2-story-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:45px 48px;background:#E8DED1}
+.v2-story-copy .v2-kicker{margin-bottom:18px;font-size:9px}
+.v2-story-copy h2{font-family:var(--serif);font-size:32px;line-height:1.02;font-weight:400;margin:0 0 20px;color:var(--v2-ink)!important}
+.v2-story-copy>p:not(.v2-kicker){font-family:var(--sans);font-size:12px;line-height:1.65;margin:0 0 14px;color:var(--v2-ink)!important}
+.v2-story-copy .v2-button{margin-top:8px}
+.v2-footer{background:var(--v2-footer);color:#2C211B!important;text-align:center;padding:46px 24px 42px}
+.v2-footer-line{height:1px;width:88px;background:rgba(44,33,27,.5);display:inline-block;vertical-align:middle;margin:0 22px}
+.v2-footer-brand{display:inline-block;font-family:var(--sans);font-size:10px;letter-spacing:.35em;color:#2C211B!important;vertical-align:middle}
+.v2-footer-sub{font-family:var(--sans);font-size:8px;letter-spacing:.28em;margin-top:10px;color:#2C211B!important}
+@media(max-width:900px){
+  .nav .wrap{width:calc(100% - 36px);height:68px}
+  main{padding-top:68px!important}
+  .brand-image{width:105px;height:54px}.brand-image img{width:105px;height:54px}
+  .menu{position:absolute!important;top:68px!important}
+  .v2-hero{grid-template-columns:1fr;height:auto}
+  .v2-hero-image{order:-1;height:55vw;min-height:300px;max-height:480px}
+  .v2-hero-copy{padding:42px 28px 52px}
+  .v2-hero h1{font-size:clamp(42px,8vw,58px)}
+  .v2-categories{padding:24px 24px 22px;gap:16px}
+  .v2-trust{margin:0 24px}
+  .v2-story{grid-template-columns:1fr 1fr}
+  .v2-story-copy{grid-column:1/-1;grid-row:1;padding:48px 28px}
+  .v2-story-image:first-child{grid-column:1;grid-row:2}
+  .v2-story-image:last-child{grid-column:2;grid-row:2}
+}
+@media(max-width:560px){
+  .nav-right{gap:9px!important}
+  .nav-icon{display:none}
+  .menu{padding:8px 20px 16px!important}
+  .v2-hero-image{height:58vw;min-height:250px}
+  .v2-categories{grid-template-columns:1fr;padding:18px 16px}
+  .v2-trust{grid-template-columns:1fr 1fr;margin:0 16px}
+  .v2-trust>div:nth-child(2){border-right:0}
+  .v2-trust>div{border-bottom:1px solid rgba(180,154,114,.22);padding:10px 0}
+  .v2-trust>div:nth-last-child(-n+2){border-bottom:0}
+  .v2-story{grid-template-columns:1fr}
+  .v2-story-copy{grid-column:1;grid-row:1}
+  .v2-story-image:first-child,.v2-story-image:last-child{grid-column:1;grid-row:auto;height:260px}
+  .v2-footer-line{display:none}
+}
+</style>
+<style>
+/* ===== SH Branding Store palette: Ivory #F7F3ED / Beige #E8DED1 / Espresso #2C211B / Gold #B49A72 / Taupe #8B7969 / White ===== */
+:root{--espresso:#2C211B;--ivory:#F7F3ED;--beige:#E8DED1;--champagne:#B49A72;--taupe:#8B7969;--white:#FFFFFF}
+::selection{background:var(--champagne);color:var(--white)}
+body{font-size:16px;font-weight:400;background:var(--ivory)!important;color:var(--espresso)!important}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;color:var(--espresso)}
+.nav{background:rgba(247,243,237,.97)!important;border-bottom:1px solid var(--beige)!important}
+.menu a{color:var(--espresso)!important;letter-spacing:.14em!important;font-size:12px!important;text-transform:uppercase}
+.menu a:hover,.menu a[aria-current="page"]{border-color:var(--champagne)!important}
+.dropdown{background:var(--white);border:1px solid var(--beige)}
+.dropdown a:hover{background:var(--ivory)}
+.nav-icon,.cart-link{color:var(--champagne)!important}
+.cart-link .badge{background:var(--espresso)!important;color:var(--ivory)!important}
+.burger span,.burger span::before,.burger span::after{background:var(--espresso)!important}
+/* buttons */
+.btn{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;background:var(--white);color:var(--espresso);border:1px solid var(--champagne)}
+.on-sand .btn{color:var(--espresso);border-color:var(--champagne)}
+.btn:hover,.on-sand .btn:hover{background:var(--espresso);color:var(--ivory);border-color:var(--espresso)}
+.btn.solid,.buy .btn:first-child,.summary .btn,#place,#csend{background:var(--espresso);color:var(--ivory);border-color:var(--espresso)}
+.btn.solid:hover,.buy .btn:first-child:hover,.summary .btn:hover,#place:hover,#csend:hover{background:var(--champagne);border-color:var(--champagne);color:var(--white)}
+.v2-button{background:var(--espresso)!important;color:var(--ivory)!important;font-size:10.5px!important;letter-spacing:.22em!important;transition:background .3s}
+.v2-button:hover{background:var(--champagne)!important}
+a{color:inherit}
+.crumbs a,.ccard a{border-color:var(--champagne)}
+.toast a,.toast{color:var(--espresso)}
+/* home */
+.v2-hero,.home-v2{background:var(--ivory)}
+.v2-hero h1{font-family:var(--serif)!important;color:var(--espresso)!important;letter-spacing:-.01em}
+.v2-kicker,.v2-lead{color:var(--espresso)!important}
+.v2-kicker{color:var(--champagne)!important}
+.v2-category-title{font-family:var(--serif)!important;color:#fff!important}
+.v2-trust{border-bottom:1px solid var(--beige)}
+.v2-trust>div{border-right:1px solid var(--beige)}
+.v2-trust-icon{color:var(--champagne)!important}
+.v2-trust strong,.v2-trust small{color:var(--espresso)!important}
+.v2-trust small{color:var(--taupe)!important}
+.v2-story-copy{background:var(--beige)!important}
+.v2-story-copy h2,.v2-story-copy>p:not(.v2-kicker){color:var(--espresso)!important}
+.v2-footer{background:var(--beige)!important;border-top:1px solid var(--champagne)}
+.v2-footer-brand,.v2-footer-sub{color:var(--espresso)!important}
+.v2-footer-line{background:var(--champagne)!important}
+/* sections & cards */
+.trust,.summary,.box,.notice,.contact-cta{background:var(--beige)}
+.notice{border-left:2px solid var(--champagne)}
+.sec-head,.line,.line:last-child,details.acc,details.acc:last-of-type,.steps li{border-color:var(--beige)}
+.steps li{border-top:1px solid var(--champagne)}
+.steps li::before,details.acc summary::after{color:var(--champagne)}
+.card .ph,.pdp-img,.pdp-gallery img{background:var(--white)}
+.card .quick,.tag-oos{background:var(--espresso);color:var(--ivory)}
+.card p,.page-head p,.sec-head p,.crumbs,.line .sub,.hint,.sum-note{color:var(--taupe)}
+.card .stock,.pdp .stock{color:var(--champagne)}
+.card .stock.oos,.pdp .stock.oos,.err{color:var(--err)}
+.tabs .tab,.chips .chip{background:var(--white);border-color:var(--beige);color:var(--taupe)}
+.tabs .tab:hover,.chips .chip:hover{border-color:var(--champagne);color:var(--espresso)}
+.tabs .tab.active,.chips .chip.active{background:var(--espresso);color:var(--ivory);border-color:var(--espresso)}
+.sizes span{background:var(--white);border-color:var(--beige)}
+.sizes input:checked + span{background:var(--espresso);color:var(--ivory);border-color:var(--espresso)}
+.sizes input:hover + span{border-color:var(--champagne)}
+.qty,.ccard,.pay{background:var(--white);border-color:var(--beige)}
+.qty button:hover{background:var(--beige)}
+.pay:has(input:checked){border-color:var(--champagne);box-shadow:inset 0 0 0 1px var(--champagne)}
+.f input,.f select,.f textarea{background:var(--white);border-color:var(--beige);color:var(--espresso);font-family:var(--sans)}
+.f input::placeholder,.f textarea::placeholder{color:var(--taupe);opacity:.8}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--champagne);border-color:var(--champagne)}
+.f [aria-invalid="true"]{border-color:var(--err)}
+.pay input,.check input{accent-color:var(--espresso)}
+.orderid{border-color:var(--champagne)}
+table.sz th,table.sz td{border-color:var(--beige)}
+:focus-visible{outline-color:var(--champagne)}
+
+/* ===== Full-width hero: photo spans the whole page, text sits over the soft wall on the left ===== */
+.v2-hero{position:relative;display:block!important;height:465px;overflow:hidden;background:var(--beige)}
+.v2-hero-image{position:absolute;inset:0;z-index:0}
+.v2-hero-image img{width:100%;height:100%;object-fit:cover;object-position:right center}
+.v2-hero-copy{position:relative;z-index:2;height:100%;width:52%;padding:0 40px 0 max(6vw,64px)!important;justify-content:center}
+@media(max-width:900px){
+  .v2-hero{display:grid!important;height:auto}
+  .v2-hero-image{position:relative;order:-1;height:340px;min-height:0;max-height:none}
+  .v2-hero-image img{object-position:88% center}
+  .v2-hero-copy{width:100%;height:auto;padding:36px 28px 48px!important;background:var(--ivory)}
+}
+
+/* ===== Bigger logo ===== */
+:root{--nav-h:98px}
+.nav .wrap{height:98px!important}
+.brand-image{width:170px!important;height:84px!important}
+.brand-image img{width:168px!important;height:84px!important}
+main{padding-top:98px!important}
+@media(max-width:900px){
+  :root{--nav-h:80px}
+  .nav .wrap{height:80px!important}
+  .brand-image{width:138px!important;height:66px!important}
+  .brand-image img{width:138px!important;height:66px!important}
+  .menu{top:80px!important}
+  main{padding-top:80px!important}
+}
+
+/* ===== Reviews section ===== */
+.reviews{background:var(--ivory);padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--beige)}
+.reviews .wrap{width:min(1100px,100% - 48px)}
+.rv-head{text-align:center;margin-bottom:40px}
+.rv-head .v2-kicker{margin:0 0 14px}
+.rv-head h2{font-size:clamp(30px,4vw,44px);line-height:1.1}
+.rv-score{display:inline-flex;align-items:center;gap:12px;margin-top:18px;font-size:14px;color:var(--taupe)}
+.rv-score b{font-family:var(--serif);font-weight:400;font-size:28px;color:var(--espresso)}
+.stars{color:var(--champagne);letter-spacing:.12em;font-size:16px;white-space:nowrap}
+.rv-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.rv-card{background:var(--white);border:1px solid var(--beige);padding:28px 26px;display:flex;flex-direction:column;gap:14px}
+.rv-card blockquote{margin:0;font-size:15px;line-height:1.7;color:var(--espresso);flex:1}
+.rv-title{font-family:var(--serif);font-size:20px;margin:0;color:var(--espresso)}
+.rv-by{display:flex;align-items:center;gap:12px;border-top:1px solid var(--beige);padding-top:14px;font-size:13px;color:var(--taupe)}
+.rv-av{width:38px;height:38px;border-radius:50%;background:var(--beige);color:var(--espresso);display:grid;place-items:center;font-family:var(--serif);font-size:17px;flex:none}
+.rv-by strong{display:block;font-weight:500;color:var(--espresso);font-size:14px}
+.rv-by em{font-style:normal;color:var(--champagne);font-size:11.5px;letter-spacing:.06em}
+.rv-cta{text-align:center;margin-top:36px}
+@media(max-width:900px){.rv-grid{grid-template-columns:1fr}}
+
+/* ===== Announcement bar + Hiba hero ===== */
+:root{--bar-h:40px;--nav-h:calc(98px + var(--bar-h))}
+.announce{height:var(--bar-h);display:flex;align-items:center;justify-content:center;gap:18px;padding:0 10px;background:#8FA998;color:#fff;font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;text-align:center}
+.announce p{margin:0;line-height:1.2;flex:0 1 auto}
+.announce-btn{background:none;border:0;color:#fff;font-size:24px;line-height:1;cursor:pointer;padding:0 10px}
+main{padding-top:var(--nav-h)!important}
+.v2-hero{width:100%;height:min(56.25vw,calc(100svh - var(--nav-h)))!important;min-height:440px}
+.v2-hero-image img{object-position:center 40%!important}
+.v2-hero-copy{position:absolute!important;left:0;bottom:0;width:48%!important;height:auto!important;padding:0 24px max(3.2vw,36px) max(5.5vw,48px)!important;justify-content:flex-end!important}
+@media(min-width:901px){
+  .v2-hero-image::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 75% 60% at 0% 100%,rgba(247,243,237,.98) 0%,rgba(247,243,237,.94) 50%,rgba(247,243,237,0) 100%),linear-gradient(90deg,rgba(247,243,237,.92) 0%,rgba(247,243,237,.7) 16%,rgba(247,243,237,.3) 32%,rgba(247,243,237,0) 48%)}
+}
+.v2-hero h1{font-size:clamp(30px,3vw,44px)}
+.v2-lead{font-size:clamp(13px,1.05vw,16px);margin:10px 0 18px!important;max-width:38ch}
+.v2-lead strong{font-weight:600}
+@media(max-width:900px){
+  :root{--nav-h:calc(80px + var(--bar-h))}
+  .announce{font-size:11px;letter-spacing:.1em;gap:6px}
+  .menu{top:80px!important}
+  .v2-hero{height:auto!important;min-height:0}
+  .v2-hero-image{height:auto!important;aspect-ratio:16/9;max-height:none}
+  .v2-hero-image img{object-position:center!important}
+  .v2-hero-copy{position:relative!important;width:100%!important;padding:32px 24px 44px!important;background:var(--ivory)}
+  .v2-lead{max-width:none}
+}
+/* ---------- Product editor (#/admin) ---------- */
+.a-bar{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin-bottom:18px}
+.a-bar input{flex:0 1 340px;min-width:200px;height:48px;padding:0 16px;border:1px solid var(--line);background:var(--field-bg);font:inherit;font-size:15px;color:var(--text-on-sand)}
+#aStatus{font-size:14px;color:var(--gold-deep)}
+#aStatus.err{color:var(--err)}
+.a-scroll{overflow-x:auto;border:1px solid var(--line);background:var(--field-bg)}
+.a-table{width:100%;border-collapse:collapse;min-width:640px;font-size:15px}
+.a-table th{text-align:left;font-weight:500;letter-spacing:.08em;font-size:12.5px;text-transform:uppercase;color:var(--taupe);padding:14px 16px;border-bottom:1px solid var(--line);background:var(--sand-2);position:sticky;top:0}
+.a-table td{padding:10px 16px;border-bottom:1px solid var(--line);vertical-align:middle}
+.a-table tr:last-child td{border-bottom:0}
+.a-table tr.edited td{background:rgba(180,154,114,.12)}
+.a-table td input{width:100%;min-width:90px;height:42px;padding:0 12px;border:1px solid var(--line);background:#fff;font:inherit;font-size:15px;color:var(--text-on-sand)}
+.a-table td:nth-child(2) input,.a-table td:nth-child(3) input{max-width:130px}
+.a-table td input.bad{border-color:var(--err);background:#fbefed}
+.a-prod{display:flex;align-items:center;gap:14px}
+.a-prod img{width:52px;height:52px;object-fit:cover;flex:none;border:1px solid var(--line)}
+.a-prod strong{display:block;font-weight:500;line-height:1.3}
+.a-prod small{display:block;color:var(--taupe);font-size:12.5px;letter-spacing:.04em}
+.a-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:24px}
+.a-out{width:100%;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;line-height:1.5;padding:14px;border:1px solid var(--line);background:#fff;color:var(--text-on-sand);resize:vertical}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="announce" role="region" aria-label="Announcements">
+    <button class="announce-btn" type="button" id="annPrev" aria-label="Previous announcement">&#8249;</button>
+    <p id="annText">Free delivery on all orders above 100 AED</p>
+    <button class="announce-btn" type="button" id="annNext" aria-label="Next announcement">&#8250;</button>
+  </div>
+  <div class="wrap">
+    <a class="brand brand-image" href="#/" aria-label="SH Branding Store, home">
+      <img src="images/logo1.png" alt="SH Branding Store">
+    </a>
+    <ul class="menu" id="menu">
+      <li><a href="#/" data-nav="home">Home</a></li>
+      <li class="has-dropdown">
+        <a href="#/collections/jewellery" data-nav="jewellery">Jewellery</a>
+        <ul class="dropdown" data-dropdown="jewellery"><!-- filled in automatically from CATEGORIES below --></ul>
+      </li>
+      <li class="has-dropdown">
+        <a href="#/collections/clothing" data-nav="clothing">Clothing</a>
+        <ul class="dropdown" data-dropdown="clothing"><!-- filled in automatically from CATEGORIES below --></ul>
+      </li>
+      <li><a href="#/contact" data-nav="about">About</a></li>
+    </ul>
+    <div class="nav-right">
+      <a class="nav-icon" href="#/collections" aria-label="Search products">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="11" cy="11" r="6.8"/><path d="m16 16 5 5"/></svg>
+      </a>
+      <a class="nav-icon" href="#/contact" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M5.5 20c.8-3.5 3-5.2 6.5-5.2s5.7 1.7 6.5 5.2"/></svg>
+      </a>
+      <a class="cart-link" href="#/cart" aria-label="Shopping cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="badge" id="badge">0</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main" tabindex="-1"></main>
+
+<footer id="footer"></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =====================================================================
+   QUICK GUIDE – read me first
+   Everything you normally change is in the 6 blocks below, in this order:
+     1. CONFIG      – phone, WhatsApp, email, delivery days
+     2. TEXT        – wording on the homepage
+     3. IMAGES      – homepage photos
+     4. CATEGORIES  – the menu / filter names (Rings, Bangles, Kurta ...)
+     5. PRODUCTS    – your items. Add a product = add ONE line.
+     6. REVIEWS     – customer reviews
+   Rules: keep the quotes "like this" and the commas, only change the words.
+   After editing, save the file and refresh the page in your browser.
+   If the page goes blank, a comma or quote is missing – press F12 to see
+   which line has the error, or undo your last change.
+   ===================================================================== */
+
+/* =====================================================================
+   EDIT THIS SECTION – your shop settings and contact details
+   ===================================================================== */
+var CONFIG = {
+  currency: "AED",
+
+  /* Contact details (shown in the footer, contact page and order messages) */
+  whatsapp: "971505183143",              // digits only with country code, e.g. "971501234567". Leave "" to hide.
+  phoneDisplay: "+971 50 518 3143",
+  email: "sh.brandingstore@gmail.com",
+  instagram: "sh_brandingstore",         // handle without @, e.g. "shbrandingstore"
+  hours: "Daily, 10:00 AM – 10:00 PM",
+
+  /* Delivery – free on every order */
+  deliveryDays: "2–4 working days",
+
+  /* Payment options shown at checkout */
+  payments: { cod: true, cardOnDelivery: false },
+
+  /* Google Sheet orders: paste your Google Apps Script "Web app URL" here (it ends in /exec).
+     Every order and contact-form enquiry is then added to your Google Sheet automatically.
+     sheetKey must match SECRET_KEY in your Apps Script (any word you choose). */
+  sheetEndpoint: "https://script.google.com/macros/s/AKfycbwRRiAgyD05QpO64dPg7CjKFxlaJXT4wuZ3tcloUtA4UO2jt6mI2ILtyBH3BTLYT6fyig/exec",
+  sheetKey: "SH",
+
+  emirates: ["Abu Dhabi","Dubai","Sharjah","Ajman","Umm Al Quwain","Ras Al Khaimah","Fujairah"],
+
+  /* Default sizes for clothing pieces. Turn a size on/off per-piece in PRODUCTS below.
+     Jewellery pieces define their own sizeOptions (e.g. "One Size", or ring sizes). */
+  sizes: ["S","M","L","XL","XXL"]
+};
+
+/* =====================================================================
+   EDIT THIS SECTION – all the on-page wording that isn't a product
+   Change any of the text on the right of the colon; leave everything
+   else (quotes, commas) exactly as it is.
+   ===================================================================== */
+var TEXT = {
+  heroSub: "FINE JEWELLERY & LUXURY CLOTHING",
+  heroTagline: "Where quiet gold and considered tailoring meet.",
+
+  trust: [
+    { title:"Cash on delivery", text:"Pay when your order arrives" },
+    { title:"Free delivery over 100dhs", text:"In "+CONFIG.deliveryDays+", across the UAE" },
+    { title:"Handpicked pieces", text:"Jewellery and clothing chosen with care" }
+  ],
+
+  detailHeading: "Two crafts, one house.",
+  detailText: "Every SH Branding Store piece, gold or fabric, is chosen for how it feels to wear, not just how it photographs.",
+
+  orderSectionHeading: "Ordering is simple",
+  orderSectionSub: "Order online and pay in cash when it arrives."
+};
+
+/* =====================================================================
+   IMAGES – the main photos of the website (not products – those are above).
+
+   TO CHANGE A PHOTO: put the new file in the "images" folder, then change
+   the file name on the right of the matching line below.
+   ===================================================================== */
+var IMAGES = {
+  logo: "images/logo1.png",                 // logo in the top menu bar
+
+  heroBanner:        "images/hiba1.jpg",    // big photo at the top of the homepage
+  categoryJewellery: "images/jewellery.jpg",// "Jewellery" photo card on the homepage
+  categoryClothing:  "images/clothing.jpg", // "Clothing" photo card on the homepage
+  storyClothing:     "images/story-clothing.jpg",   // "Our story" – left photo
+  storyJewellery:    "images/story-jewellery.jpg"   // "Our story" – right photo
+};
+
+/* =====================================================================
+   CATEGORIES – the two departments, and the sub-categories inside each
+   (this is what shows as filter chips on the Jewellery/Clothing pages,
+   and as the dropdown menu under "Jewellery" / "Clothing" in the top menu).
+
+   HOW TO ADD A NEW SUB-CATEGORY
+   1. Add one new line inside the right list below, e.g.:
+        { key:"watches", label:"Watches" }
+   2. Give at least one product that exact same "key" in its
+      "subcategory" field down in PRODUCTS, e.g.  subcategory:"watches"
+   That's it — the dropdown menu and the filter chips update automatically.
+   ===================================================================== */
+var CATEGORIES = {
+  jewellery: {
+    label: "Jewellery",
+    subcategories: [
+      { key:"neck-chains", label:"Neck Chains" },
+      { key:"rings",       label:"Rings" },
+      { key:"bangles",     label:"Bangles", children:[
+          { key:"adult-bangles", label:"Adult Bangles" },
+          { key:"baby-bangles",  label:"Baby Bangles" }
+        ] },
+      { key:"bracelets",   label:"Bracelet" },
+      { key:"earrings",    label:"Earrings" },
+      { key:"anklets",     label:"Anklets" },
+      { key:"watches",     label:"Watches" },
+      { key:"traditional-collection", label:"Traditional Collection" },
+      { key:"kids",        label:"Kids" },
+      { key:"nose-pins",   label:"Nose Pins" },
+      { key:"hand-chains", label:"Hand Chains" },
+      { key:"mens",        label:"Mens" },
+      { key:"combo-set",   label:"Combo Set" }
+    ]
+  },
+  clothing: {
+    label: "Clothing",
+    subcategories: [
+      { key:"kurta",      label:"Kurta" },
+      { key:"cord-set",   label:"Cord Set" },
+      { key:"3-pcs-sets", label:"3 Pcs Sets" },
+      { key:"plus-size",  label:"Plus Size" }
+    ]
+  }
+};
+
+/* =====================================================================
+   PRODUCTS – everything you sell.            (this is the part you will edit most)
+
+   ★ HOW TO ADD A NEW PRODUCT (takes 30 seconds)
+   1. Put the photo in the right folder inside "images"
+      (e.g. images/jewellery/rings/my-new-ring.jpg).
+   2. Find the group below that matches (Rings, Bangles, Kurta ...) and add
+      ONE new line at the end of that group's list, before the closing ]);
+          ["Name shown to customers", "my-new-ring.jpg"],
+      → the last line of a list has NO comma at the end; all the others do.
+   3. Save. Done – price, sizes, stock and wording come from the group.
+
+   ★ DIFFERENT PRICE / STOCK / SIZES FOR ONE PIECE?
+   Add a third part to that product's line:
+          ["Gold Hoops", "gold-hoops.jpg", { price:350, stock:2 }],
+   You can use:  price, stock, sizes, pos, desc, gallery, id
+          stock:0           → shows "Sold out" automatically
+          sizes:["S","M","L","XL","XXL","XXXL"]   → only these sizes are offered
+          desc:"Your own description sentence."
+          pos:"50% 30%"     → which part of the photo is centred (x% y%)
+          gallery:["a.jpg","b.jpg"]  → extra photos on the product page
+
+   ★ BRAND NEW GROUP (new price or new type of item)?
+   Copy a whole addProducts({ ... }, [ ... ]); block, paste it below the last
+   one and change the settings at the top:
+          category    – "jewellery" or "clothing"
+          subcategory – a "key" from CATEGORIES above
+          folder      – the images folder for these photos
+          price / stock / sizes – the defaults for every product in the group
+          style       – a word used in the auto description ("gold-tone")
+          note        – the sentence added to the long description
+          details     – the bullet points shown on the product page
+
+   ★ TO REMOVE A PRODUCT: delete its line.  To hide it for a while:
+     set stock:0 (shows "Sold out") or put // at the start of the line.
+   ===================================================================== */
+var PRODUCTS = [];
+
+/* ---------- RINGS – 560 AED (66 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"rings",
+  folder:"images/jewellery/rings/",
+  price:12, stock:1,
+  sizes:["Adjustable"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel"," Ring sizes are adjustable"]
+}, [
+  ["Petal Crystal Ring", "petal-crystal-ring.jpg", { price: 12}],
+  ["Crown Solitaire Ring", "crown-solitaire-ring.jpg", { price: 12}],
+  ["Twisted Loop Crystal Ring", "twisted-loop-crystal-ring.jpg", { price: 12}],
+  ["Shooting Star Crystal Ring", "shooting-star-crystal-ring.jpg", { price: 12}],
+  ["Wave Crystal Ring", "wave-crystal-ring.jpg",{price:12}],
+  ["Baguette Solitaire Ring", "baguette-solitaire-ring.jpg",{ price:12}],
+  ["Butterfly Crystal Ring", "butterfly-crystal-ring.jpg",{price:12}],
+  ["Star Crystal Stack Ring", "star-crystal-stack-ring.jpg", { price: 12 }],
+  ["Heart Crystal Ring", "heart-crystal-ring.jpg"],
+  ["Flower Solitaire Ring", "flower-solitaire-ring.jpg"],
+  ["Arrow Crystal Ring", "arrow-crystal-ring.jpg"],
+  ["Diamond Shape Crystal Ring", "diamond-shape-crystal-ring.jpg"],
+  ["Bow Crystal Ring", "bow-crystal-ring.jpg"],
+  ["Lilac Beaded Solitaire Ring", "lilac-beaded-solitaire-ring.jpg"],
+  ["Pink Beaded Solitaire Ring", "pink-beaded-solitaire-ring.jpg"],
+  ["Orange Beaded Solitaire Ring", "orange-beaded-solitaire-ring.jpg"],
+  ["Yellow Beaded Solitaire Ring", "yellow-beaded-solitaire-ring.jpg"],
+  ["Blue Pear Crystal Ring", "blue-pear-crystal-ring.jpg"],
+  ["Ruby Pear Crystal Ring", "ruby-pear-crystal-ring.jpg"],
+  ["Red Heart Beaded Ring", "red-heart-beaded-ring.jpg"],
+  ["Pink Heart Beaded Ring", "pink-heart-beaded-ring.jpg"],
+  ["Orange Baguette Beaded Ring", "orange-baguette-beaded-ring.jpg"],
+  ["Purple Baguette Beaded Ring", "purple-baguette-beaded-ring.jpg"],
+  ["Opal Marquise Twin Ring", "opal-marquise-twin-ring.jpg"],
+  ["Pink Marquise Twin Ring", "pink-marquise-twin-ring.jpg"],
+  ["Pink Square Beaded Ring", "pink-square-beaded-ring.jpg"],
+  ["White Square Beaded Ring", "white-square-beaded-ring.jpg"],
+  ["Star Orange Baguette Double Ring", "star-orange-baguette-double-ring.jpg"],
+  ["Star Pearl Double Band Ring", "star-pearl-double-band-ring.jpg"],
+  ["Wavy Gold Statement Ring", "wavy-gold-statement-ring.jpg", { price: 10 }],
+  ["Oval Link Gold Ring", "oval-link-gold-ring.jpg", { price: 10 }],
+  ["Crystal Bow Band Ring", "crystal-bow-band-ring.jpg"],
+  ["Layered Swirl Gold Ring", "layered-swirl-gold-ring.jpg", { price: 10 }],
+  ["Hammered Dot Wide Ring", "hammered-dot-wide-ring.jpg", { price: 10 }],
+  ["Molten Wave Gold Ring", "molten-wave-gold-ring.jpg", { price: 10 }],
+  ["Open Leaf Gold Ring", "open-leaf-gold-ring.jpg"],
+  ["Ribbon Bow Gold Ring", "ribbon-bow-gold-ring.jpg"],
+  ["Crystal Flower Crown Ring", "crystal-flower-crown-ring.jpg"],
+  ["Crystal Leaf Band Ring", "crystal-leaf-band-ring.jpg"],
+  ["Black Round Engraved Ring", "black-round-engraved-ring.jpg"],
+  ["Halo Crystal Medallion Ring", "halo-crystal-medallion-ring.jpg"],
+  ["Crossover Crystal Ring", "crossover-crystal-ring.jpg"],
+  ["Amethyst Baguette Stack Ring", "amethyst-baguette-stack-ring.jpg"],
+  ["Opal Butterfly Crystal Ring", "opal-butterfly-crystal-ring.jpg"],
+  ["V Crystal Chevron Ring", "v-crystal-chevron-ring.jpg"],
+  ["Orange Round Solitaire Ring", "orange-round-solitaire-ring.jpg"],
+  ["Garnet Heart Wrap Ring", "garnet-heart-wrap-ring.jpg"],
+  ["Yellow Oval Beaded Ring", "yellow-oval-beaded-ring.jpg"],
+  ["Purple Infinity Crystal Ring", "purple-infinity-crystal-ring.jpg"],
+  ["Pink Heart Solitaire Ring", "pink-heart-solitaire-ring.jpg"],
+  ["Lilac Heart Wrap Ring", "lilac-heart-wrap-ring.jpg"],
+  ["Garnet Round Solitaire Ring", "garnet-round-solitaire-ring.jpg"],
+  ["Teardrop Gold Wrap Ring", "teardrop-gold-wrap-ring.jpg", { price: 10}],
+  ["Laurel Leaf Gold Ring", "laurel-leaf-gold-ring.jpg", { price: 10}],
+  ["Triple Bead Gold Ring", "triple-bead-gold-ring.jpg", { price: 10}],
+  ["Open Leaf Gold Ring", "open-leaf-gold-ring.jpg", { price: 10}],
+  ["Pink Emerald Cut Ring", "pink-emerald-cut-ring.jpg"],
+  ["Heart Bow Gold Ring", "heart-bow-gold-ring.jpg", { price: 10}],
+  ["Open Flower Gold Ring", "open-flower-gold-ring.jpg"],
+  ["Ribbon Bow Gold Ring", "ribbon-bow-gold-ring.jpg", { price: 10}],
+  ["Heart Link Crystal Ring", "heart-link-crystal-ring.jpg", { price: 10,Sizes:["17","18","19"]}],
+  ["Open Heart Gold Ring", "open-heart-gold-ring.jpg", { price: 10,Sizes:["17","18","19"]}],
+  ["Rose Cutout Gold Ring", "rose-cutout-gold-ring.jpg", { price: 10,Sizes:["17","18","19"]}],
+  ["Black Round Onyx Ring", "black-round-onyx-ring.jpg", { price: 10,Sizes:["17","18"]}],
+  ["Black Clover Onyx Ring", "black-clover-onyx-ring.jpg", { price: 10,Sizes:["17","18"]}],
+  ["Black Star Onyx Ring", "black-star-onyx-ring.jpg", { price: 10,Sizes:["15","16","17","18"]}],
+  ["Black Square Onyx Ring", "black-square-onyx-ring.jpg", { price: 10,Sizes:["15","16","17","18"]}],
+  ["Black Triangle Onyx Ring", "black-triangle-onyx-ring.jpg", { price: 10,Sizes:["15","16","17","18"]}]
+]);
+
+
+/* ---------- KIDS ANKLETS – 640 AED (6 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"kids",
+  folder:"images/jewellery/kids/",
+  price:30, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Gold Beaded Anklet", "gold-beaded-anklet-on-feet.jpeg"],
+  ["Black Bead Gold Anklet", "black-bead-gold-anklet-on-feet.jpeg"],
+  ["Black Clover Charm Anklet", "black-clover-charm-anklet.jpeg"],
+  ["Heart Anklet", "Heart Anklet.jpg"],
+  ["Gold Charms Anklet", "gold-charms-anklet.jpeg"],
+  ["Gold Chain Anklet", "gold-chain-anklet-on-feet.jpeg"],
+  ["Butterfly Charm Anklet", "butterfly-charm-anklet-on-feet.jpeg"],
+  ["Tail-evil Necklace", "Tail-evil Necklace.jpg", { price: 25}],
+  ["Bow double layer chain", "Bow double layer chain.jpg", { price: 25}],
+  ["Bow Ring", "Bow Ring.jpg", { price: 10 }],
+  ["Butterfly Ring", "Butterfly Ring.jpg", { price: 10 }],
+  ["Clover Ring", "Clover Ring.jpg", { price: 10 }],
+  ["Crown Ring", "Crown Ring.jpg", { price: 10 }],
+  ["Flower Ring", "Flower Ring.jpg", { price: 10 }],
+  ["Heart Ring", "Heart Ring.jpg", { price: 10 }],
+  ["Leaf Ring", "Leaf Ring.jpg", { price: 10 }],
+  ["Little Crown Ring", "Little Crown Ring.jpg", { price: 10 }],
+  ["Butterfly Bangle-Ring Set", "Butterfly bangle- ring set.jpg"],
+  ["Flower Bangle-Ring Set", "Flower Bangle-ring set.jpg"],
+  ["Round Bangle-Ring Set", "Round bangle-ring set.jpg"],
+  ["sea-theme necklace", "sea-theme necklace.jpg", { price: 25}],
+  ["Strawberry double layer chain", "Strawberry double layer chain.jpg", { price: 25}],
+
+]);
+
+
+
+/* ---------- traditional collection – 480 AED (2 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"traditional-collection",
+  folder:"images/jewellery/traditional-collection/",
+  price:35, stock:1,
+  sizes:["One Size"], pos:"50% 42%",
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold-tone finish","One size","SH Branding Store gift pouch"]
+}, [
+  ["Multistrand Gold Bead Necklace", "multistrand-gold-bead-necklace-model.jpeg"],
+  ["Green Stone Gold Necklace", "green-stone-gold-necklace-model.jpeg"]
+]);
+
+/* ---------- BANGLES – 390 AED (4 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"bangles",
+  folder:"images/jewellery/bangles/",
+  price:28, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  //["Pearl Charm Gold Bangle", "pearl-charm-gold-bangle-01.jpeg"],
+  ["Blue Pearl Charm Bangle", "pearl-charm-gold-bangle-02.jpeg", { price: 28}],
+  ["Blue Bead Gold Bangle", "blue-bead-gold-bangle.jpeg", { price: 28}],
+  ["Blue Floral Charm Bangle", "blue-floral-charm-bangle.jpeg", { price: 28}]
+]);
+
+/* ---------- EARRINGS – 320 AED (31 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"earrings",
+  folder:"images/jewellery/earrings/",
+  price:10, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Crystal Drop Earrings", "crystal-drop-earrings.jpeg"],
+  ["Gold Heart Stud Earrings", "gold-heart-stud-earrings.jpeg"],
+  ["Ridged Heart Stud Earrings", "ridged-heart-stud-earrings.jpeg"],
+  ["Open Heart Crystal Stud Earrings", "open-heart-crystal-stud-earrings.jpg"],
+  ["Puffy Heart Crystal Drop Earrings", "puffy-heart-crystal-drop-earrings.jpg"],
+  ["Baguette Crystal Textured Earrings", "baguette-crystal-textured-earrings.jpg"],
+  ["Knot Crystal Teardrop Earrings", "knot-crystal-teardrop-earrings.jpg"],
+  ["Solid Heart Stud Earrings", "solid-heart-stud-earrings.jpg"],
+  ["Butterfly Outline Stud Earrings", "butterfly-outline-stud-earrings.jpg"],
+  ["Tiered Scallop Earrings", "tiered-scallop-earrings.jpg"],
+  ["Textured Crescent Hoop Earrings", "textured-crescent-hoop-earrings.jpg"],
+  ["Petal Flower Stud Earrings", "petal-flower-stud-earrings.jpg"],
+  ["Twisted Oval Hoop Earrings", "twisted-oval-hoop-earrings.jpg"],
+  ["Rope Twist Open Hoop Earrings", "rope-twist-open-hoop-earrings.jpg"],
+  ["Diamond Pattern Hoop Earrings", "diamond-pattern-hoop-earrings.jpg"],
+  ["Hammered Oval Hoop Earrings", "hammered-oval-hoop-earrings.jpg"],
+  ["Layered Oval Hoop Earrings", "layered-oval-hoop-earrings.jpg"],
+  ["Tricolour Wing Stud Earrings", "tricolour-wing-stud-earrings.jpg"],
+  ["Crystal Butterfly Huggie Earrings", "crystal-butterfly-huggie-earrings.jpg"],
+  ["Triple Band Drop Earrings", "triple-band-drop-earrings.jpg"],
+  ["Evil Eye Heart Earrings", "evil-eye-heart-earrings.jpg"],
+  ["Beaded Heart Hoop Earrings", "beaded-heart-hoop-earrings.jpg"],
+  ["Tulip Stud Earrings", "tulip-stud-earrings.jpg"],
+  ["Solid Flower Stud Earrings", "solid-flower-stud-earrings.jpg"],
+  ["Double Circle Stud Earrings", "double-circle-stud-earrings.jpg"],
+  ["Filigree Butterfly Stud Earrings", "filigree-butterfly-stud-earrings.jpg"],
+  ["Cutout Butterfly Stud Earrings", "cutout-butterfly-stud-earrings.jpg"],
+  ["Lotus Flower Stud Earrings", "lotus-flower-stud-earrings.jpg"],
+  ["Triple Star Stud Earrings", "triple-star-stud-earrings.jpg"],
+  ["Triple Hoop Cuff Earrings", "triple-hoop-cuff-earrings.jpg"],
+  ["Spiral Stud Earrings", "spiral-stud-earrings.jpg"]
+]);
+
+
+/* ---------- 3 PCS SETS – 1150 AED (4 pieces) ---------- */
+addProducts({
+  category:"clothing", subcategory:"3-pcs-sets",
+  folder:"images/clothing/3-pcs-sets/",
+  price:69, stock:1,
+  sizes:["M","L","XL","XXL","XXXL"], pos:"50% 40%",
+  style:"",
+  note:"A comfortable, easy fit for everyday and occasion wear.",
+  details:["Traditional print","Matching set","Available in five sizes"]
+}, [
+  ["Blue and Rose Printed Cotton 3 Pcs Set", "Blue and rose printed cotton 3 pcs set.jpg", { sizes: ["L"], price: 59 }],
+  ["blue printed cotton 3 pcs set", "Blue printed cotton 3 pcs set.jpg", { sizes: ["L"], price: 59 }],
+  ["orange printed cotton 3pcs set", "Orange printed cotton 3pcs set.jpg", { sizes: ["L"], price: 59 }],
+  ["Red printed cotton 3 pcs set", "Red printed cotton 3 pcs set.jpg", { sizes: ["L"], price: 59 }],
+  ["floral white soft 3pcs set", "Floral white soft 3pcs set.jpg", { sizes: ["L","M","XXL"], price: 69 }],
+  ["Red muslin 3pcs set", "Red muslin 3pcs set.jpg", { sizes: ["XXL"], price: 69 }],
+  ["Mango yellow muslin 3pcs set", "Mango yellow muslin 3pcs set.jpg", { sizes: ["XXL"], price: 69 }],
+  ["Light Green muslin 3pcs set", "Light Green muslin 3pcs set.jpg", { sizes: ["XXL"], price: 69 }],
+  ["Green muslin 3pcs set", "Green muslin 3pcs set.jpg", { sizes: ["XXL"], price: 69 }],
+  ["Blue muslin 3pcs set", "Blue muslin 3pcs set.jpg", { sizes: ["XXL"], price: 69 }]
+
+]);
+
+/* ---------- KURTA – 280 AED (7 pieces) ---------- */ 
+addProducts({
+  category:"clothing", subcategory:"kurta",
+  folder:"images/clothing/kurta/",
+  price:30, stock:1,
+  sizes:["S","M","L","XL","XXL","XXXL"], pos:"50% 45%",
+  style:"",
+  note:"A comfortable, easy fit for everyday and occasion wear.",
+  details:["Traditional print","Available in five sizes"]
+}, [
+  ["Blue Printed Short Top", "Blue Printed Short Top.jpg", { sizes: [ "S"], price: 25 }],
+  ["Green Printed Kurti", "Green Printed Kurti.jpg", { sizes: ["XXXL"], price: 30 }],
+  ["Green V-Neck Kurti", "Green V-Neck Kurti.jpg", { sizes: ["XXXL"], price: 30 }],
+  ["Maroon Printed Kurti", "Maroon Printed Kurti.jpg", { sizes: ["XXXL"], price: 30 }],
+  ["Maroon V-Neck Kurti", "Maroon V-Neck Kurti.jpg", { sizes: ["XXXL"], price: 30 }],
+  ["Mustard Printed Kurti", "Mustard Printed Kurti.jpg", { sizes: ["XXXL"], price: 30 }],
+  ["Mustard V-Neck Kurti", "Mustard V-Neck Kurti.jpg", { sizes: ["XXXL"], price: 30 }]
+
+]);
+
+
+/* ---------- cord-set – 280 AED (7 pieces) ---------- */
+addProducts({
+  category:"clothing", subcategory:"cord-set",
+  folder:"images/clothing/cord-set/",
+  price:49, stock:1,
+  sizes:["S","M","L","XL","XXL","XXXL"], pos:"50% 45%",
+  style:"",
+  note:"A comfortable, easy fit for everyday and occasion wear.",
+  details:["Traditional print","Matching set","Available in five sizes"]
+}, [
+  ["Black Cord Set", "Black-cordset.jpg",{ sizes: ["L","XL", "XXL"], price: 49 }],
+  ["Lavender Cord Set", "lavender-cordset.jpg", { sizes: ["L","XL", "XXL"], price: 49 }],
+  ["Red Printed Cord Set", "Red printed-cordset.jpg", { sizes: ["L","XL", "XXL"], price: 49 }],
+  ["Ivory Embroidered Cord Set", "Ivory Embroidered-cordset.jpg", { sizes: ["L","XL", "XXL"], price: 49 }]
+
+]);
+
+
+/* ---------- BANGLES – 390 AED (22 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"bangles",
+  folder:"images/jewellery/bangles/",
+  price:25, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Golden Floral Filigree Bangle", "golden-floral-filigree-bangle.jpg"],
+  ["Black Enamel Pave Bangle", "black-enamel-pave-bangle.jpg"],
+  ["Crystal Flower Bangle", "crystal-flower-bangle.jpg"],
+  ["Five Stone Pave Bangle", "five-stone-pave-bangle.jpg"],
+  ["Herringbone Gold Bangle", "herringbone-gold-bangle.jpg"],
+  ["Black Heart Ribbed Bangle", "black-heart-ribbed-bangle.jpg"],
+  ["Ribbed Gold Cuff Bangle", "ribbed-gold-cuff-bangle.jpg"],
+  ["Black Rectangle Charm Bangle", "black-rectangle-charm-bangle.jpg"],
+  ["Emerald Crystal Bangle", "emerald-crystal-bangle.jpg"],
+  //["Rose Gold Square Crystal Bangle", "rose-gold-square-crystal-bangle.jpg"],
+  ["Crystal Line Bangle", "crystal-line-bangle.jpg"],
+  //["Black and Pearl Clover Bangle", "black-and-pearl-clover-bangle.jpg"],
+  ["Crystal Clasp Bangle", "crystal-clasp-bangle.jpg"],
+  ["Emerald Bar Bangle", "emerald-bar-bangle.jpg"],
+  ["Triangle Crystal Bangle", "triangle-crystal-bangle.jpg"],
+  ["Rainbow Heart Charm Bangle", "rainbow-heart-charm-bangle.jpg"],
+  ["Crystal Leaf Open Bangle", "crystal-leaf-open-bangle.jpg"],
+  ["Rainbow Stone Bangle", "rainbow-stone-bangle.jpg"],
+  ["Crystal Floral Bangle", "crystal-floral-bangle.jpg"],
+  ["Arrow Crystal Bangle", "arrow-crystal-bangle.jpg"],
+  ["Triple Line Open Bangle", "triple-line-open-bangle.jpg"],
+  ["Gold Floral Cuff Bangle", "gold-floral-cuff-bangle.jpg"]
+
+]);
+
+/* ---------- BRACELETS – 280 AED (31 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"bracelets",
+  folder:"images/jewellery/bracelets/",
+  price:20, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Heart Watch Bracelet", "heart watch bracelet.jpg"],
+  ["Oval Mesh Watch Bracelet", "oval mesh watch bracelet.jpg"],
+  ["Oval Watch Bracelet", "Oval watch bracelet.jpg"],
+  ["Round Watch Bracelet", "Round watch bracelet.jpg"],
+  ["heart hanging bracelet", "heart hanging bracelet.jpg"],
+  ["Minimal Heart Bracelet", "minimal-heart-bracelet.jpg", { price: 15}],
+  ["Fine Gold Chain Bracelet", "fine-gold-chain-bracelet.jpg", { price:12}],
+  ["Black Clover Bracelet", "black-clover-bracelet.jpg", { price: 18}],
+  ["Gold Bead Charm Bracelet", "gold-bead-charm-bracelet.jpg"],
+  ["Crystal Bow Bracelet", "crystal-bow-bracelet.jpg", { price: 15}],
+  ["black butterfly Crystal Bracelet", "black butterfly bracelet.jpg"],
+  ["Red Tennis Bracelet", "red tennis bracelet.jpg", { price: 18}], 
+  ["Black Pearl Charm Bracelet", "black-pearl-charm-bracelet.jpg", { price: 18}],
+  ["black butterfly bracelet", "black butterfly bracelet.jpg", { price: 15}],
+  ["Crystal Butterfly Bracelet", "white tulip.jpg"],
+  ["Burgundy Crystal Bracelet", "burgundy-crystal-bracelet.jpg", { price: 18}],
+  ["Red Tulip Bracelet", "red tulip bracelet.jpg"],
+  ["Lavender Pink Tulip", "Lavender Pink Tulip.jpg"],
+  ["Gold Charm Bracelet", "gold-charm-bracelet.jpg", { price: 15}],
+  ["Teardrop Charm Bracelet", "teardrop-charm-bracelet.jpg", { price: 15}],
+  ["Gold Crystal Station Bracelet", "Gold crystal-station-bracelet.jpg"],
+  ["Green Tulip Bracelet", "green tulip bracelet.jpg"],
+  ["Black Clover Station Bracelet", "black-clover-station-bracelet.jpg", { price: 18}],
+  ["Crystal Charm Cluster Bracelet", "crystal-charm-cluster-bracelet.jpg"],
+  ["Black Circle Bracelet", "black-circle-bracelet.jpg", { price: 25}],
+  ["Crystal Flower Station Bracelet", "crystal-flower-station-bracelet.jpg", { price: 12}],
+  //["Mama Heart Bracelet", "mama-heart-bracelet.jpg"],
+  ["Twisted Gold Bracelet", "twisted-gold-bracelet.jpg"],
+  ["Crystal Station Bracelet", "crystal-station-bracelet.jpg"],
+  ["Heart Drop Bracelet", "heart-drop-bracelet.jpg"],
+  ["Heart Charm Bracelet", "heart-charm-bracelet.jpg"],
+  ["white Stone Station Bracelet", "white-stone-station-bracelet.jpg", { price: 20}],
+  ["Multicolour Teardrop Bracelet", "multicolour-teardrop-bracelet.jpg", { price: 15}],
+  ["Gold Flower Bracelet", "gold-flower-bracelet.jpg"],
+  ["Gold Flower Chain Bracelet", "gold-flower-chain-bracelet.jpg"]
+]);
+
+/* ---------- NECKLACES – 480 AED (40 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"neck-chains",
+  folder:"images/jewellery/necklaces/",
+  price:25, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Sapphire Bead Necklace", "sapphire-bead-necklace.jpg"],
+  ["White Tulip Necklace", "white tulip.jpg", {  price:15, stock: 3 }],
+  ["Lavender Tulip Necklace", "lavender tulip.jpg", { price: 15 }],
+  ["Pink Tulip Necklace", "pink-tulip.jpg", { price: 15}],
+  ["Red Tulip Necklace", "red-tulip.jpg", { price:15, stock: 3 }],
+  ["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
+  ["Gold Bow Pendant Necklace", "gold-bow-pendant-necklace.jpg"],
+  ["Gold Flower Pendant Necklace", "gold-flower-pendant-necklace.jpg"],
+  ["Crystal Heart Pendant Necklace", "crystal-heart-pendant-necklace.jpg"],
+  ["Crystal Bar Pendant Necklace", "crystal-bar-pendant-necklace.jpg"],
+  ["Crystal Flower Pendant Necklace", "crystal-flower-pendant-necklace.jpg"],
+  ["Crystal Butterfly Pendant Necklace", "crystal-butterfly-pendant-necklace.jpg"],
+  ["Tail Mangalsutra", "tail mangalsutra.jpg"],
+  ["Single Stone Mangalsutra", "single stone mangalsutra.jpg"],
+  ["Crystal Butterfly Pendant Necklace", "crystal-butterfly-pendant-necklace.jpg"],
+  ["3 Layer Cherry Chain", "3 layer cherry chain.jpg"],
+  ["Pearl Station Charm Necklace", "pearl-station-charm-necklace.jpg"],
+  ["Gold Bead Station Necklace", "gold-bead-station-necklace.jpg"],
+  ["Gold Box Chain Necklace", "gold-box-chain-necklace.jpg", { price: 10 }],
+  ["Gold Bow Pendant Necklace", "gold-bow-pendant-necklace.jpg"],
+  ["Gold Snake Chain Necklace", "gold-snake-chain-necklace.jpg", { price: 10 }],
+  ["Crystal Initial A Necklace", "crystal-initial-a-necklace.jpg"],
+  ["Multicolour Charm Necklace", "multicolour-charm-necklace.jpg"],
+  ["Gold Letter Charm Necklace", "gold-letter-charm-necklace.jpg"],
+  ["Gold Initial K Necklace", "gold-initial-k-necklace.jpg"],
+  ["Key Charm Necklace", "key-charm-necklace.jpg"],
+  ["Heart Bow Necklace", "heart-bow-necklace.jpg"],
+  ["Butterfly Charm Necklace", "butterfly-charm-necklace.jpg"],
+  ["Crystal Charm Pendant Necklace", "crystal-charm-pendant-necklace.jpg"],
+  ["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
+  ["Infinity Pendant Necklace", "infinity-pendant-necklace.jpg"],
+  ["Crystal Charm Necklace", "crystal-charm-necklace.jpg"],
+  ["Floral Charm Necklace", "floral-charm-necklace.jpg"],
+  ["Butterfly Drop Necklace", "butterfly-drop-necklace.jpg"],
+  ["Gold Bar Necklace", "gold-bar-necklace.jpg"],
+  ["Round Coin Pendant Necklace", "round-coin-pendant-necklace.jpg"],
+  ["Oval Medallion Necklace", "oval-medallion-necklace.jpg"],
+  ["Heart Knot Necklace", "heart-knot-necklace.jpg"],
+  ["Crystal Y Drop Necklace", "crystal-y-drop-necklace.jpg"],
+  ["Green Heart Station Necklace", "green-heart-station-necklace.jpg"],
+  ["Gold Star Station Necklace", "gold-star-station-necklace.jpg"],
+  ["Gold Star Drop Necklace", "gold-star-drop-necklace.jpg"],
+  ["Gold Bow Necklace", "gold-bow-necklace.jpg"],
+  ["Black Tassel Pendant Necklace", "black-tassel-pendant-necklace.jpg"],
+  ["Double Chain Heart Necklace", "double-chain-heart-necklace.jpg"],
+  ["Crystal Solitaire Necklace", "crystal-solitaire-necklace.jpg", { price: 15 }],
+  ["Crystal Drop Necklace", "crystal-drop-necklace.jpg", { price: 15 }],
+  ["Crystal Flower Pendant Necklace", "crystal-flower-pendant-necklace.jpg"],
+  ["Gold Flower Pendant Necklace", "gold-flower-pendant-necklace.jpg"],
+  ["Heart Outline Pendant Necklace", "heart-outline-pendant-necklace.jpg", { price: 8 }],
+  ["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
+  ["Crystal Bar Pendant Necklace", "crystal-bar-pendant-necklace.jpg"],
+  ["Crystal Charm Drop Necklace", "crystal-charm-drop-necklace.jpg"],
+  ["Crystal Heart Pendant Necklace", "crystal-heart-pendant-necklace.jpg"],
+  ["Heart Crystal Pendant Necklace", "heart-crystal-pendant-necklace.jpg"]
+]);
+
+
+/* ---------- MENS RINGS – 560 AED (11 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"mens",
+  folder:"images/jewellery/mens/",
+  price:10, stock:2,
+  sizes:["17","18","19","20","21"], pos:"50% 50%",
+  style:"",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Black and silver finish","Available in ring sizes 8-12","SH Branding Store gift pouch"]
+}, [
+  ["Black Silver Groove Ring", "black-silver-groove-ring.jpg", { sizes: ["18","19"]}],
+  ["Triple Line Steel Ring", "triple-line-steel-ring.jpg", { sizes: ["17","18"]}],
+  ["Black Twist Pattern Ring", "black-twist-pattern-ring.jpg", { sizes: ["18","19","20"]}],
+  ["Black Diagonal Carbon Ring", "black-diagonal-carbon-ring.jpg", { sizes: ["19"]}],
+  ["Silver Stripe Black Ring", "silver-stripe-black-ring.jpg", { sizes: ["18","19"]}],
+  ["Silver Diagonal Slash Ring", "silver-diagonal-slash-ring.jpg", { sizes: ["19"]}],
+  ["Black Silver Line Ring", "black-silver-line-ring.jpg", { sizes: ["19","20"]}],
+  ["Brushed Silver Black Ring", "brushed-silver-black-ring.jpg", { sizes: ["17","18"]}],
+  ["Black Textured Ring", "black-textured-ring.jpg", { sizes: ["18","19"]}],
+  ["Black Woven Ring", "black-woven-ring.jpg", { sizes: ["17","18","19","20","21"]}],
+  ["Multi Line Black Silver Ring", "multi-line-black-silver-ring.jpg", { sizes: ["17","18","19","20"]}]
+  
+]);
+
+
+/* ---------- ADULT BANGLES – 390 AED (23 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"adult-bangles",
+  folder:"images/jewellery/adult-bangles/",
+  price:25, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Pave Link Hinged Bangle", "pave-link-hinged-bangle.jpg"],
+  ["Triple Line Two-Tone Cuff Bangle", "triple-line-two-tone-cuff-bangle.jpg"],
+  ["Flower Cuff Bangle", "flower-cuff-bangle.jpg"],
+  ["Daisy Cluster Hinged Bangle", "daisy-cluster-hinged-bangle.jpg"],
+  ["Black Disc Crystal Bangle", "black-disc-crystal-bangle.jpg"],
+  ["Open Flower Crystal Bangle", "open-flower-crystal-bangle.jpg"],
+  ["Scattered Crystal Slim Bangle", "scattered-crystal-slim-bangle.jpg"],
+  ["Herringbone Wide Cuff Bangle", "herringbone-wide-cuff-bangle.jpg"],
+  ["Black Heart Ribbed Bangle Slim", "black-heart-ribbed-bangle-slim.jpg"],
+  ["Ribbed Stretch Gold Bangle", "ribbed-stretch-gold-bangle.jpg"],
+  ["Black Square Beaded Bangle", "black-square-beaded-bangle.jpg"],
+  ["Emerald Baguette Panel Bangle", "emerald-baguette-panel-bangle.jpg"],
+  ["Rose Gold Mother of Pearl Bangle", "rose-gold-mother-of-pearl-bangle.jpg"],
+  ["Crystal Row Slim Bangle", "crystal-row-slim-bangle.jpg"],
+  ["Roman Numeral Disc Bangle", "roman-numeral-disc-bangle.jpg"],
+  ["Nail Wrap Crystal Bangle", "nail-wrap-crystal-bangle.jpg"],
+  ["Emerald Double Row Crystal Bangle", "emerald-double-row-crystal-bangle.jpg"],
+  ["Cutout Crystal Band Bangle", "cutout-crystal-band-bangle.jpg"],
+  ["Multicolour Heart Gem Bangle", "multicolour-heart-gem-bangle.jpg"],
+  ["Crossover Crystal Bypass Bangle", "crossover-crystal-bypass-bangle.jpg"],
+  ["Multicolour Gem Scatter Bangle", "multicolour-gem-scatter-bangle.jpg"],
+  ["Crystal Clover Beaded Bangle", "crystal-clover-beaded-bangle.jpg"],
+  ["Quilted Heart Crystal Bangle", "quilted-heart-crystal-bangle.jpg"]
+]);
+
+
+
+/* ---------- BABY BANGLES – 390 AED (12 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"baby-bangles",
+  folder:"images/jewellery/baby-bangles/",
+  price:20, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Emerald Double Band Bangle", "emerald-double-band-bangle.jpg"],
+  ["Crystal Octagon Hinged Bangle", "crystal-octagon-hinged-bangle.jpg"],
+  ["White Clover Crystal Bangle", "white-clover-crystal-bangle.jpg"],
+  ["Pearl Flower Leaf Bangle", "pearl-flower-leaf-bangle.jpg"],
+  ["Black Disc Crescent Bangle", "black-disc-crescent-bangle.jpg"],
+  ["Evil Eye Charm Magnetic Bangle", "evil-eye-charm-magnetic-bangle.jpg"],
+  ["Black Double Clover Bangle", "black-double-clover-bangle.jpg"],
+  ["Crystal Block Hinged Bangle", "crystal-block-hinged-bangle.jpg"],
+  ["Open Leaf Branch Bangle", "open-leaf-branch-bangle.jpg"],
+  ["Starfish Shell Charm Magnetic Bangle", "starfish-shell-charm-magnetic-bangle.jpg"],
+  ["Black Square Triple Band Bangle", "black-square-triple-band-bangle.jpg"],
+  ["Blue Evil Eye Bead Magnetic Bangle", "blue-evil-eye-bead-magnetic-bangle.jpg"]
+]);
+
+
+/* ---------- Combo set – 390 AED (12 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"combo-set",
+  folder:"images/jewellery/Combo set/",
+  price:35, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Green Oval Chain and Earrings set", "Green Oval Chain and earring set.jpg"],
+  ["lavender white tulip chain and earring set", "lavender white tulip chain and earring set.jpg"],
+  ["pink round chain and earring set ", "pink round chain and earring set .jpg"],
+  ["white Tulip Chain and Earring Set", "white tulip chain and earring set.jpg"],
+  ["Amara Chain Bangle Set", "Amara Chain Bangle Set.jpg"],
+  ["Avery Link Bangle Set", "Avery Link Bangle Set.jpg"],
+  ["Celeste Star Bangle Set", "Celeste Star Bangle Set.jpg"],
+  ["Elara Geo Bangle Set", "Elara Geo Bangle Set.jpg"],
+  ["Serena Wave Bangle Set", "Serena Wave Bangle Set.jpg"],
+  ["Luna Wave Bangle Set", "Luna Wave Bangle Set.jpg"],
+
+  ]);
+
+
+/* ---------- Watches – 390 AED (12 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"watches",
+  folder:"images/jewellery/watches/",
+  price:45, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Rolex Green sqaure Dial", "1.jpg"],
+  ["Gucci Round Green Dial", "2.jpg"],
+  ["Rolex white Stone Square Dail", "3.jpg"],
+  ["Rolex White Square Dail", "4.jpg"],
+  ]);
+
+
+/* ---------- ANKLETS – 390 AED (12 pieces) ---------- */
+addProducts({
+  category:"jewellery", subcategory:"anklets",
+  folder:"images/jewellery/anklets/",
+  price:30, stock:1,
+  sizes:["One Size"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
+}, [
+  ["Cherry charm Anklet", "Cherry charm Anklet.jpg"],
+  ["Double layer Drop Anklet", "Double layer Drop Anklet.jpg"],
+  ["Dainty round Charm Anklet", "Dainty round Charm Anklet.jpg"],
+  ["Floral Charm Anklet", "Floral Charm Anklet.jpg"],
+  ["Golden star Drop Anklet", "Golden star Drop Anklet.jpg"],
+  ["Mini Star Charm Anklet", "Mini Star Charm Anklet.jpg"],
+  ["Minimal Layered Chain Anklet", "Minimal Layered Chain Anklet.jpg"],
+  ["Pearl Drop Anklet", "Pearl Drop Anklet.jpg"],
+  ["Snake chain Anklet", "Snake chain Anklet.jpg"],
+
+  ]);
+
+/* ---------- Plus Size – 390 AED (12 pieces) ---------- */
+addProducts({
+  category:"clothing", subcategory:"plus-size",
+  folder:"images/clothing/plus-size/",
+  price:59, stock:1,
+  sizes:["4XL","5XL","6XL","7XL"],
+  style:"gold-tone",
+  note:"Comes in a SH Branding Store gift pouch.",
+  details:["Gold-tone finish","One size","SH Branding Store gift pouch"]
+}, [
+  ["Pink Print Kurta Set", "pink-print-kurta-set.jpg"],
+  ["Ivory Print Kurta Set", "ivory-print-kurta-set.jpg"],
+  ["Indigo Floral Kurti Set", "Indigo floral kurti set.jpg"],
+  ["Olive Floral Kurti Set", "Olive floral kurti set.jpg"]
+
+  ]);
+
+/* =====================================================================
+   PRODUCT EDITOR – price, stock and sizes for EVERY product
+
+   Open the page  yourwebsite/#/admin  (or index.html#/admin) to edit the
+   price, stock and sizes of every product in a table.
+
+   • "Save on this device" lets you preview the changes in your own browser.
+   • To make the changes live for ALL customers: click "Copy code", then
+     replace the PRODUCT_OVERRIDES block below with the copied code and
+     upload the file again.
+   ===================================================================== */
+var PRODUCT_OVERRIDES = {};
+
+/* ---------------------------------------------------------------------
+   DON'T EDIT BELOW THIS LINE – this turns the lines above into products.
+   --------------------------------------------------------------------- */
+function addProducts(group, items) {
+  items.forEach(function (item) {
+    var name = item[0], file = item[1], extra = item[2] || {};
+    var o = {};
+    for (var k in group) o[k] = group[k];
+    for (var k2 in extra) o[k2] = extra[k2];
+
+    function path(f) { return f.indexOf("/") > -1 ? f : (group.folder || "") + f; }   // full path or just a file name
+
+    var id = o.id || name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    var n = 2, base = id;
+    while (PRODUCTS.some(function (p) { return p.id === id; })) id = base + "-" + (n++);   // keep ids unique
+
+    var sizes = o.sizes || ["One Size"], sizeMap = {};
+    sizes.forEach(function (s) { sizeMap[s] = true; });
+
+    var short = o.desc || ("A " + (o.style ? o.style + " " : "") + name.toLowerCase() + ".");
+    var long = o.desc || (short + (o.note ? " " + o.note : ""));
+
+    PRODUCTS.push({
+      id: id, name: name, price: o.price, stock: o.stock == null ? 5 : o.stock,
+      category: o.category, subcategory: o.subcategory,
+      img: path(file), gallery: o.gallery ? o.gallery.map(path) : undefined,
+      pos: o.pos || "50% 50%", sizeOptions: sizes, sizes: sizeMap,
+      short: short, long: long, details: o.details || []
+    });
+  });
+}
+
+/* =====================================================================
+   REVIEWS – shown in the "What our customers say" section on the homepage.
+   NOTE: the entries below are SAMPLE placeholders so you can see the layout.
+   Replace them with real reviews from your customers (WhatsApp / Instagram /
+   order feedback) before publishing. To add one, copy a { ... } line.
+   ===================================================================== */
+var REVIEWS = [
+  { name:"Aisha K.", place:"Dubai", stars:5, title:"Prettier in person", text:"I was nervous about ordering jewellery online, but the necklace looks even better than the photos. It came in a lovely pouch and I've already had three people ask where I got it.", item:"Multistrand Gold Bead Necklace" },
+  { name:"Fatima R.", place:"Sharjah", stars:3, title:"Great service", text:"I messaged on WhatsApp to ask about ring sizes and they replied within minutes and helped me pick. Size 7 fits perfectly and the stone really sparkles.", item:"V-Shaped Crystal Ring" },
+  { name:"Noor A.", place:"Ajman", stars:4, title:"Lovely earrings", text:"Very light, I forgot I was wearing them all day. The gold colour is nice and warm. Only wish there were more colours to choose from, but I will be ordering again.", item:"Crystal Drop Earrings" },
+  { name:"Sana P.", place:"Ras Al Khaimah", stars:5, title:"Worth every dirham", text:"The yellow floral set is beautiful and the trousers and dupatta match perfectly. Got so many compliments at my cousin's wedding. Cash on delivery made me feel safe ordering.", item:"Yellow Floral Kurta Set" },
+  { name:"Hiba M.", place:"Dubai", stars:5, title:"Cute anklet", text:"Bought the butterfly anklet as a gift for my sister and she loves it. Packed nicely and arrived on time. Good quality for the price.", item:"Butterfly Charm Anklet" }];
+
+(function(){
+"use strict";
+
+/* ---------- helpers ---------- */
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+
+/* Fades cards/sections in as they're scrolled into view. Re-run after
+   every route render since content is replaced each time. */
+var revealObserver=null;
+function initScrollReveal(root){
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  if(typeof IntersectionObserver==="undefined")return;
+  var els=$$(".card,.section,.statement,.sec-head",root);
+  if(!els.length)return;
+  if(!revealObserver){
+    revealObserver=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add("in");revealObserver.unobserve(en.target)}});
+    },{rootMargin:"0px 0px -8% 0px",threshold:.12});
+  }
+  els.forEach(function(el){el.classList.add("reveal");revealObserver.observe(el)});
+}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function money(n){return CONFIG.currency+" "+Number(n).toLocaleString("en-US")}
+function byId(id){return PRODUCTS.filter(function(p){return p.id===id})[0]}
+function inStock(p){return p&&Number(p.stock)>0}
+var mem={};
+function store(get,key,val){
+  try{ if(get) return JSON.parse(localStorage.getItem(key)); localStorage.setItem(key,JSON.stringify(val)); }
+  catch(e){ if(get) return mem[key]==null?null:mem[key]; mem[key]=val; }
+  return null;
+}
+/* ---------- product editor: overrides for price / stock / sizes ---------- */
+var LS_OVR="shbs_overrides";
+var BASE={};
+PRODUCTS.forEach(function(p){BASE[p.id]={price:p.price,stock:Number(p.stock),sizes:p.sizeOptions.slice()}});
+function setProd(p,o){
+  if(!o)return;
+  if(o.price!=null&&isFinite(o.price))p.price=Number(o.price);
+  if(o.stock!=null&&isFinite(o.stock))p.stock=Math.max(0,Math.floor(Number(o.stock)));
+  if(o.sizes&&o.sizes.length){p.sizeOptions=o.sizes.slice();p.sizes={};o.sizes.forEach(function(z){p.sizes[z]=true})}
+}
+function applyOverrides(){
+  var local=store(true,LS_OVR);
+  var ovr=(local&&typeof local==="object")?local:(typeof PRODUCT_OVERRIDES==="object"?PRODUCT_OVERRIDES:{});
+  PRODUCTS.forEach(function(p){var b=BASE[p.id];setProd(p,{price:b.price,stock:b.stock,sizes:b.sizes});setProd(p,ovr[p.id])});
+  return !!(local&&typeof local==="object");
+}
+var hasLocalOverrides=applyOverrides();
+
+function waLink(text){return "https://wa.me/"+CONFIG.whatsapp+(text?"?text="+encodeURIComponent(text):"")}
+var hasWA=function(){return /^\d{8,15}$/.test(CONFIG.whatsapp)};
+var hasIG=function(){return !!CONFIG.instagram};
+
+/* ---------- cart ---------- */
+var cart=store(true,"shbs_cart")||[];
+function saveCart(){store(false,"shbs_cart",cart);updateBadge()}
+function updateBadge(){var n=cart.reduce(function(a,l){return a+l.qty},0);var b=$("#badge");b.textContent=n;b.hidden=!n}
+function lineTotal(l){return byId(l.id).price*l.qty}
+function totals(){
+  var sub=cart.reduce(function(a,l){return a+lineTotal(l)},0);
+  return {sub:sub,ship:0,total:sub};
+}
+function addToCart(id,size,qty){
+  var f=cart.filter(function(l){return l.id===id&&l.size===size})[0];
+  if(f)f.qty=Math.min(10,f.qty+qty);else cart.push({id:id,size:size,qty:qty});
+  saveCart();
+}
+var toastT;
+function toast(html){var t=$("#toast");t.innerHTML=html;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("show")},4500)}
+
+/* ---------- Google Sheet sending ---------- */
+function sheetOn(){return /^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(CONFIG.sheetEndpoint||"https://script.google.com/macros/s/AKfycbwRRiAgyD05QpO64dPg7CjKFxlaJXT4wuZ3tcloUtA4UO2jt6mI2ILtyBH3BTLYT6fyig/exec")}
+function postSheet(payload){
+  payload.key=CONFIG.sheetKey||"SH";
+  var ctl=("AbortController" in window)?new AbortController():null,timer;
+  var req=fetch(CONFIG.sheetEndpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),keepalive:true,signal:ctl?ctl.signal:undefined}).then(function(){return true});
+  var to=new Promise(function(res,rej){timer=setTimeout(function(){if(ctl)ctl.abort();rej(new Error("timeout"))},15000)});
+  return Promise.race([req,to]).then(function(r){clearTimeout(timer);return r},function(e){clearTimeout(timer);throw e});
+}
+function sendOrQueue(payload){
+  if(!sheetOn())return Promise.resolve(false);
+  return postSheet(payload).then(function(){return true}).catch(function(){
+    var q=store(true,"shbs_queue")||[];q.push(payload);store(false,"shbs_queue",q);return false;
+  });
+}
+function flushQueue(){
+  if(!sheetOn())return;
+  var q=store(true,"shbs_queue")||[];if(!q.length)return;
+  store(false,"shbs_queue",[]);q.forEach(function(p){sendOrQueue(p)});
+}
+window.addEventListener("online",flushQueue);
+
+/* ---------- shared fragments ---------- */
+function stockLabel(p){
+  if(!inStock(p))return '<span class="stock oos">Sold out</span>';
+  var n=Number(p.stock);
+  return '<span class="stock">'+n+(n===1?' piece':' pieces')+' in stock</span>';
+}
+function card(p){
+  var oos=!inStock(p);
+  return '<a class="card'+(oos?' oos':'')+'" href="#/piece/'+p.id+'"><div class="ph">'+(oos?'<span class="tag-oos">Sold out</span>':'')+'<img src="'+p.img+'" alt="'+esc(p.name)+'" loading="lazy" style="object-position:'+p.pos+'"><span class="quick">VIEW PIECE</span></div>'+
+  '<div class="meta"><h3>'+esc(p.name)+'</h3><span class="price">'+money(p.price)+'</span></div><p>'+esc(p.short)+'</p>'+stockLabel(p)+'</a>';
+}
+function orderSteps(){
+  return '<ol class="steps">'+
+  '<li><h3>Choose your piece</h3><p>Pick your piece and select the size or option that suits you.</p></li>'+
+  '<li><h3>Add to cart</h3><p>Add it to your cart. You can keep browsing and add more pieces.</p></li>'+
+  '<li><h3>Enter your details</h3><p>At checkout, add your full name, phone number and complete delivery address.</p></li>'+
+  '<li><h3>Pay on delivery</h3><p>We confirm your order, deliver in '+esc(CONFIG.deliveryDays)+', and you pay in cash when it arrives.</p></li></ol>';
+}
+function trust(){
+  return '<div class="trust"><div class="wrap"><ul>'+TEXT.trust.map(function(t){return '<li><strong>'+esc(t.title)+'</strong><span>'+esc(t.text)+'</span></li>'}).join('')+'</ul></div></div>';
+}
+function contactCTA(){
+  var b='';
+  if(hasWA())b+='<a class="btn solid" href="'+waLink("Hello SH Branding Store, I have a question.")+'" target="_blank" rel="noopener">Message on WhatsApp</a>';
+  b+='<a class="btn" href="#/contact">Contact us</a>';
+  return '<section class="contact-cta"><div class="wrap"><h2>Questions about a piece or your order?</h2><p class="lead">Tell us the piece you love, and your size, and we will help you choose.</p><div class="actions">'+b+'</div></div></section>';
+}
+
+/* ---------- footer ---------- */
+function renderFooter(){
+  $("#footer").innerHTML=
+    '<div class="v2-footer"><div class="v2-footer-line"></div>'+
+    '<div class="v2-footer-brand">SH BRANDING STORE</div>'+
+    '<div class="v2-footer-sub">JEWELLERY + CLOTHING + YOU</div>'+
+    '<div class="v2-footer-line"></div></div>';
+}
+
+/* ---------- nav dropdowns ----------
+   Fills in the "Jewellery" and "Clothing" dropdown menus in the nav bar
+   using the CATEGORIES object above. Add or rename a sub-category there
+   and it automatically shows up here too — nothing to change in this
+   function. */
+function renderNavDropdowns(){
+  Object.keys(CATEGORIES).forEach(function(catKey){
+    var el=document.querySelector('[data-dropdown="'+catKey+'"]');
+    if(!el)return;
+    var info=CATEGORIES[catKey];
+    el.innerHTML=info.subcategories.map(function(s){
+      return '<li><a href="#/collections/'+catKey+'/'+s.key+'">'+esc(s.label)+'</a></li>'+
+        (s.children||[]).map(function(c){return '<li><a style="padding-left:40px;font-size:12px" href="#/collections/'+catKey+'/'+c.key+'">– '+esc(c.label)+'</a></li>'}).join('');
+    }).join('')+'<li><a href="#/collections/'+catKey+'">All '+esc(info.label)+'</a></li>';
+  });
+}
+
+/* ---------- pages ---------- */
+function reviewsSection(){
+  var n=REVIEWS.length; if(!n)return '';
+  var avg=REVIEWS.reduce(function(a,r){return a+r.stars},0)/n;
+  function stars(k){return '<span class="stars" role="img" aria-label="'+k+' out of 5 stars">'+'★'.repeat(k)+'☆'.repeat(5-k)+'</span>'}
+  var cards=REVIEWS.map(function(r){
+    return '<article class="rv-card">'+stars(r.stars)+(r.title?'<h3 class="rv-title">'+esc(r.title)+'</h3>':'')+
+    '<blockquote>“'+esc(r.text)+'”</blockquote>'+
+    '<div class="rv-by"><span class="rv-av" aria-hidden="true">'+esc(r.name.charAt(0))+'</span><div><strong>'+esc(r.name)+(r.place?', '+esc(r.place):'')+'</strong>'+(r.item?'<em>'+esc(r.item).toUpperCase()+'</em>':'')+'</div></div></article>';
+  }).join('');
+  var cta=hasWA()?'<div class="rv-cta"><a class="btn" href="'+waLink("Hello SH Branding Store, I'd like to share a review of my order.")+'" target="_blank" rel="noopener">Share your review</a></div>':'';
+  return '<section class="reviews" aria-labelledby="rv-h"><div class="wrap"><div class="rv-head"><p class="v2-kicker">REVIEWS</p><h2 id="rv-h">What our customers say</h2>'+
+    '<div class="rv-score"><b>'+avg.toFixed(1)+'</b>'+stars(Math.round(avg))+'<span>'+n+' reviews</span></div></div>'+
+    '<div class="rv-grid">'+cards+'</div>'+cta+'</div></section>';
+}
+var pages={};
+
+pages.home=function(){
+  return {title:"SH Branding Store | Fine Jewellery & Clothing", html:
+  '<div class="home-v2">'+
+    '<section class="v2-hero">'+
+      '<div class="v2-hero-copy">'+
+        '<h1>Hello, I\'m <em>Hiba!</em></h1>'+
+        '<p class="v2-lead"><strong>The face behind Sh Branding Store.</strong><br>A little dream, a lot of love, and a passion for timeless elegance.</p>'+
+        '<a class="v2-button" href="#/collections">SHOP NOW <span>→</span></a>'+
+      '</div>'+
+      '<div class="v2-hero-image"><img src="'+IMAGES.heroBanner+'" alt="Hiba, the face behind Sh Branding Store"></div>'+
+    '</section>'+
+    /* The two photo cards below use a PLAIN photo (no text baked into the
+       image itself). The "Jewellery"/"Clothing" title and "SHOP NOW" link
+       are real on-page text, drawn on top of the photo — so you can change
+       the wording any time just by editing it here, no image editing needed. */
+    '<section class="v2-categories">'+
+      '<a class="v2-category" href="#/collections/jewellery">'+
+        '<img src="'+IMAGES.categoryJewellery+'" alt="Jewellery collection">'+
+        '<span class="v2-category-label"><span class="v2-category-title">Jewellery</span><span class="v2-category-cta">SHOP NOW <i>→</i></span></span>'+
+      '</a>'+
+      '<a class="v2-category" href="#/collections/clothing">'+
+        '<img src="'+IMAGES.categoryClothing+'" alt="Clothing collection">'+
+        '<span class="v2-category-label"><span class="v2-category-title">Clothing</span><span class="v2-category-cta">SHOP NOW <i>→</i></span></span>'+
+      '</a>'+
+    '</section>'+
+    '<section class="v2-trust">'+
+      '<div><span class="v2-trust-icon">♧</span><strong>Fast &amp; Reliable</strong><small>Delivery</small></div>'+
+      '<div><span class="v2-trust-icon">♢</span><strong>Secure</strong><small>Payments</small></div>'+
+      '<div><span class="v2-trust-icon">♡</span><strong>Premium</strong><small>Quality</small></div>'+
+      '<div><span class="v2-trust-icon">✧</span><strong>Curated With</strong><small>Care</small></div>'+
+    '</section>'+
+    '<section class="v2-story">'+
+      '<div class="v2-story-image"><img src="'+IMAGES.storyClothing+'" alt="Curated clothing collection"></div>'+
+      '<div class="v2-story-copy">'+
+        '<p class="v2-kicker">OUR STORY</p>'+
+        '<h2>More Than Just<br><em>A Store</em></h2>'+
+        '<p>At SH Branding Store, we bring together<br>the finest jewellery and timeless clothing<br>to help you express your style, your way.</p>'+
+        '<p>Thoughtfully curated. Elegantly yours.</p>'+
+        '<a class="v2-button" href="#/contact">LEARN MORE <span>→</span></a>'+
+      '</div>'+
+      '<div class="v2-story-image"><img src="'+IMAGES.storyJewellery+'" alt="Jewellery pieces in a stone dish"></div>'+
+    '</section>'+
+    reviewsSection()+
+  '</div>'};
+};
+pages.collections=function(cat,sub){
+  var valid=cat==="jewellery"||cat==="clothing";
+  var catInfo=valid?CATEGORIES[cat]:null;
+  // if the sub-category in the address bar doesn't exist for this
+  // department (or there is no department selected), just ignore it
+  var allSubs=[]; if(valid) catInfo.subcategories.forEach(function(s){allSubs.push(s);(s.children||[]).forEach(function(c){allSubs.push(c)})});
+  var subInfo=(valid&&sub)?allSubs.filter(function(s){return s.key===sub})[0]:null;
+  var validSub=!!subInfo;
+  var list=valid?PRODUCTS.filter(function(p){return p.category===cat}):PRODUCTS;
+  if(validSub){
+    // a parent such as "Bangles" also shows everything inside its children (Adult / Baby Bangles)
+    var parentSub=catInfo.subcategories.filter(function(s){return s.key===sub})[0];
+    var subKeys=[sub].concat(((parentSub&&parentSub.children)||[]).map(function(c){return c.key}));
+    list=list.filter(function(p){return subKeys.indexOf(p.subcategory)>-1});
+  }
+  var label=valid?catInfo.label:"All collections";
+  var intro=cat==="jewellery"?"Gold-tone necklaces, earrings, rings, anklets and bangles, hand finished and gift boxed."
+    :cat==="clothing"?"Traditional wear and kurta sets, cut for an easy, elegant drape."
+    :"Fine jewellery and luxury clothing in one collection. Select a piece to see the details, choose your size and order with cash on delivery.";
+  function tab(key,text,href){return '<a class="tab'+(cat===key||(!valid&&!key)?' active':'')+'" href="'+href+'">'+text+'</a>'}
+  var tabs='<div class="tabs">'+tab("","All","#/collections")+tab("jewellery","Jewellery","#/collections/jewellery")+tab("clothing","Clothing","#/collections/clothing")+'</div>';
+  // Sub-category chips: only shown once a department (Jewellery or Clothing)
+  // is selected. The list of chips comes straight from CATEGORIES above,
+  // so adding a sub-category there is all you need to do.
+  var subchips="";
+  if(valid){
+    function chip(key,text,href,on){var a=on!==undefined?on:((validSub&&sub===key)||(!validSub&&!key));return '<a class="chip'+(a?' active':'')+'" href="'+href+'">'+text+'</a>'}
+    function holds(s){return validSub&&(s.key===sub||(s.children||[]).some(function(c){return c.key===sub}))}
+    subchips='<div class="chips">'+chip("","All "+catInfo.label,"#/collections/"+cat)+
+      catInfo.subcategories.map(function(s){return chip(s.key,s.label,"#/collections/"+cat+"/"+s.key,holds(s))}).join('')+
+    '</div>';
+    // second row of chips (e.g. Adult Bangles / Baby Bangles) once a group with children is open
+    var open=catInfo.subcategories.filter(holds)[0];
+    if(open&&open.children&&open.children.length){
+      subchips+='<div class="chips" style="margin-top:-8px">'+chip(open.key,"All "+open.label,"#/collections/"+cat+"/"+open.key,sub===open.key)+
+        open.children.map(function(c){return chip(c.key,c.label,"#/collections/"+cat+"/"+c.key,sub===c.key)}).join('')+'</div>';
+    }
+  }
+  return {title:(validSub?subInfo.label+" – ":"")+label+" | SH Branding Store", html:
+  '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>'+label+'</nav><h1>'+label+'</h1><p>'+intro+'</p></div>'+tabs+subchips+
+  '<div class="cards" style="padding-bottom:clamp(70px,9vw,130px)">'+(list.length?list.map(card).join(''):'<p style="grid-column:1/-1;color:var(--taupe)">No pieces in this category yet.</p>')+'</div></div></div>'+trust()};
+};
+
+pages.piece=function(id){
+  var p=byId(id); if(!p) return pages.notfound();
+  var oos=!inStock(p);
+  var others=PRODUCTS.filter(function(x){return x.id!==p.id&&x.category===p.category}).slice(0,3);
+  if(others.length<3){others=others.concat(PRODUCTS.filter(function(x){return x.id!==p.id&&x.category!==p.category&&others.indexOf(x)===-1}).slice(0,3-others.length))}
+  var opts=p.sizeOptions||CONFIG.sizes;
+  var gallery=p.gallery||[p.img];
+  var pSizes=p.sizes||{};
+  var oneSize=opts.length===1;
+  var noun=p.category==="jewellery"?"piece":"piece";
+  var sizes=opts.map(function(s){
+    var on=pSizes[s]!==false;
+    return '<label class="'+(on?'':'unavailable')+'" title="'+(on?'':'Unavailable in this piece')+'"><input type="radio" name="size" value="'+esc(s)+'"'+(on?'':' disabled aria-label="'+esc(s)+', unavailable"')+'><span>'+esc(s)+'</span></label>';
+  }).join('');
+  var pay=[]; if(CONFIG.payments.cod)pay.push("Cash on delivery"); if(CONFIG.payments.cardOnDelivery)pay.push("card on delivery");
+  var buyBlock;
+  if(oos){
+    var msgLink=hasWA()?waLink("Hello SH Branding Store, I'd like to know when "+p.name+" will be back in stock."):"#/contact";
+    buyBlock='<div class="notice" style="margin-top:32px"><strong>Currently sold out.</strong> This piece is not available right now. Message us to ask when it will be back in stock.</div>'+
+    '<div class="buy"><a class="btn block"'+(hasWA()?' target="_blank" rel="noopener"':'')+' href="'+msgLink+'">Message us about this piece</a></div>';
+  } else {
+    var sizeBlock=oneSize?'<input type="radio" name="size" value="'+esc(opts[0])+'" checked hidden>':
+      '<div class="opt"><div class="opt-label"><span id="szl">'+(p.category==="jewellery"&&opts[0]!=="One Size"?'Select your size':'Select your size')+'</span><a href="#size-guide" data-open="size-guide" style="font-size:14px;color:var(--taupe)">Size guide</a></div><fieldset class="sizes" aria-labelledby="szl">'+sizes+'</fieldset><p class="err" id="szerr" role="alert"></p></div>';
+    buyBlock=sizeBlock+
+    '<div class="opt"><div class="opt-label"><span>Quantity</span></div><div class="qty"><button type="button" data-q="-1" aria-label="Decrease quantity">&minus;</button><output id="qv" aria-live="polite">1</output><button type="button" data-q="1" aria-label="Increase quantity">+</button></div></div>'+
+    '<div class="buy"><button class="btn block" type="button" data-add="'+p.id+'">Add to cart</button><button class="btn block" type="button" data-buy="'+p.id+'">Buy now</button></div>'+
+    '<ul class="assure"><li>'+esc(pay.join(" or ").replace(/^./,function(c){return c.toUpperCase()}))+' available</li><li> delivery in '+esc(CONFIG.deliveryDays)+'</li></ul>';
+  }
+  var sizeGuideBody=p.category==="jewellery"
+    ? (oneSize?'<p>This piece is one size and designed to fit most. If you would like help choosing, message us on WhatsApp or Instagram and we will be happy to guide you.</p>'
+              :'<p>This piece is available in ring sizes 5 to 9, based on standard US sizing. If you are not sure of your size, message us with the inside diameter of a ring that already fits you and we will help you choose.</p>')
+    : '<p>Our clothing runs S, M, L, XL and XXL in a relaxed, flowing fit. Choose the size closest to your usual clothing size, and size up if you prefer a more relaxed look.</p><p>Not sure which to pick? Message us on WhatsApp or Instagram and we will help you choose.</p>';
+  var careBody=p.category==="jewellery"
+    ? '<p>Keep away from water, perfume and direct sunlight to preserve the plating. Store each piece separately in its gift pouch to avoid scratching.</p>'
+    : '<p>Please follow the care label. We recommend dry cleaning for embellished and beaded pieces, and storing on a padded hanger.</p>';
+  return {title:p.name+" | SH Branding Store", html:
+  '<div class="on-sand"><div class="wrap"><div class="page-head" style="padding-bottom:26px"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="#/collections/'+p.category+'">'+(p.category==="jewellery"?"Jewellery":"Clothing")+'</a><span>/</span>'+esc(p.name)+'</nav></div>'+
+  '<div class="pdp"><div class="pdp-media"><div class="pdp-img'+(oos?' oos':'')+'">'+(oos?'<span class="tag-oos">Sold out</span>':'')+'<img src="'+p.img+'" alt="'+esc(p.name)+'" style="object-position:'+p.pos+'"></div>'+(gallery.length>1?'<div class="pdp-gallery">'+gallery.map(function(src,index){return '<img src="'+src+'" alt="'+esc(p.name)+' view '+(index+1)+'">'}).join('')+'</div>':'')+'</div>'+
+  '<div><h1>'+esc(p.name)+'</h1><p class="price">'+money(p.price)+'</p>'+stockLabel(p)+'<p class="short">'+esc(p.short)+'</p>'+
+  buyBlock+
+  '<div class="accs"><details class="acc" open><summary>About this '+noun+'</summary><div class="body"><p>'+esc(p.long)+'</p><ul>'+p.details.map(function(d){return '<li>'+esc(d)+'</li>'}).join('')+'</ul></div></details>'+
+  '<details class="acc" id="size-guide"><summary>Size guide</summary><div class="body">'+sizeGuideBody+'</div></details>'+
+  '<details class="acc"><summary>Care</summary><div class="body">'+careBody+'</div></details>'+
+  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is free across the UAE over 100dhs. You pay in cash to the courier when your order arrives.</p></div></details></div></div></div></div></div>'+
+  '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>How to order</h2><p>Four steps, and you pay on delivery.</p></div>'+orderSteps()+'</div></section>'+
+  '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>You may also like</h2><p></p></div><div class="cards" style="grid-template-columns:repeat(3,minmax(0,1fr))">'+others.map(card).join('')+'</div></div></section>', init:function(){
+    var qty=1,root=$(".pdp");
+    root.addEventListener("click",pdpClick);
+    function pdpClick(e){
+      var t=e.target.closest("[data-q],[data-add],[data-buy],[data-open]"); if(!t)return;
+      if(t.dataset.q){qty=Math.max(1,Math.min(10,qty+Number(t.dataset.q)));$("#qv").textContent=qty}
+      else if(t.dataset.open){e.preventDefault();var d=$("#size-guide");d.open=true;d.scrollIntoView({behavior:"smooth",block:"center"})}
+      else{
+        var sel=$('input[name="size"]:checked');
+        if(!sel){$("#szerr").textContent="Please select a size before adding to cart.";var fs=$(".sizes");if(fs)fs.scrollIntoView({block:"center"});return}
+        if($("#szerr"))$("#szerr").textContent="";
+        addToCart(p.id,sel.value,qty);
+        if(t.dataset.buy){location.hash="#/checkout"}
+        else toast(esc(p.name)+(oneSize?'':' (size '+esc(sel.value)+')')+' added to your cart. <a href="#/cart">View cart</a>');
+      }
+    }
+    root.addEventListener("change",function(e){if(e.target.name==="size"&&$("#szerr"))$("#szerr").textContent=""});
+  }};
+};
+
+pages.cart=function(){
+  if(!cart.length) return {title:"Your cart | SH Branding Store",html:'<div class="on-sand"><div class="wrap empty"><h1 style="font-size:clamp(40px,5vw,64px)">Your cart is empty</h1><p>Browse the collections and add a piece you love.</p><a class="btn solid" href="#/collections">Shop the collections</a></div></div>'};
+  var t=totals();
+  var lines=cart.map(function(l,i){var p=byId(l.id);
+    return '<div class="line"><a href="#/piece/'+p.id+'"><img src="'+p.img+'" alt="'+esc(p.name)+'" style="object-position:'+p.pos+'"></a><div><h3><a href="#/piece/'+p.id+'" style="text-decoration:none">'+esc(p.name)+'</a></h3><p class="sub">Size '+esc(l.size)+' &middot; '+money(p.price)+' each</p>'+
+    '<div class="qty"><button type="button" data-cq="'+i+'" data-d="-1" aria-label="Decrease quantity of '+esc(p.name)+'">&minus;</button><output>'+l.qty+'</output><button type="button" data-cq="'+i+'" data-d="1" aria-label="Increase quantity of '+esc(p.name)+'">+</button></div> '+
+    '<button class="link rm" type="button" data-rm="'+i+'" style="margin-left:16px">Remove</button></div><div class="tot">'+money(lineTotal(l))+'</div></div>'}).join('');
+  return {title:"Your cart | SH Branding Store",html:
+  '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>Cart</nav><h1>Your cart</h1></div>'+
+  '<div class="cart-grid"><div id="lines">'+lines+'<p style="margin-top:24px"><a href="#/collections" class="link">Continue shopping</a></p></div>'+
+  '<aside class="summary" aria-label="Order summary"><h2>Order summary</h2><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>Free</span></div><div class="sum-row total"><span>Total</span><strong style="font-weight:400">'+money(t.total)+'</strong></div>'+
+  '<p class="sum-note">Payment is cash on delivery. You will not be charged online.</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
+};
+
+function fld(id,label,o){
+  o=o||{}; var req=o.req!==false;
+  var lab='<label for="'+id+'">'+label+(req?'':' <i>(optional)</i>')+'</label>';
+  var attr=' id="'+id+'" name="'+id+'"'+(req?' required':'')+(o.ac?' autocomplete="'+o.ac+'"':'')+' aria-describedby="e-'+id+'"'+(o.ph?' placeholder="'+esc(o.ph)+'"':'');
+  var ctl;
+  if(o.select) ctl='<select'+attr+'><option value="">Select…</option>'+o.select.map(function(x){return '<option>'+esc(x)+'</option>'}).join('')+'</select>';
+  else if(o.area) ctl='<textarea'+attr+'></textarea>';
+  else ctl='<input type="'+(o.type||"text")+'"'+(o.im?' inputmode="'+o.im+'"':'')+attr+'>';
+  return '<div class="f'+(o.full?' full':'')+'">'+lab+ctl+'<p class="err" id="e-'+id+'"></p></div>';
+}
+
+function summaryMini(){
+  var t=totals();
+  return '<aside class="summary"><h2>Your order</h2>'+cart.map(function(l){var p=byId(l.id);return '<div class="mini"><img src="'+p.img+'" alt="" style="object-position:'+p.pos+'"><div>'+esc(p.name)+'<small>Size '+esc(l.size)+' &middot; Qty '+l.qty+'</small></div><span>'+money(lineTotal(l))+'</span></div>'}).join('')+
+  '<div style="border-top:1px solid var(--line);margin-top:12px;padding-top:12px"><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>Free</span></div><div class="sum-row total"><span>Total to pay on delivery</span><strong style="font-weight:400">'+money(t.total)+'</strong></div></div>'+
+  '<p class="sum-note"><a href="#/cart" class="link">Edit cart</a></p></aside>';
+}
+
+pages.checkout=function(){
+  if(!cart.length){location.replace("#/cart");return {title:"Cart | SH Branding Store",html:""}}
+  var t=totals();
+  var pays='';
+  if(CONFIG.payments.cod) pays+='<label class="pay"><input type="radio" name="payment" value="Cash on delivery" checked><div><strong>Cash on delivery</strong><span>Pay in cash to our courier when your order arrives. Please keep the exact amount ready.</span></div></label>';
+  if(CONFIG.payments.cardOnDelivery) pays+='<label class="pay"><input type="radio" name="payment" value="Card on delivery"'+(CONFIG.payments.cod?'':' checked')+'><div><strong>Card on delivery</strong><span>Pay by card using the courier’s card machine when your order arrives.</span></div></label>';
+  return {title:"Checkout | SH Branding Store",html:
+  '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="#/cart">Cart</a><span>/</span>Checkout</nav><h1>Checkout</h1></div>'+
+  '<div class="checkout-grid"><form id="co" novalidate>'+
+  '<div class="notice"><strong>Please fill in every detail carefully.</strong> Your full name, phone number and complete address help our courier find you quickly and avoid delays.</div>'+
+  '<fieldset><legend>Your details</legend><p class="hint">We will contact you on this number to confirm your order.</p><div class="fields">'+
+  fld("fullName","Full name",{ac:"name",full:true,ph:"As it should appear on the delivery"})+
+  fld("phone","Mobile number",{type:"tel",im:"tel",ac:"tel",ph:"e.g. 050 123 4567"})+
+  fld("whatsapp","WhatsApp number",{type:"tel",im:"tel",req:false,ph:"If different from mobile"})+
+  fld("email","Email address",{type:"email",ac:"email",full:true})+
+  '</div></fieldset>'+
+  '<fieldset><legend>Delivery address</legend><p class="hint">Delivery within the United Arab Emirates.</p><div class="fields">'+
+  fld("emirate","Emirate",{select:CONFIG.emirates,ac:"address-level1"})+
+  fld("area","City / area",{ac:"address-level2",ph:"e.g. Al Reem Island"})+
+  fld("street","Street, building name or villa number",{ac:"address-line1",full:true})+
+  fld("unit","Apartment / floor / unit",{ac:"address-line2",req:false})+
+  fld("landmark","Nearest landmark",{req:false,ph:"e.g. Next to the mosque"})+
+  fld("mapLink","Google Maps location link",{type:"url",req:false,full:true,ph:"Optional: share your pin to help the courier"})+
+  fld("deliveryNotes","Delivery instructions",{area:true,req:false,full:true,ph:"Gate code, best time to call, anything the courier should know"})+
+  '</div></fieldset>'+
+  '<fieldset><legend>Payment</legend><p class="hint">No online payment is taken.</p>'+pays+'</fieldset>'+
+  '<fieldset><legend>Anything else?</legend><div class="fields"><div class="f full"><label for="orderNote">Order note <i>(optional)</i></label><textarea id="orderNote" name="orderNote" placeholder="Height, gift note, or questions about your order"></textarea></div></div></fieldset>'+
+  '<label class="check"><input type="checkbox" id="agree" required aria-describedby="e-agree"><span>I have checked my details and agree to the <a href="#/terms" target="_blank">terms &amp; conditions</a> and <a href="#/privacy" target="_blank">privacy policy</a>.</span></label><p class="err" id="e-agree" style="margin-bottom:22px"></p>'+
+  '<button class="btn block" type="submit" id="place">Place order &middot; '+money(t.total)+'</button><p class="err" id="formerr" role="alert" style="margin-top:12px"></p></form>'+
+  summaryMini()+'</div></div></div>', init:function(){
+    $("#co").addEventListener("submit",submitOrder);
+    $("#co").addEventListener("input",function(e){var id=e.target.id;if(id){setErr(id,"")}});
+  }};
+};
+
+function setErr(id,msg){var e=$("#e-"+id),f=document.getElementById(id);if(e)e.textContent=msg;if(f)f.setAttribute("aria-invalid",msg?"true":"false")}
+function validate(v){
+  var er={};
+  if(v.fullName.trim().split(/\s+/).filter(Boolean).length<2||v.fullName.trim().length<5) er.fullName="Enter your full name (first and last name).";
+  var ph=v.phone.replace(/[\s\-()+]/g,""); if(!/^\d{9,15}$/.test(ph)) er.phone="Enter a valid mobile number with 9 to 15 digits.";
+  if(v.whatsapp&&!/^\d{9,15}$/.test(v.whatsapp.replace(/[\s\-()+]/g,""))) er.whatsapp="Enter a valid WhatsApp number or leave it empty.";
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email.trim())) er.email="Enter a valid email address.";
+  if(!v.emirate) er.emirate="Select your emirate.";
+  if(v.area.trim().length<2) er.area="Enter your city or area.";
+  if(v.street.trim().length<4) er.street="Enter your street, building name or villa number.";
+  if(v.mapLink&&!/^https?:\/\/\S+$/i.test(v.mapLink.trim())) er.mapLink="Enter a full link starting with https://";
+  return er;
+}
+function orderText(o){
+  var L=["*New SH Branding Store order "+o.id+"*","",
+  "Name: "+o.customer.fullName,"Mobile: "+o.customer.phone+(o.customer.whatsapp?" | WhatsApp: "+o.customer.whatsapp:""),"Email: "+o.customer.email,"",
+  "Address: "+[o.address.street,o.address.unit,o.address.area,o.address.emirate].filter(Boolean).join(", "),
+  o.address.landmark?"Landmark: "+o.address.landmark:"",o.address.mapLink?"Map: "+o.address.mapLink:"",o.address.notes?"Delivery notes: "+o.address.notes:"","",
+  "Items:"].concat(o.items.map(function(i){return "- "+i.name+" | size "+i.size+" | qty "+i.qty+" | "+money(i.price*i.qty)}));
+  L.push("","Subtotal: "+money(o.totals.sub),"Delivery: "+(o.totals.ship?money(o.totals.ship):"Free"),"Total: "+money(o.totals.total),"Payment: "+o.payment);
+  if(o.note)L.push("Note: "+o.note);
+  return L.filter(function(x,i,a){return x!==""||a[i-1]!==""}).join("\n");
+}
+function submitOrder(e){
+  e.preventDefault();
+  var g=function(id){var el=document.getElementById(id);return el?el.value:""};
+  var v={fullName:g("fullName"),phone:g("phone"),whatsapp:g("whatsapp"),email:g("email"),emirate:g("emirate"),area:g("area"),street:g("street"),unit:g("unit"),landmark:g("landmark"),mapLink:g("mapLink"),deliveryNotes:g("deliveryNotes"),orderNote:g("orderNote")};
+  var er=validate(v),first=null;
+  ["fullName","phone","whatsapp","email","emirate","area","street","mapLink"].forEach(function(k){setErr(k,er[k]||"");if(er[k]&&!first)first=k});
+  var ag=$("#agree"); $("#e-agree").textContent=ag.checked?"":"Please tick the box to confirm your details and accept the terms."; if(!ag.checked&&!first)first="agree";
+  if(first){$("#formerr").textContent="Please fix the highlighted fields and try again.";document.getElementById(first).focus();return}
+  $("#formerr").textContent="";
+  var t=totals(),d=new Date();
+  var id="ROH-"+String(d.getFullYear()).slice(2)+("0"+(d.getMonth()+1)).slice(-2)+("0"+d.getDate()).slice(-2)+"-"+Math.floor(1000+Math.random()*9000);
+  var pm=$('input[name="payment"]:checked');
+  var order={id:id,date:d.toISOString(),customer:{fullName:v.fullName.trim(),phone:v.phone.trim(),whatsapp:v.whatsapp.trim(),email:v.email.trim()},
+    address:{emirate:v.emirate,area:v.area.trim(),street:v.street.trim(),unit:v.unit.trim(),landmark:v.landmark.trim(),mapLink:v.mapLink.trim(),notes:v.deliveryNotes.trim(),country:"United Arab Emirates"},
+    items:cart.map(function(l){var p=byId(l.id);return {id:l.id,name:p.name,size:l.size,qty:l.qty,price:p.price}}),totals:t,payment:pm?pm.value:"Cash on delivery",note:v.orderNote.trim(),sent:false};
+  var btn=$("#place");btn.disabled=true;btn.textContent="Placing your order…";
+  function finish(sent){
+    order.sent=sent;
+    var all=store(true,"shbs_orders")||[];all.push(order);store(false,"shbs_orders",all);
+    store(false,"shbs_last",order);
+    cart=[];saveCart();lastOrder=order;
+    location.hash="#/confirmation";
+  }
+  if(sheetOn()){
+    var pl={type:"order",orderId:order.id,date:order.date,name:order.customer.fullName,phone:order.customer.phone,whatsapp:order.customer.whatsapp,email:order.customer.email,
+      emirate:order.address.emirate,area:order.address.area,street:order.address.street,unit:order.address.unit,landmark:order.address.landmark,mapLink:order.address.mapLink,deliveryNotes:order.address.notes,
+      items:order.items.map(function(i){return i.name+" | Size "+i.size+" | Qty "+i.qty+" | "+money(i.price*i.qty)}).join("\n"),
+      itemCount:order.items.reduce(function(a,i){return a+i.qty},0),subtotal:order.totals.sub,delivery:order.totals.ship,total:order.totals.total,payment:order.payment,orderNote:order.note};
+    sendOrQueue(pl).then(finish);
+  } else finish(false);
+}
+
+var lastOrder=null;
+pages.confirmation=function(){
+  var o=lastOrder||store(true,"shbs_last");
+  if(!o) return {title:"Order | SH Branding Store",html:'<div class="on-sand"><div class="wrap empty"><h1 style="font-size:clamp(40px,5vw,64px)">No recent order</h1><p>Your order confirmation will appear here after you place an order.</p><a class="btn solid" href="#/collections">Shop the collections</a></div></div>'};
+  var txt=orderText(o), first=o.customer.fullName.split(" ")[0];
+  var send='';
+  var wa=hasWA()?'<div class="actions no-print" style="justify-content:flex-start;margin:0 0 10px"><a class="btn" href="'+waLink("Hello SH Branding Store, this is about my order "+o.id)+'" target="_blank" rel="noopener">Chat with us on WhatsApp</a></div>':'';
+  if(o.sent) send='<div class="notice"><strong>Your order has been received.</strong> There is nothing else you need to do. We will contact you shortly to confirm it.</div>'+wa;
+  else {
+    var btns='';
+    if(hasWA()) btns+='<a class="btn solid" href="'+waLink(txt)+'" target="_blank" rel="noopener">Send order on WhatsApp</a>';
+    btns+='<a class="btn" href="mailto:'+esc(CONFIG.email)+'?subject='+encodeURIComponent("New SH Branding Store order "+o.id)+'&body='+encodeURIComponent(txt)+'">Send order by email</a>';
+    send='<div class="notice no-print"><strong>'+(sheetOn()?'We could not reach our order system.':'One last step: send us your order.')+'</strong> '+(sheetOn()?'Your order is saved on this device and will retry automatically. To be safe, tap a button below so we receive it right away.':'Tap a button below so your order reaches us and we can confirm it with you.')+'</div><div class="actions no-print" style="justify-content:flex-start;margin:0 0 10px">'+btns+'</div>';
+  }
+  return {title:"Order received | SH Branding Store",html:
+  '<div class="on-sand"><div class="narrow done" style="padding:clamp(50px,7vw,90px) 0 clamp(70px,9vw,120px)"><h1>Thank you, '+esc(first)+'.</h1><p class="lede">We have your order and will contact you to confirm it. Keep your phone nearby, and please have the cash ready for delivery.</p><span class="orderid">'+esc(o.id)+'</span>'+
+  '<div style="margin-top:30px">'+send+'</div>'+
+  '<div class="box"><h2>Order details</h2><dl>'+o.items.map(function(i){return '<dt>'+esc(i.name)+'</dt><dd>Size '+esc(i.size)+' &middot; Qty '+i.qty+' &middot; '+money(i.price*i.qty)+'</dd>'}).join('')+
+  '<dt>Delivery fee</dt><dd>Free</dd><dt>Total to pay</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
+  '<div class="box"><h2>Delivering to</h2><dl><dt>Name</dt><dd>'+esc(o.customer.fullName)+'</dd><dt>Mobile</dt><dd>'+esc(o.customer.phone)+'</dd><dt>Email</dt><dd>'+esc(o.customer.email)+'</dd><dt>Address</dt><dd>'+esc([o.address.street,o.address.unit,o.address.area,o.address.emirate,"United Arab Emirates"].filter(Boolean).join(", "))+'</dd>'+(o.address.landmark?'<dt>Landmark</dt><dd>'+esc(o.address.landmark)+'</dd>':'')+'</dl></div>'+
+  '<h2 style="font-size:32px;margin:44px 0 6px">What happens next</h2><ul class="next"><li>We contact you by phone or WhatsApp to confirm your order and address.</li><li>We prepare and dispatch your order. Delivery takes '+esc(CONFIG.deliveryDays)+'.</li><li>The courier calls you on arrival. Check your piece, then pay '+money(o.totals.total)+' in cash.</li></ul>'+
+  '<div class="actions no-print" style="justify-content:flex-start"><button class="btn" type="button" onclick="window.print()">Print this page</button><a class="btn" href="#/collections">Continue shopping</a></div></div></div>'};
+};
+
+function faqItems(){
+  return [
+  ["How do I place an order?","Choose a piece, select your size and add it to your cart. At checkout, enter your name, phone number and full address, then place your order. We will contact you to confirm."],
+  ["How does cash on delivery work?","You do not pay online. When your order arrives, you pay the courier in cash. Please keep the exact amount ready."],
+  ["How long does delivery take?","Delivery takes "+CONFIG.deliveryDays+" after your order is confirmed."],
+  ["How much is delivery?","Delivery is free on every order, across the UAE , over 100dhs."],
+  ["How do I choose my size?","Our clothing comes in S, M, L, XL and XXL, and most jewellery is one size or comes in ring sizes 5 to 9. Choose the size closest to your usual clothing size, or message us if you would like help choosing."],
+  ["Do you sell jewellery and clothing separately?","Yes. You can shop each collection on its own from the menu, or mix pieces from both in the same order and cart."],
+  ["What if I am not home when the courier arrives?","The courier will call you first. Please keep your phone on and make sure the number you entered is correct."]
+  ];
+}
+function faqHTML(){return faqItems().map(function(f,i){return '<details class="acc"'+(i===0?' open':'')+'><summary>'+f[0]+'</summary><div class="body"><p>'+f[1]+'</p></div></details>'}).join('')}
+
+pages.contact=function(){
+  var cards='<div class="ccard"><h3>Call us</h3><p>'+esc(CONFIG.phoneDisplay)+'</p><p>'+esc(CONFIG.hours)+'</p></div>';
+  cards+='<div class="ccard"><h3>Message us</h3>'+(hasWA()?'<p><a href="'+waLink("Hello SH Branding Store, I have a question.")+'" target="_blank" rel="noopener">WhatsApp</a></p>':'')+'<p><a href="mailto:'+esc(CONFIG.email)+'">'+esc(CONFIG.email)+'</a></p>'+(hasIG()?'<p><a href="https://instagram.com/'+esc(CONFIG.instagram)+'" target="_blank" rel="noopener">Instagram @'+esc(CONFIG.instagram)+'</a></p>':'')+'</div>';
+  return {title:"Contact | SH Branding Store",html:
+  '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>Contact</nav><h1>Contact us</h1><p>Questions about a piece, sizing, or an order? We are happy to help.</p></div>'+
+  '<div class="cgrid">'+cards+'</div>'+
+  '<div class="cols2"><div><h2 style="font-size:40px;margin-bottom:22px">Send us a message</h2><form id="cf" novalidate><div class="fields">'+
+  fld("cName","Your name",{full:true,ac:"name"})+fld("cEmail","Email address",{type:"email",ac:"email"})+fld("cPhone","Phone number",{type:"tel",req:false,ac:"tel"})+
+  '<div class="f full"><label for="cMsg">Message</label><textarea id="cMsg" name="cMsg" required aria-describedby="e-cMsg"></textarea><p class="err" id="e-cMsg"></p></div></div>'+
+  '<p class="hint" style="margin-top:14px">'+(sheetOn()?'We will reply to you by email or phone.':'Sending opens your email app with your message ready to send.')+'</p><button class="btn solid" type="submit" id="csend" style="margin-top:8px">Send message</button><p class="err" id="cerr" role="alert" style="margin-top:12px"></p></form></div>'+
+  '<div><h2 style="font-size:40px;margin-bottom:22px">Common questions</h2>'+faqHTML()+'</div></div></div></div>', init:function(){
+    $("#cf").addEventListener("submit",function(e){
+      e.preventDefault();var n=$("#cName").value.trim(),m=$("#cEmail").value.trim(),msg=$("#cMsg").value.trim(),ok=true;
+      setErr("cName",n?"":"Enter your name.");setErr("cEmail",/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)?"":"Enter a valid email address.");setErr("cMsg",msg?"":"Write your message.");
+      if(!n||!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(m)||!msg)return;
+      var body=msg+"\n\nFrom: "+n+"\nEmail: "+m+($("#cPhone").value?"\nPhone: "+$("#cPhone").value:"");
+      function viaEmail(){location.href="mailto:"+CONFIG.email+"?subject="+encodeURIComponent("Message from "+n)+"&body="+encodeURIComponent(body)}
+      if(!sheetOn()){viaEmail();return}
+      var sb=$("#csend");sb.disabled=true;sb.textContent="Sending…";
+      sendOrQueue({type:"enquiry",id:"ENQ-"+Date.now(),date:new Date().toISOString(),name:n,email:m,phone:$("#cPhone").value.trim(),message:msg}).then(function(ok){
+        if(ok){$("#cf").innerHTML='<div class="notice"><strong>Thank you, '+esc(n.split(" ")[0])+'.</strong> Your message has been sent. We will reply to you soon.</div>'}
+        else{sb.disabled=false;sb.textContent="Send message";$("#cerr").textContent="We could not send your message. Your email app will open so you can send it directly.";setTimeout(viaEmail,1200)}
+      });
+    });
+  }};
+};
+
+pages.admin=function(){
+  var rows=PRODUCTS.map(function(p){
+    var c=p.category==="jewellery"?"Jewellery":"Clothing";
+    return '<tr data-id="'+esc(p.id)+'" data-name="'+esc(p.name.toLowerCase())+'">'+
+    '<td><div class="a-prod"><img src="'+esc(p.img)+'" alt="" loading="lazy"><div><strong>'+esc(p.name)+'</strong><small>'+c+' · '+esc(p.subcategory)+'</small></div></div></td>'+
+    '<td><input data-f="price" type="number" min="0" step="any" inputmode="decimal" value="'+esc(p.price)+'" aria-label="Price for '+esc(p.name)+'"></td>'+
+    '<td><input data-f="stock" type="number" min="0" step="1" inputmode="numeric" value="'+esc(p.stock)+'" aria-label="Stock for '+esc(p.name)+'"></td>'+
+    '<td><input data-f="sizes" type="text" value="'+esc(p.sizeOptions.join(", "))+'" aria-label="Sizes for '+esc(p.name)+'"></td></tr>';
+  }).join('');
+  return {title:"Edit products | SH Branding Store",html:
+  '<div class="on-sand"><div class="wrap" id="adm" style="padding-bottom:clamp(70px,9vw,120px)">'+
+  '<div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>Edit products</nav><h1>Edit products</h1>'+
+  '<p>Change the price, stock and sizes of any product. Separate sizes with commas, for example <em>S, M, L</em>. Stock 0 shows &ldquo;Sold out&rdquo;.</p></div>'+
+  (hasLocalOverrides?'<div class="notice" style="margin-bottom:22px"><strong>Preview mode.</strong> This device is showing saved edits that are not in the website file yet. Copy the code below into the file to publish them for everyone.</div>':'')+
+  '<div class="a-bar"><input id="aSearch" type="search" placeholder="Search products…" aria-label="Search products"><span id="aStatus" role="status" aria-live="polite"></span></div>'+
+  '<div class="a-scroll"><table class="a-table"><thead><tr><th>Product</th><th>Price ('+esc(CONFIG.currency)+')</th><th>Stock</th><th>Sizes</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+  '<div class="a-actions"><button class="btn solid" id="aSave" type="button">Save on this device</button><button class="btn" id="aCopy" type="button">Copy code for index.html</button><button class="btn" id="aReset" type="button">Undo all edits</button></div>'+
+  '<h2 style="font-size:26px;margin:40px 0 8px">Code to publish your changes</h2>'+
+  '<p style="color:var(--taupe);margin:0 0 12px">Replace the line <code>var PRODUCT_OVERRIDES = {};</code> in index.html with this code, then upload the file. Only products you changed are listed.</p>'+
+  '<textarea id="aOut" class="a-out" readonly rows="8" aria-label="Generated code"></textarea>'+
+  '</div></div>',
+  init:function(){
+    var root=$("#adm"),out=$("#aOut"),status=$("#aStatus");
+    function parseSizes(t){var seen={},r=[];t.split(",").forEach(function(x){x=x.trim();if(x&&!seen[x]){seen[x]=1;r.push(x)}});return r}
+    function readRow(tr){
+      var pr=tr.querySelector('[data-f="price"]'),st=tr.querySelector('[data-f="stock"]'),sz=tr.querySelector('[data-f="sizes"]');
+      var price=pr.value.trim()===""?NaN:Number(pr.value),stock=st.value.trim()===""?NaN:Number(st.value),sizes=parseSizes(sz.value);
+      var okP=isFinite(price)&&price>=0,okS=isFinite(stock)&&stock>=0&&Math.floor(stock)===stock,okZ=sizes.length>0;
+      pr.classList.toggle("bad",!okP);st.classList.toggle("bad",!okS);sz.classList.toggle("bad",!okZ);
+      return {price:price,stock:stock,sizes:sizes,ok:okP&&okS&&okZ};
+    }
+    function collect(){
+      var ovr={},bad=0,n=0;
+      $$("tr[data-id]",root).forEach(function(tr){
+        var id=tr.dataset.id,b=BASE[id],v=readRow(tr),o={};
+        if(!v.ok){bad++;return}
+        if(v.price!==b.price)o.price=v.price;
+        if(v.stock!==b.stock)o.stock=v.stock;
+        if(v.sizes.join("\u0001")!==b.sizes.join("\u0001"))o.sizes=v.sizes;
+        var ch=Object.keys(o).length>0;tr.classList.toggle("edited",ch);
+        if(ch){ovr[id]=o;n++}
+      });
+      return {ovr:ovr,bad:bad,n:n};
+    }
+    function code(ovr){
+      var ids=Object.keys(ovr);if(!ids.length)return "var PRODUCT_OVERRIDES = {};";
+      return "var PRODUCT_OVERRIDES = {\n"+ids.map(function(id){
+        var o=ovr[id],parts=[];
+        if("price" in o)parts.push("price:"+o.price);
+        if("stock" in o)parts.push("stock:"+o.stock);
+        if("sizes" in o)parts.push("sizes:"+JSON.stringify(o.sizes));
+        return "  "+JSON.stringify(id)+": { "+parts.join(", ")+" }";
+      }).join(",\n")+"\n};";
+    }
+    function refresh(){
+      var c=collect();out.value=code(c.ovr);
+      status.className=c.bad?"err":"";
+      status.textContent=c.bad?c.bad+" product"+(c.bad===1?"":"s")+" with an invalid value (highlighted)":c.n+" product"+(c.n===1?"":"s")+" changed from the original file";
+      return c;
+    }
+    root.addEventListener("input",function(e){if(e.target.matches("[data-f]"))refresh()});
+    $("#aSearch").addEventListener("input",function(){
+      var q=this.value.trim().toLowerCase();
+      $$("tr[data-id]",root).forEach(function(tr){tr.hidden=!!q&&tr.dataset.name.indexOf(q)===-1});
+    });
+    $("#aSave").addEventListener("click",function(){
+      var c=refresh();
+      if(c.bad){status.textContent="Fix the highlighted values before saving.";return}
+      store(false,LS_OVR,c.ovr);hasLocalOverrides=applyOverrides();
+      status.className="";status.textContent="Saved on this device. The store here now shows these values. Use “Copy code” to publish them.";
+    });
+    $("#aCopy").addEventListener("click",function(){
+      refresh();
+      function done(){status.className="";status.textContent="Code copied. Paste it over the PRODUCT_OVERRIDES line in index.html."}
+      function fallback(){out.focus();out.select();try{document.execCommand("copy");done()}catch(e){status.textContent="Select the code below and copy it."}}
+      if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(out.value).then(done,fallback);else fallback();
+    });
+    $("#aReset").addEventListener("click",function(){
+      if(!confirm("Undo all edits made on this device and go back to the values in index.html?"))return;
+      store(false,LS_OVR,null);hasLocalOverrides=applyOverrides();route();
+    });
+    refresh();
+  }};
+};
+
+pages.faq=function(){return {title:"FAQ | SH Branding Store",html:'<div class="on-sand"><div class="narrow" style="padding-bottom:clamp(70px,9vw,120px)"><div class="page-head" style="padding-left:0"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>FAQ</nav><h1>Frequently asked questions</h1></div>'+faqHTML()+'</div></div>'+contactCTA()}};
+
+pages["how-to-order"]=function(){return {title:"How to order | SH Branding Store",html:'<div class="on-sand"><div class="wrap" style="padding-bottom:clamp(70px,9vw,120px)"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>How to order</nav><h1>How to order</h1><p>Order online in minutes and pay in cash when your order arrives.</p></div>'+orderSteps()+
+  '<div class="narrow prose" style="margin:60px 0 0;margin-inline:0"><h2>Before you place your order</h2><ul><li>Check your size using the size guide on each product page.</li><li>Use the mobile number you can answer, so our team and the courier can reach you.</li><li>Write your full address: emirate, area, street, building or villa and apartment number. Add a landmark or map link if it helps.</li><li>Keep the exact cash amount ready for the courier.</li></ul></div>'+
+  '<p style="margin-top:40px"><a class="btn solid" href="#/collections">Start shopping</a></p></div></div>'}};
+
+function policy(title,updated,sections){
+  return {title:title+" | SH Branding Store",html:'<div class="on-sand"><div class="narrow prose" style="padding-bottom:clamp(70px,9vw,120px)"><div class="page-head" style="padding-left:0"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>'+title+'</nav><h1>'+title+'</h1></div>'+sections.map(function(s){return '<h2>'+s[0]+'</h2>'+s[1]}).join('')+'</div></div>'};
+}
+pages.shipping=function(){return policy("Shipping &amp; delivery","",[
+ ["Where we deliver","<p>We deliver to all emirates in the United Arab Emirates. Please enter your complete address at checkout so our courier can find you.</p>"],
+ ["Delivery time","<p>Orders are delivered in "+esc(CONFIG.deliveryDays)+" after we confirm them with you. Delivery times may be longer during sales and public holidays.</p>"],
+ ["Delivery fee","<p>Delivery is free on every order, across the United Arab Emirates over 100dhs.</p>"],
+ ["Cash on delivery","<p>You pay the courier in cash when your order arrives. Please keep the exact amount ready. The courier will call you before arriving, so make sure your phone number is correct.</p>"],
+ ["Order confirmation","<p>After you place your order, we contact you by phone or WhatsApp to confirm your details. Orders are dispatched once confirmed.</p>"],
+ ["Missed deliveries","<p>If we cannot reach you or nobody is available to receive the order, we will try to arrange a second delivery. Repeated failed deliveries may lead to your order being cancelled.</p>"]])};
+pages.privacy=function(){return policy("Privacy policy","",[
+ ["What we collect","<p>When you place an order or contact us, we collect your name, phone number, email address and delivery address, plus anything you write in your order note or message.</p>"],
+ ["How we use it","<p>We use your details to confirm and deliver your order, contact you about it, and reply to your questions. We do not sell your personal information.</p>"],
+ ["Who we share it with","<p>We share your name, phone number and address with our delivery partners only so they can deliver your order.</p>"],
+ ["Your cart on this device","<p>Your cart and most recent order are stored in your own browser on this device so you can return to them. You can clear this by clearing your browser data.</p>"],
+ ["Your choices","<p>You can ask us to update or delete your information at any time by contacting us at "+esc(CONFIG.email)+".</p>"]])};
+pages.terms=function(){return policy("Terms &amp; conditions","",[
+ ["Orders","<p>Placing an order is an offer to buy. An order is confirmed once we contact you and confirm your details and availability. We may cancel an order if an item is unavailable or we cannot reach you.</p>"],
+ ["Prices","<p>All prices are in "+esc(CONFIG.currency)+". Prices may change without notice, but the price shown at the time you place your order applies to that order.</p>"],
+ ["Payment","<p>Payment is made on delivery. The total shown at checkout is the amount to pay the courier.</p>"],
+ ["Product images and colours","<p>We do our best to show our jewellery and clothing accurately. Colours and finishes may look slightly different on different screens.</p>"],
+ ["Delivery","<p>Please see our <a href=\"#/shipping\">shipping &amp; delivery</a> page for delivery details.</p>"],
+ ["Contact","<p>Questions about these terms? Email us at "+esc(CONFIG.email)+".</p>"]])};
+pages.notfound=function(){return {title:"Page not found | SH Branding Store",html:'<div class="on-sand"><div class="wrap empty"><h1 style="font-size:clamp(40px,5vw,64px)">We could not find that page</h1><p>The page may have moved. Try the collections instead.</p><a class="btn solid" href="#/collections">Shop the collections</a></div></div>'}};
+
+/* ---------- router ---------- */
+var current=null;
+function route(){
+  var h=(location.hash||"#/").replace(/^#\/?/,"");
+  var parts=h.split("/"),name=parts[0]||"home",arg=parts[1],arg2=parts[2];
+  var fn=pages[name]; if(!fn||name==="notfound"||name==="piece"&&!arg){fn=pages.notfound;name="notfound"}
+  var pg=fn(arg,arg2); if(!pg)return;
+  var m=$("#main");
+  m.innerHTML=pg.html; document.title=pg.title;
+  m.classList.remove("page-in"); void m.offsetWidth; m.classList.add("page-in");
+  initScrollReveal(m);
+  var navKey=name;
+  if(name==="piece"){var pr=byId(arg);navKey=pr?pr.category:""}
+  else if(name==="collections"){navKey=(arg==="jewellery"||arg==="clothing")?arg:""}
+  $$(".menu a").forEach(function(a){var on=a.dataset.nav===navKey;on?a.setAttribute("aria-current","page"):a.removeAttribute("aria-current")});
+  window.scrollTo(0,0); $("#toast").classList.remove("show");
+  $("#menu").classList.remove("open");$("#burger").setAttribute("aria-expanded","false");
+  if(pg.init)pg.init();
+  m.setAttribute("tabindex","-1");
+}
+window.addEventListener("hashchange",route);
+
+/* cart interactions (event delegation) */
+$("#main").addEventListener("click",function(e){
+  var q=e.target.closest("[data-cq]"),r=e.target.closest("[data-rm]");
+  if(q){var l=cart[+q.dataset.cq];l.qty=Math.max(1,Math.min(10,l.qty+Number(q.dataset.d)));saveCart();route()}
+  if(r){cart.splice(+r.dataset.rm,1);saveCart();route()}
+});
+$("#burger").addEventListener("click",function(){var m=$("#menu"),o=m.classList.toggle("open");this.setAttribute("aria-expanded",o);this.setAttribute("aria-label",o?"Close menu":"Open menu")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"){$("#menu").classList.remove("open");$("#burger").setAttribute("aria-expanded","false")}});
+
+/* validate cart against products (in case products changed) */
+cart=cart.filter(function(l){var p=byId(l.id);return p&&l.qty>0&&p.sizeOptions.indexOf(l.size)>-1});saveCart();
+renderFooter(); renderNavDropdowns(); updateBadge(); route(); flushQueue();
+})();
+</script>
+<script>
+(function(){
+  var msgs=["Free delivery on all orders above 100 AED","Cash on delivery available across the UAE"],i=0,t=document.getElementById("annText");
+  if(!t)return;
+  function show(n){i=(n+msgs.length)%msgs.length;t.textContent=msgs[i]}
+  document.getElementById("annPrev").addEventListener("click",function(){show(i-1)});
+  document.getElementById("annNext").addEventListener("click",function(){show(i+1)});
+  setInterval(function(){show(i+1)},5000);
+})();
+</script>
+</body>
+</html>
