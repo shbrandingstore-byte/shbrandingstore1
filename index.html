@@ -661,7 +661,7 @@ main{padding-top:var(--nav-h)!important}
 <header class="nav">
   <div class="announce" role="region" aria-label="Announcements">
     <button class="announce-btn" type="button" id="annPrev" aria-label="Previous announcement">&#8249;</button>
-    <p id="annText">Free delivery on clothing orders above 200 AED</p>
+    <p id="annText">Delivery AED 15 · free on jewellery over 100 AED, clothing over 200 AED, mixed orders over 250 AED</p>
     <button class="announce-btn" type="button" id="annNext" aria-label="Next announcement">&#8250;</button>
   </div>
   <div class="wrap">
@@ -731,8 +731,12 @@ var CONFIG = {
   instagram: "sh_brandingstore",         // handle without @, e.g. "shbrandingstore"
   hours: "Daily, 10:00 AM – 10:00 PM",
 
-  /* Delivery – free on every order */
+  /* Delivery fee: AED 15 unless the order reaches the free-delivery amount.
+     Jewellery-only orders: free from 100 AED. Clothing-only orders: free from 200 AED.
+     Mixed orders (jewellery + clothing): free from 250 AED. */
   deliveryDays: "2–4 working days",
+  deliveryFee: 15,
+  freeOver: { jewellery:100, clothing:200, mixed:250 },
 
   /* Payment options shown at checkout */
   payments: { cod: true, cardOnDelivery: false },
@@ -1563,8 +1567,17 @@ function updateBadge(){var n=cart.reduce(function(a,l){return a+l.qty},0);var b=
 function lineTotal(l){return byId(l.id).price*l.qty}
 function totals(){
   var sub=cart.reduce(function(a,l){return a+lineTotal(l)},0);
-  return {sub:sub,ship:0,total:sub};
+  var ship=0,left=0;
+  if(cart.length){
+    var hasJ=false,hasC=false;
+    cart.forEach(function(l){var pr=byId(l.id);if(pr.category==="jewellery")hasJ=true;else hasC=true});
+    var need=(hasJ&&hasC)?CONFIG.freeOver.mixed:(hasJ?CONFIG.freeOver.jewellery:CONFIG.freeOver.clothing);
+    if(sub<need){ship=CONFIG.deliveryFee;left=need-sub}
+  }
+  return {sub:sub,ship:ship,left:left,total:sub+ship};
 }
+function shipText(t){return t.ship?money(t.ship):"Free"}
+function shipHint(t){return t.ship?'<p class="sum-note">Add '+money(t.left)+' more to get free delivery.</p>':""}
 function addToCart(id,size,qty){
   var f=cart.filter(function(l){return l.id===id&&l.size===size})[0];
   if(f)f.qty=Math.min(10,f.qty+qty);else cart.push({id:id,size:size,qty:qty});
@@ -1797,7 +1810,7 @@ pages.piece=function(id){
   '<div class="accs"><details class="acc" open><summary>About this '+noun+'</summary><div class="body"><p>'+esc(p.long)+'</p><ul>'+p.details.map(function(d){return '<li>'+esc(d)+'</li>'}).join('')+'</ul></div></details>'+
   '<details class="acc" id="size-guide"><summary>Size guide</summary><div class="body">'+sizeGuideBody+'</div></details>'+
   '<details class="acc"><summary>Care</summary><div class="body">'+careBody+'</div></details>'+
-  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is free across the UAE over 100dhs. You pay in cash to the courier when your order arrives.</p></div></details></div></div></div></div></div>'+
+  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is AED 15, and free across the UAE on jewellery orders of 100 AED or more, clothing orders of 200 AED or more, and mixed orders of 250 AED or more. You pay in cash to the courier when your order arrives.</p></div></details></div></div></div></div></div>'+
   '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>How to order</h2><p>Four steps, and you pay on delivery.</p></div>'+orderSteps()+'</div></section>'+
   '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>You may also like</h2><p></p></div><div class="cards" style="grid-template-columns:repeat(3,minmax(0,1fr))">'+others.map(card).join('')+'</div></div></section>', init:function(){
     var qty=1,root=$(".pdp");
@@ -1829,8 +1842,8 @@ pages.cart=function(){
   return {title:"Your cart | SH Branding Store",html:
   '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>Cart</nav><h1>Your cart</h1></div>'+
   '<div class="cart-grid"><div id="lines">'+lines+'<p style="margin-top:24px"><a href="#/collections" class="link">Continue shopping</a></p></div>'+
-  '<aside class="summary" aria-label="Order summary"><h2>Order summary</h2><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>Free</span></div><div class="sum-row total"><span>Total</span><strong style="font-weight:400">'+money(t.total)+'</strong></div>'+
-  '<p class="sum-note">Payment is cash on delivery. You will not be charged online.</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
+  '<aside class="summary" aria-label="Order summary"><h2>Order summary</h2><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>'+shipText(t)+'</span></div><div class="sum-row total"><span>Total</span><strong style="font-weight:400">'+money(t.total)+'</strong></div>'+
+  ''+shipHint(t)+'<p class="sum-note">Payment is cash on delivery. You will not be charged online.</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
 };
 
 function fld(id,label,o){
@@ -1847,7 +1860,7 @@ function fld(id,label,o){
 function summaryMini(){
   var t=totals();
   return '<aside class="summary"><h2>Your order</h2>'+cart.map(function(l){var p=byId(l.id);return '<div class="mini"><img src="'+p.img+'" alt="" style="object-position:'+p.pos+'"><div>'+esc(p.name)+'<small>Size '+esc(l.size)+' &middot; Qty '+l.qty+'</small></div><span>'+money(lineTotal(l))+'</span></div>'}).join('')+
-  '<div style="border-top:1px solid var(--line);margin-top:12px;padding-top:12px"><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>Free</span></div><div class="sum-row total"><span>Total to pay on delivery</span><strong style="font-weight:400">'+money(t.total)+'</strong></div></div>'+
+  '<div style="border-top:1px solid var(--line);margin-top:12px;padding-top:12px"><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>'+shipText(t)+'</span></div><div class="sum-row total"><span>Total to pay on delivery</span><strong style="font-weight:400">'+money(t.total)+'</strong></div></div>'+
   '<p class="sum-note"><a href="#/cart" class="link">Edit cart</a></p></aside>';
 }
 
@@ -1959,7 +1972,7 @@ pages.confirmation=function(){
   '<div class="on-sand"><div class="narrow done" style="padding:clamp(50px,7vw,90px) 0 clamp(70px,9vw,120px)"><h1>Thank you, '+esc(first)+'.</h1><p class="lede">We have your order and will contact you to confirm it. Keep your phone nearby, and please have the cash ready for delivery.</p><span class="orderid">'+esc(o.id)+'</span>'+
   '<div style="margin-top:30px">'+send+'</div>'+
   '<div class="box"><h2>Order details</h2><dl>'+o.items.map(function(i){return '<dt>'+esc(i.name)+'</dt><dd>Size '+esc(i.size)+' &middot; Qty '+i.qty+' &middot; '+money(i.price*i.qty)+'</dd>'}).join('')+
-  '<dt>Delivery fee</dt><dd>Free</dd><dt>Total to pay</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
+  '<dt>Delivery fee</dt><dd>'+(o.totals.ship?money(o.totals.ship):"Free")+'</dd><dt>Total to pay</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
   '<div class="box"><h2>Delivering to</h2><dl><dt>Name</dt><dd>'+esc(o.customer.fullName)+'</dd><dt>Mobile</dt><dd>'+esc(o.customer.phone)+'</dd><dt>Email</dt><dd>'+esc(o.customer.email)+'</dd><dt>Address</dt><dd>'+esc([o.address.street,o.address.unit,o.address.area,o.address.emirate,"United Arab Emirates"].filter(Boolean).join(", "))+'</dd>'+(o.address.landmark?'<dt>Landmark</dt><dd>'+esc(o.address.landmark)+'</dd>':'')+'</dl></div>'+
   '<h2 style="font-size:32px;margin:44px 0 6px">What happens next</h2><ul class="next"><li>We contact you by phone or WhatsApp to confirm your order and address.</li><li>We prepare and dispatch your order. Delivery takes '+esc(CONFIG.deliveryDays)+'.</li><li>The courier calls you on arrival. Check your piece, then pay '+money(o.totals.total)+' in cash.</li></ul>'+
   '<div class="actions no-print" style="justify-content:flex-start"><button class="btn" type="button" onclick="window.print()">Print this page</button><a class="btn" href="#/collections">Continue shopping</a></div></div></div>'};
@@ -1970,7 +1983,7 @@ function faqItems(){
   ["How do I place an order?","Choose a piece, select your size and add it to your cart. At checkout, enter your name, phone number and full address, then place your order. We will contact you to confirm."],
   ["How does cash on delivery work?","You do not pay online. When your order arrives, you pay the courier in cash. Please keep the exact amount ready."],
   ["How long does delivery take?","Delivery takes "+CONFIG.deliveryDays+" after your order is confirmed."],
-  ["How much is delivery?","Delivery is free on every order, across the UAE , over 100dhs."],
+  ["How much is delivery?","Delivery is AED 15. It is free on jewellery-only orders of 100 AED or more, clothing-only orders of 200 AED or more, and mixed jewellery and clothing orders of 250 AED or more."],
   ["How do I choose my size?","Our clothing comes in S, M, L, XL and XXL, and most jewellery is one size or comes in ring sizes 5 to 9. Choose the size closest to your usual clothing size, or message us if you would like help choosing."],
   ["Do you sell jewellery and clothing separately?","Yes. You can shop each collection on its own from the menu, or mix pieces from both in the same order and cart."],
   ["What if I am not home when the courier arrives?","The courier will call you first. Please keep your phone on and make sure the number you entered is correct."]
@@ -2102,7 +2115,7 @@ function policy(title,updated,sections){
 pages.shipping=function(){return policy("Shipping &amp; delivery","",[
  ["Where we deliver","<p>We deliver to all emirates in the United Arab Emirates. Please enter your complete address at checkout so our courier can find you.</p>"],
  ["Delivery time","<p>Orders are delivered in "+esc(CONFIG.deliveryDays)+" after we confirm them with you. Delivery times may be longer during sales and public holidays.</p>"],
- ["Delivery fee","<p>Delivery is free on every order, across the United Arab Emirates over 100dhs.</p>"],
+ ["Delivery fee","<p>Delivery across the United Arab Emirates costs AED 15. It is free on jewellery-only orders of 100 AED or more, clothing-only orders of 200 AED or more, and mixed jewellery and clothing orders of 250 AED or more.</p>"],
  ["Cash on delivery","<p>You pay the courier in cash when your order arrives. Please keep the exact amount ready. The courier will call you before arriving, so make sure your phone number is correct.</p>"],
  ["Order confirmation","<p>After you place your order, we contact you by phone or WhatsApp to confirm your details. Orders are dispatched once confirmed.</p>"],
  ["Missed deliveries","<p>If we cannot reach you or nobody is available to receive the order, we will try to arrange a second delivery. Repeated failed deliveries may lead to your order being cancelled.</p>"]])};
@@ -2159,7 +2172,7 @@ renderFooter(); renderNavDropdowns(); updateBadge(); route(); flushQueue();
 </script>
 <script>
 (function(){
-  var msgs=["Free delivery on clothing orders above 200 AED","Free delivery on jewellery orders above 100 AED","Cash on delivery available across the UAE"],i=0,t=document.getElementById("annText");
+  var msgs=["Free delivery on clothing orders of 200 AED or more","Free delivery on jewellery orders of 100 AED or more","Free delivery on mixed orders of 250 AED or more","Cash on delivery available across the UAE"],i=0,t=document.getElementById("annText");
   if(!t)return;
   function show(n){i=(n+msgs.length)%msgs.length;t.textContent=msgs[i]}
   document.getElementById("annPrev").addEventListener("click",function(){show(i-1)});
