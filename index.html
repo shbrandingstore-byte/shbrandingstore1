@@ -739,7 +739,7 @@ var CONFIG = {
   freeOver: { jewellery:100, clothing:200, mixed:250 },
 
   /* Payment options shown at checkout */
-  payments: { cod: true, cardOnDelivery: false },
+  payments: { cod: true, cardOnDelivery: false, card: true },   // card = online card payment through Ziina
 
   /* Google Sheet orders: paste your Google Apps Script "Web app URL" here (it ends in /exec).
      Every order and contact-form enquiry is then added to your Google Sheet automatically.
@@ -933,7 +933,7 @@ addProducts({
   ["Orange Round Solitaire Ring", "orange-round-solitaire-ring.jpg"],
   ["Garnet Heart Wrap Ring", "garnet-heart-wrap-ring.jpg"],
   ["Yellow Oval Beaded Ring", "yellow-oval-beaded-ring.jpg"],
-  //["Purple Infinity Crystal Ring", "purple-infinity-crystal-ring.jpg"],
+  ["Purple Infinity Crystal Ring", "purple-infinity-crystal-ring.jpg"],
   ["Pink Heart Solitaire Ring", "pink-heart-solitaire-ring.jpg"],
   ["Lilac Heart Wrap Ring", "lilac-heart-wrap-ring.jpg"],
   ["Garnet Round Solitaire Ring", "garnet-round-solitaire-ring.jpg"],
@@ -1034,7 +1034,7 @@ addProducts({
   details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
 }, [
   ["Crystal Drop Earrings", "crystal-drop-earrings.jpeg"],
-  //["Gold Heart Stud Earrings", "gold-heart-stud-earrings.jpeg"],
+  ["Gold Heart Stud Earrings", "gold-heart-stud-earrings.jpeg"],
   ["Ridged Heart Stud Earrings", "ridged-heart-stud-earrings.jpeg"],
   ["Open Heart Crystal Stud Earrings", "open-heart-crystal-stud-earrings.jpg"],
   ["Puffy Heart Crystal Drop Earrings", "puffy-heart-crystal-drop-earrings.jpg"],
@@ -1174,8 +1174,8 @@ addProducts({
   note:"Comes in a SH Branding Store gift pouch.",
   details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
 }, [
-  ["Heart Watch Bracelet", "Heart watch bracelet.jpg"],
-  ["Oval Mesh Watch Bracelet", "Oval mesh watch bracelet.jpg"],
+  ["Heart Watch Bracelet", "heart watch bracelet.jpg"],
+  ["Oval Mesh Watch Bracelet", "oval mesh watch bracelet.jpg"],
   ["Oval Watch Bracelet", "Oval watch bracelet.jpg"],
   ["Round Watch Bracelet", "Round watch bracelet.jpg"],
   ["heart hanging bracelet", "heart hanging bracelet.jpg"],
@@ -1188,12 +1188,12 @@ addProducts({
   ["Red Tennis Bracelet", "red tennis bracelet.jpg", { price: 18}], 
   ["Black Pearl Charm Bracelet", "black-pearl-charm-bracelet.jpg", { price: 18}],
   //["black butterfly bracelet", "black butterfly bracelet.jpg", { price: 15}],
-  ["White Tulip Bracelet", "White Tulip.jpg"],
+  ["White Tulip Bracelet", "white tulip.jpg"],
   ["Burgundy Crystal Bracelet", "burgundy-crystal-bracelet.jpg", { price: 18}],
   ["Red Tulip Bracelet", "red tulip bracelet.jpg"],
   ["Lavender Pink Tulip", "Lavender Pink Tulip.jpg"],
   ["Gold Charm Bracelet", "gold-charm-bracelet.jpg", { price: 15}],
-  //["Teardrop Charm Bracelet", "teardrop-charm-bracelet.jpg", { price: 15}],
+  ["Teardrop Charm Bracelet", "teardrop-charm-bracelet.jpg", { price: 15}],
   ["Gold Crystal Station Bracelet", "Gold crystal-station-bracelet.jpg"],
   ["Green Tulip Bracelet", "green tulip bracelet.jpg"],
   ["Black Clover Station Bracelet", "black-clover-station-bracelet.jpg", { price: 18}],
@@ -1223,16 +1223,16 @@ addProducts({
 }, [
   ["Sapphire Bead Necklace", "sapphire-bead-necklace.jpg"],
   ["White Tulip Necklace", "white tulip.jpg", {  price:15, stock: 3 }],
-  //["Lavender Tulip Necklace", "lavender tulip.jpg", { price: 15 }],
+  ["Lavender Tulip Necklace", "lavender tulip.jpg", { price: 15 }],
   ["Pink Tulip Necklace", "pink-tulip.jpg", { price: 15}],
-  ["Red Tulip Necklace", "red-tulip.jpg", { price:15, stock: 2 }],
-  //["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
-  //["Gold Bow Pendant Necklace", "gold-bow-pendant-necklace.jpg"],
-  //["Gold Flower Pendant Necklace", "gold-flower-pendant-necklace.jpg"],
-  //["Crystal Heart Pendant Necklace", "crystal-heart-pendant-necklace.jpg"],
-  //["Crystal Bar Pendant Necklace", "crystal-bar-pendant-necklace.jpg"],
-  //["Crystal Flower Pendant Necklace", "crystal-flower-pendant-necklace.jpg"],
-  //["Crystal Butterfly Pendant Necklace", "crystal-butterfly-pendant-necklace.jpg"],
+  ["Red Tulip Necklace", "red-tulip.jpg", { price:15, stock: 3 }],
+  ["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
+  ["Gold Bow Pendant Necklace", "gold-bow-pendant-necklace.jpg"],
+  ["Gold Flower Pendant Necklace", "gold-flower-pendant-necklace.jpg"],
+  ["Crystal Heart Pendant Necklace", "crystal-heart-pendant-necklace.jpg"],
+  ["Crystal Bar Pendant Necklace", "crystal-bar-pendant-necklace.jpg"],
+  ["Crystal Flower Pendant Necklace", "crystal-flower-pendant-necklace.jpg"],
+  ["Crystal Butterfly Pendant Necklace", "crystal-butterfly-pendant-necklace.jpg"],
   ["Tail Mangalsutra", "tail mangalsutra.jpg"],
   ["Single Stone Mangalsutra", "single stone mangalsutra.jpg"],
   ["Crystal Butterfly Pendant Necklace", "crystal-butterfly-pendant-necklace.jpg"],
@@ -1257,24 +1257,24 @@ addProducts({
   ["Butterfly Drop Necklace", "butterfly-drop-necklace.jpg"],
   ["Gold Bar Necklace", "gold-bar-necklace.jpg"],
   ["Round Coin Pendant Necklace", "round-coin-pendant-necklace.jpg"],
-  //["Oval Medallion Necklace", "oval-medallion-necklace.jpg"],
+  ["Oval Medallion Necklace", "oval-medallion-necklace.jpg"],
   ["Heart Knot Necklace", "heart-knot-necklace.jpg"],
   ["Crystal Y Drop Necklace", "crystal-y-drop-necklace.jpg"],
   ["Green Heart Station Necklace", "green-heart-station-necklace.jpg"],
   ["Gold Star Station Necklace", "gold-star-station-necklace.jpg"],
   ["Gold Star Drop Necklace", "gold-star-drop-necklace.jpg"],
-  //["Gold Bow Necklace", "gold-bow-necklace.jpg"],
+  ["Gold Bow Necklace", "gold-bow-necklace.jpg"],
   ["Black Tassel Pendant Necklace", "black-tassel-pendant-necklace.jpg"],
   ["Double Chain Heart Necklace", "double-chain-heart-necklace.jpg"],
   ["Crystal Solitaire Necklace", "crystal-solitaire-necklace.jpg", { price: 15 }],
   ["Crystal Drop Necklace", "crystal-drop-necklace.jpg", { price: 15 }],
   ["Crystal Flower Pendant Necklace", "crystal-flower-pendant-necklace.jpg"],
   ["Gold Flower Pendant Necklace", "gold-flower-pendant-necklace.jpg"],
-  ["Heart Outline Pendant Necklace", "heart-outline-pendant-necklace.jpg", { price: 8 , stock: 4 }],
-  //["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
+  ["Heart Outline Pendant Necklace", "heart-outline-pendant-necklace.jpg", { price: 8 }],
+  ["Gold Heart Pendant Necklace", "gold-heart-pendant-necklace.jpg"],
   ["Crystal Bar Pendant Necklace", "crystal-bar-pendant-necklace.jpg"],
   ["Crystal Charm Drop Necklace", "crystal-charm-drop-necklace.jpg"],
-  //["Crystal Heart Pendant Necklace", "crystal-heart-pendant-necklace.jpg"],
+  ["Crystal Heart Pendant Necklace", "crystal-heart-pendant-necklace.jpg"],
   ["Heart Crystal Pendant Necklace", "heart-crystal-pendant-necklace.jpg"]
 ]);
 
@@ -1314,7 +1314,7 @@ addProducts({
   note:"Comes in a SH Branding Store gift pouch.",
   details:["Gold plated,Anti-Tarnished and Stainless steel","SH Branding Store gift pouch"]
 }, [
-  //["Pave Link Hinged Bangle", "pave-link-hinged-bangle.jpg", { price: 20}],
+  ["Pave Link Hinged Bangle", "pave-link-hinged-bangle.jpg", { price: 20}],
   ["Triple Line Two-Tone Cuff Bangle", "triple-line-two-tone-cuff-bangle.jpg", { price: 15}],
   ["Flower Cuff Bangle", "flower-cuff-bangle.jpg", { price: 15}],
   ["Daisy Cluster Hinged Bangle", "daisy-cluster-hinged-bangle.jpg"],
@@ -1333,7 +1333,7 @@ addProducts({
   ["Emerald Double Row Crystal Bangle", "emerald-double-row-crystal-bangle.jpg"],
   ["Cutout Crystal Band Bangle", "cutout-crystal-band-bangle.jpg"],
   ["Multicolour Heart Gem Bangle", "multicolour-heart-gem-bangle.jpg"],
-  //["Crossover Crystal Bypass Bangle", "crossover-crystal-bypass-bangle.jpg"],
+  ["Crossover Crystal Bypass Bangle", "crossover-crystal-bypass-bangle.jpg"],
   ["Multicolour Gem Scatter Bangle", "multicolour-gem-scatter-bangle.jpg"],
   ["Crystal Clover Beaded Bangle", "crystal-clover-beaded-bangle.jpg"],
   ["Quilted Heart Crystal Bangle", "quilted-heart-crystal-bangle.jpg", { price: 20}]
@@ -1608,6 +1608,38 @@ function flushQueue(){
 }
 window.addEventListener("online",flushQueue);
 
+/* ---------- Ziina card payment ---------- */
+function CARD(){return !!(CONFIG.payments&&CONFIG.payments.card)&&sheetOn()}
+function startCardPayment(payload){
+  payload.key=CONFIG.sheetKey||"SH";
+  return fetch(CONFIG.sheetEndpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).then(function(r){return r.json()});
+}
+function finishCardOrder(oid,pend,r){
+  var o=(pend&&pend.id===oid)?pend:{id:oid,date:new Date().toISOString(),customer:{fullName:r.name||"Customer",phone:r.phone||"",whatsapp:"",email:r.email||""},address:{},items:[],totals:{sub:+r.total||0,ship:0,total:+r.total||0},note:""};
+  o.payment="Card online (Ziina)";o.paid=true;o.sent=true;
+  var all=store(true,"shbs_orders")||[];all.push(o);store(false,"shbs_orders",all);
+  store(false,"shbs_last",o);store(false,"shbs_pending",null);
+  cart=[];saveCart();lastOrder=o;
+  location.hash="#/confirmation";
+}
+function handlePaymentReturn(){
+  var q=new URLSearchParams(location.search),st=q.get("pay");
+  if(!st)return;
+  var oid=q.get("order")||"",pi=q.get("pi")||"";
+  history.replaceState(null,"",location.pathname+(st==="success"?"#/":"#/checkout"));
+  if(st!=="success"){
+    toast(st==="cancel"?"Payment cancelled. Your order was not placed. You can try again or choose cash on delivery.":"Payment failed. Your order was not placed. Please try again or choose cash on delivery.");
+    return;
+  }
+  var pend=store(true,"shbs_pending");
+  toast("Confirming your payment…");
+  var bad=function(){toast("We could not confirm your payment yet. If you were charged, please contact us with order "+esc(oid)+".")};
+  fetch(CONFIG.sheetEndpoint+"?action=verify&key="+encodeURIComponent(CONFIG.sheetKey||"SH")+"&order="+encodeURIComponent(oid)+"&pi="+encodeURIComponent(pi))
+    .then(function(r){return r.json()})
+    .then(function(r){if(r&&r.ok&&r.status==="completed")finishCardOrder(oid,pend,r);else bad()})
+    .catch(bad);
+}
+
 /* ---------- shared fragments ---------- */
 function stockLabel(p){
   if(!inStock(p))return '<span class="stock oos">Sold out</span>';
@@ -1624,7 +1656,7 @@ function orderSteps(){
   '<li><h3>Choose your piece</h3><p>Pick your piece and select the size or option that suits you.</p></li>'+
   '<li><h3>Add to cart</h3><p>Add it to your cart. You can keep browsing and add more pieces.</p></li>'+
   '<li><h3>Enter your details</h3><p>At checkout, add your full name, phone number and complete delivery address.</p></li>'+
-  '<li><h3>Pay on delivery</h3><p>We confirm your order, deliver in '+esc(CONFIG.deliveryDays)+', and you pay in cash when it arrives.</p></li></ol>';
+  '<li><h3>Pay on delivery</h3><p>We confirm your order, deliver in '+esc(CONFIG.deliveryDays)+', and you pay in cash when it arrives'+(CARD()?' or by card online at checkout':'')+'.</p></li></ol>';
 }
 function trust(){
   return '<div class="trust"><div class="wrap"><ul>'+TEXT.trust.map(function(t){return '<li><strong>'+esc(t.title)+'</strong><span>'+esc(t.text)+'</span></li>'}).join('')+'</ul></div></div>';
@@ -1781,7 +1813,7 @@ pages.piece=function(id){
     var on=pSizes[s]!==false;
     return '<label class="'+(on?'':'unavailable')+'" title="'+(on?'':'Unavailable in this piece')+'"><input type="radio" name="size" value="'+esc(s)+'"'+(on&&opts.length===1?' checked':'')+(on?'':' disabled aria-label="'+esc(s)+', unavailable"')+'><span>'+esc(s)+'</span></label>';
   }).join('');
-  var pay=[]; if(CONFIG.payments.cod)pay.push("Cash on delivery"); if(CONFIG.payments.cardOnDelivery)pay.push("card on delivery");
+  var pay=[]; if(CONFIG.payments.cod)pay.push("Cash on delivery"); if(CONFIG.payments.cardOnDelivery)pay.push("card on delivery"); if(CARD())pay.push("card online");
   var buyBlock;
   if(oos){
     var msgLink=hasWA()?waLink("Hello SH Branding Store, I'd like to know when "+p.name+" will be back in stock."):"#/contact";
@@ -1810,7 +1842,7 @@ pages.piece=function(id){
   '<div class="accs"><details class="acc" open><summary>About this '+noun+'</summary><div class="body"><p>'+esc(p.long)+'</p><ul>'+p.details.map(function(d){return '<li>'+esc(d)+'</li>'}).join('')+'</ul></div></details>'+
   '<details class="acc" id="size-guide"><summary>Size guide</summary><div class="body">'+sizeGuideBody+'</div></details>'+
   '<details class="acc"><summary>Care</summary><div class="body">'+careBody+'</div></details>'+
-  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is AED 15, and free across the UAE on jewellery orders of 100 AED or more, clothing orders of 200 AED or more, and mixed orders of 250 AED or more. You pay in cash to the courier when your order arrives.</p></div></details></div></div></div></div></div>'+
+  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is AED 15, and free across the UAE on jewellery orders of 100 AED or more, clothing orders of 200 AED or more, and mixed orders of 250 AED or more. '+(CARD()?'You can pay by card online at checkout, or in cash to the courier when your order arrives.':'You pay in cash to the courier when your order arrives.')+'</p></div></details></div></div></div></div></div>'+
   '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>How to order</h2><p>Four steps, and you pay on delivery.</p></div>'+orderSteps()+'</div></section>'+
   '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>You may also like</h2><p></p></div><div class="cards" style="grid-template-columns:repeat(3,minmax(0,1fr))">'+others.map(card).join('')+'</div></div></section>', init:function(){
     var qty=1,root=$(".pdp");
@@ -1843,7 +1875,7 @@ pages.cart=function(){
   '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>Cart</nav><h1>Your cart</h1></div>'+
   '<div class="cart-grid"><div id="lines">'+lines+'<p style="margin-top:24px"><a href="#/collections" class="link">Continue shopping</a></p></div>'+
   '<aside class="summary" aria-label="Order summary"><h2>Order summary</h2><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>'+shipText(t)+'</span></div><div class="sum-row total"><span>Total</span><strong style="font-weight:400">'+money(t.total)+'</strong></div>'+
-  ''+shipHint(t)+'<p class="sum-note">Payment is cash on delivery. You will not be charged online.</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
+  ''+shipHint(t)+'<p class="sum-note">'+(CARD()?'Pay by card online at checkout, or in cash on delivery.':'Payment is cash on delivery. You will not be charged online.')+'</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
 };
 
 function fld(id,label,o){
@@ -1867,9 +1899,11 @@ function summaryMini(){
 pages.checkout=function(){
   if(!cart.length){location.replace("#/cart");return {title:"Cart | SH Branding Store",html:""}}
   var t=totals();
-  var pays='';
-  if(CONFIG.payments.cod) pays+='<label class="pay"><input type="radio" name="payment" value="Cash on delivery" checked><div><strong>Cash on delivery</strong><span>Pay in cash to our courier when your order arrives. Please keep the exact amount ready.</span></div></label>';
-  if(CONFIG.payments.cardOnDelivery) pays+='<label class="pay"><input type="radio" name="payment" value="Card on delivery"'+(CONFIG.payments.cod?'':' checked')+'><div><strong>Card on delivery</strong><span>Pay by card using the courier’s card machine when your order arrives.</span></div></label>';
+  var po=[];
+  if(CONFIG.payments.cod) po.push(["Cash on delivery","Cash on delivery","Pay in cash to our courier when your order arrives. Please keep the exact amount ready."]);
+  if(CARD()) po.push(["Card online (Ziina)","Pay by card online","Pay now with your debit or credit card on Ziina’s secure payment page. You will return here when it is done."]);
+  if(CONFIG.payments.cardOnDelivery) po.push(["Card on delivery","Card on delivery","Pay by card using the courier’s card machine when your order arrives."]);
+  var pays=po.map(function(o,i){return '<label class="pay"><input type="radio" name="payment" value="'+o[0]+'"'+(i===0?' checked':'')+'><div><strong>'+o[1]+'</strong><span>'+o[2]+'</span></div></label>'}).join('');
   return {title:"Checkout | SH Branding Store",html:
   '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="#/cart">Cart</a><span>/</span>Checkout</nav><h1>Checkout</h1></div>'+
   '<div class="checkout-grid"><form id="co" novalidate>'+
@@ -1889,13 +1923,14 @@ pages.checkout=function(){
   fld("mapLink","Google Maps location link",{type:"url",req:false,full:true,ph:"Optional: share your pin to help the courier"})+
   fld("deliveryNotes","Delivery instructions",{area:true,req:false,full:true,ph:"Gate code, best time to call, anything the courier should know"})+
   '</div></fieldset>'+
-  '<fieldset><legend>Payment</legend><p class="hint">No online payment is taken.</p>'+pays+'</fieldset>'+
+  '<fieldset><legend>Payment</legend><p class="hint">'+(CARD()?'Choose how you would like to pay.':'No online payment is taken.')+'</p>'+pays+'</fieldset>'+
   '<fieldset><legend>Anything else?</legend><div class="fields"><div class="f full"><label for="orderNote">Order note <i>(optional)</i></label><textarea id="orderNote" name="orderNote" placeholder="Height, gift note, or questions about your order"></textarea></div></div></fieldset>'+
   '<label class="check"><input type="checkbox" id="agree" required aria-describedby="e-agree"><span>I have checked my details and agree to the <a href="#/terms" target="_blank">terms &amp; conditions</a> and <a href="#/privacy" target="_blank">privacy policy</a>.</span></label><p class="err" id="e-agree" style="margin-bottom:22px"></p>'+
   '<button class="btn block" type="submit" id="place">Place order &middot; '+money(t.total)+'</button><p class="err" id="formerr" role="alert" style="margin-top:12px"></p></form>'+
   summaryMini()+'</div></div></div>', init:function(){
     $("#co").addEventListener("submit",submitOrder);
     $("#co").addEventListener("input",function(e){var id=e.target.id;if(id){setErr(id,"")}});
+    $("#co").addEventListener("change",function(e){if(e.target.name==="payment"){$("#place").textContent=(/^Card online/.test(e.target.value)?"Pay by card · ":"Place order · ")+money(t.total)}});
   }};
 };
 
@@ -1937,7 +1972,8 @@ function submitOrder(e){
   var order={id:id,date:d.toISOString(),customer:{fullName:v.fullName.trim(),phone:v.phone.trim(),whatsapp:v.whatsapp.trim(),email:v.email.trim()},
     address:{emirate:v.emirate,area:v.area.trim(),street:v.street.trim(),unit:v.unit.trim(),landmark:v.landmark.trim(),mapLink:v.mapLink.trim(),notes:v.deliveryNotes.trim(),country:"United Arab Emirates"},
     items:cart.map(function(l){var p=byId(l.id);return {id:l.id,name:p.name,size:l.size,qty:l.qty,price:p.price}}),totals:t,payment:pm?pm.value:"Cash on delivery",note:v.orderNote.trim(),sent:false};
-  var btn=$("#place");btn.disabled=true;btn.textContent="Placing your order…";
+  var isCard=!!(pm&&/^Card online/.test(pm.value));
+  var btn=$("#place");btn.disabled=true;btn.textContent=isCard?"Opening secure payment…":"Placing your order…";
   function finish(sent){
     order.sent=sent;
     var all=store(true,"shbs_orders")||[];all.push(order);store(false,"shbs_orders",all);
@@ -1945,13 +1981,22 @@ function submitOrder(e){
     cart=[];saveCart();lastOrder=order;
     location.hash="#/confirmation";
   }
-  if(sheetOn()){
-    var pl={type:"order",orderId:order.id,date:order.date,name:order.customer.fullName,phone:order.customer.phone,whatsapp:order.customer.whatsapp,email:order.customer.email,
-      emirate:order.address.emirate,area:order.address.area,street:order.address.street,unit:order.address.unit,landmark:order.address.landmark,mapLink:order.address.mapLink,deliveryNotes:order.address.notes,
-      items:order.items.map(function(i){return i.name+" | Size "+i.size+" | Qty "+i.qty+" | "+money(i.price*i.qty)}).join("\n"),
-      itemCount:order.items.reduce(function(a,i){return a+i.qty},0),subtotal:order.totals.sub,delivery:order.totals.ship,total:order.totals.total,payment:order.payment,orderNote:order.note};
-    sendOrQueue(pl).then(finish);
-  } else finish(false);
+  var pl={type:"order",orderId:order.id,date:order.date,name:order.customer.fullName,phone:order.customer.phone,whatsapp:order.customer.whatsapp,email:order.customer.email,
+    emirate:order.address.emirate,area:order.address.area,street:order.address.street,unit:order.address.unit,landmark:order.address.landmark,mapLink:order.address.mapLink,deliveryNotes:order.address.notes,
+    items:order.items.map(function(i){return i.name+" | Size "+i.size+" | Qty "+i.qty+" | "+money(i.price*i.qty)}).join("\n"),
+    itemCount:order.items.reduce(function(a,i){return a+i.qty},0),subtotal:order.totals.sub,delivery:order.totals.ship,total:order.totals.total,payment:order.payment,orderNote:order.note};
+  if(isCard){
+    pl.type="createPayment";pl.returnUrl=location.href.split(/[?#]/)[0];
+    store(false,"shbs_pending",order);
+    startCardPayment(pl).then(function(r){
+      if(r&&r.ok&&r.redirectUrl){location.href=r.redirectUrl}else throw new Error("no link");
+    }).catch(function(){
+      btn.disabled=false;btn.textContent="Pay by card · "+money(t.total);
+      $("#formerr").textContent="We could not open the card payment page. Please try again, or choose cash on delivery.";
+    });
+    return;
+  }
+  if(sheetOn()) sendOrQueue(pl).then(finish); else finish(false);
 }
 
 var lastOrder=null;
@@ -1969,12 +2014,12 @@ pages.confirmation=function(){
     send='<div class="notice no-print"><strong>'+(sheetOn()?'We could not reach our order system.':'One last step: send us your order.')+'</strong> '+(sheetOn()?'Your order is saved on this device and will retry automatically. To be safe, tap a button below so we receive it right away.':'Tap a button below so your order reaches us and we can confirm it with you.')+'</div><div class="actions no-print" style="justify-content:flex-start;margin:0 0 10px">'+btns+'</div>';
   }
   return {title:"Order received | SH Branding Store",html:
-  '<div class="on-sand"><div class="narrow done" style="padding:clamp(50px,7vw,90px) 0 clamp(70px,9vw,120px)"><h1>Thank you, '+esc(first)+'.</h1><p class="lede">We have your order and will contact you to confirm it. Keep your phone nearby, and please have the cash ready for delivery.</p><span class="orderid">'+esc(o.id)+'</span>'+
+  '<div class="on-sand"><div class="narrow done" style="padding:clamp(50px,7vw,90px) 0 clamp(70px,9vw,120px)"><h1>Thank you, '+esc(first)+'.</h1><p class="lede">We have your order and will contact you to confirm it. Keep your phone nearby, '+(o.paid?'and thank you for paying online.':'and please have the cash ready for delivery.')+'</p><span class="orderid">'+esc(o.id)+'</span>'+
   '<div style="margin-top:30px">'+send+'</div>'+
   '<div class="box"><h2>Order details</h2><dl>'+o.items.map(function(i){return '<dt>'+esc(i.name)+'</dt><dd>Size '+esc(i.size)+' &middot; Qty '+i.qty+' &middot; '+money(i.price*i.qty)+'</dd>'}).join('')+
-  '<dt>Delivery fee</dt><dd>'+(o.totals.ship?money(o.totals.ship):"Free")+'</dd><dt>Total to pay</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
+  '<dt>Delivery fee</dt><dd>'+(o.totals.ship?money(o.totals.ship):"Free")+'</dd><dt>'+(o.paid?'Total paid':'Total to pay')+'</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
   '<div class="box"><h2>Delivering to</h2><dl><dt>Name</dt><dd>'+esc(o.customer.fullName)+'</dd><dt>Mobile</dt><dd>'+esc(o.customer.phone)+'</dd><dt>Email</dt><dd>'+esc(o.customer.email)+'</dd><dt>Address</dt><dd>'+esc([o.address.street,o.address.unit,o.address.area,o.address.emirate,"United Arab Emirates"].filter(Boolean).join(", "))+'</dd>'+(o.address.landmark?'<dt>Landmark</dt><dd>'+esc(o.address.landmark)+'</dd>':'')+'</dl></div>'+
-  '<h2 style="font-size:32px;margin:44px 0 6px">What happens next</h2><ul class="next"><li>We contact you by phone or WhatsApp to confirm your order and address.</li><li>We prepare and dispatch your order. Delivery takes '+esc(CONFIG.deliveryDays)+'.</li><li>The courier calls you on arrival. Check your piece, then pay '+money(o.totals.total)+' in cash.</li></ul>'+
+  '<h2 style="font-size:32px;margin:44px 0 6px">What happens next</h2><ul class="next"><li>We contact you by phone or WhatsApp to confirm your order and address.</li><li>We prepare and dispatch your order. Delivery takes '+esc(CONFIG.deliveryDays)+'.</li><li>The courier calls you on arrival. Check your piece'+(o.paid?'.':', then pay '+money(o.totals.total)+' in cash.')+'</li></ul>'+
   '<div class="actions no-print" style="justify-content:flex-start"><button class="btn" type="button" onclick="window.print()">Print this page</button><a class="btn" href="#/collections">Continue shopping</a></div></div></div>'};
 };
 
@@ -2128,7 +2173,7 @@ pages.privacy=function(){return policy("Privacy policy","",[
 pages.terms=function(){return policy("Terms &amp; conditions","",[
  ["Orders","<p>Placing an order is an offer to buy. An order is confirmed once we contact you and confirm your details and availability. We may cancel an order if an item is unavailable or we cannot reach you.</p>"],
  ["Prices","<p>All prices are in "+esc(CONFIG.currency)+". Prices may change without notice, but the price shown at the time you place your order applies to that order.</p>"],
- ["Payment","<p>Payment is made on delivery. The total shown at checkout is the amount to pay the courier.</p>"],
+ ["Payment","<p>Payment is made on delivery"+(CARD()?", or online by card through Ziina, our secure payment provider. We never see or store your card details":"")+". The total shown at checkout is the amount to pay.</p>"],
  ["Product images and colours","<p>We do our best to show our jewellery and clothing accurately. Colours and finishes may look slightly different on different screens.</p>"],
  ["Delivery","<p>Please see our <a href=\"#/shipping\">shipping &amp; delivery</a> page for delivery details.</p>"],
  ["Contact","<p>Questions about these terms? Email us at "+esc(CONFIG.email)+".</p>"]])};
@@ -2167,7 +2212,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){$("#menu").
 
 /* validate cart against products (in case products changed) */
 cart=cart.filter(function(l){var p=byId(l.id);return p&&l.qty>0&&p.sizeOptions.indexOf(l.size)>-1});saveCart();
-renderFooter(); renderNavDropdowns(); updateBadge(); route(); flushQueue();
+renderFooter(); renderNavDropdowns(); updateBadge(); handlePaymentReturn(); route(); flushQueue();
 })();
 </script>
 <script>
