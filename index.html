@@ -744,7 +744,7 @@ var CONFIG = {
   /* Google Sheet orders: paste your Google Apps Script "Web app URL" here (it ends in /exec).
      Every order and contact-form enquiry is then added to your Google Sheet automatically.
      sheetKey must match SECRET_KEY in your Apps Script (any word you choose). */
-  sheetEndpoint: "https://script.google.com/macros/s/AKfycbwRRiAgyD05QpO64dPg7CjKFxlaJXT4wuZ3tcloUtA4UO2jt6mI2ILtyBH3BTLYT6fyig/exec",
+  sheetEndpoint: "https://script.google.com/macros/s/AKfycbzuSMZEW_smRP9OX32r_gVvPcCE-r8gQEz-cTSaN6b-4i9wXIEMPGHYHbmhrCV8DH5QTA/exec",
   sheetKey: "SH",
 
   emirates: ["Abu Dhabi","Dubai","Sharjah","Ajman","Umm Al Quwain","Ras Al Khaimah","Fujairah"],
@@ -1587,7 +1587,7 @@ var toastT;
 function toast(html){var t=$("#toast");t.innerHTML=html;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("show")},4500)}
 
 /* ---------- Google Sheet sending ---------- */
-function sheetOn(){return /^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(CONFIG.sheetEndpoint||"https://script.google.com/macros/s/AKfycbwRRiAgyD05QpO64dPg7CjKFxlaJXT4wuZ3tcloUtA4UO2jt6mI2ILtyBH3BTLYT6fyig/exec")}
+function sheetOn(){return /^https:\/\/script\.google\.com\/macros\/s\/[^\s]+\/exec$/.test(CONFIG.sheetEndpoint||"https://script.google.com/macros/s/AKfycbzuSMZEW_smRP9OX32r_gVvPcCE-r8gQEz-cTSaN6b-4i9wXIEMPGHYHbmhrCV8DH5QTA/exec")}
 function postSheet(payload){
   payload.key=CONFIG.sheetKey||"SH";
   var ctl=("AbortController" in window)?new AbortController():null,timer;
