@@ -739,7 +739,7 @@ var CONFIG = {
   freeOver: { jewellery:100, clothing:200, mixed:250 },
 
   /* Payment options shown at checkout */
-  payments: { cod: true, cardOnDelivery: false, card: true },   // card = online card payment through Ziina
+  payments: { cod: true, cardOnDelivery: false, online: true },   // online = "Pay online now" (card / Apple Pay / Google Pay via Ziina). Needs sheetEndpoint + the Ziina key in Code.gs
 
   /* Google Sheet orders: paste your Google Apps Script "Web app URL" here (it ends in /exec).
      Every order and contact-form enquiry is then added to your Google Sheet automatically.
@@ -1608,36 +1608,14 @@ function flushQueue(){
 }
 window.addEventListener("online",flushQueue);
 
-/* ---------- Ziina card payment ---------- */
-function CARD(){return !!(CONFIG.payments&&CONFIG.payments.card)&&sheetOn()}
-function startCardPayment(payload){
+/* ---------- Ziina online payments (via the same Apps Script endpoint) ---------- */
+function zinaOn(){return sheetOn()&&!!CONFIG.payments.online}
+function postSheetJSON(payload,timeoutMs){
   payload.key=CONFIG.sheetKey||"SH";
-  return fetch(CONFIG.sheetEndpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)}).then(function(r){return r.json()});
-}
-function finishCardOrder(oid,pend,r){
-  var o=(pend&&pend.id===oid)?pend:{id:oid,date:new Date().toISOString(),customer:{fullName:r.name||"Customer",phone:r.phone||"",whatsapp:"",email:r.email||""},address:{},items:[],totals:{sub:+r.total||0,ship:0,total:+r.total||0},note:""};
-  o.payment="Card online (Ziina)";o.paid=true;o.sent=true;
-  var all=store(true,"shbs_orders")||[];all.push(o);store(false,"shbs_orders",all);
-  store(false,"shbs_last",o);store(false,"shbs_pending",null);
-  cart=[];saveCart();lastOrder=o;
-  location.hash="#/confirmation";
-}
-function handlePaymentReturn(){
-  var q=new URLSearchParams(location.search),st=q.get("pay");
-  if(!st)return;
-  var oid=q.get("order")||"",pi=q.get("pi")||"";
-  history.replaceState(null,"",location.pathname+(st==="success"?"#/":"#/checkout"));
-  if(st!=="success"){
-    toast(st==="cancel"?"Payment cancelled. Your order was not placed. You can try again or choose cash on delivery.":"Payment failed. Your order was not placed. Please try again or choose cash on delivery.");
-    return;
-  }
-  var pend=store(true,"shbs_pending");
-  toast("Confirming your payment…");
-  var bad=function(){toast("We could not confirm your payment yet. If you were charged, please contact us with order "+esc(oid)+".")};
-  fetch(CONFIG.sheetEndpoint+"?action=verify&key="+encodeURIComponent(CONFIG.sheetKey||"SH")+"&order="+encodeURIComponent(oid)+"&pi="+encodeURIComponent(pi))
-    .then(function(r){return r.json()})
-    .then(function(r){if(r&&r.ok&&r.status==="completed")finishCardOrder(oid,pend,r);else bad()})
-    .catch(bad);
+  var ctl=("AbortController" in window)?new AbortController():null,timer;
+  var req=fetch(CONFIG.sheetEndpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload),signal:ctl?ctl.signal:undefined}).then(function(r){return r.json()});
+  var to=new Promise(function(res,rej){timer=setTimeout(function(){if(ctl)ctl.abort();rej(new Error("timeout"))},timeoutMs||20000)});
+  return Promise.race([req,to]).then(function(r){clearTimeout(timer);return r},function(e){clearTimeout(timer);throw e});
 }
 
 /* ---------- shared fragments ---------- */
@@ -1656,7 +1634,7 @@ function orderSteps(){
   '<li><h3>Choose your piece</h3><p>Pick your piece and select the size or option that suits you.</p></li>'+
   '<li><h3>Add to cart</h3><p>Add it to your cart. You can keep browsing and add more pieces.</p></li>'+
   '<li><h3>Enter your details</h3><p>At checkout, add your full name, phone number and complete delivery address.</p></li>'+
-  '<li><h3>Pay on delivery</h3><p>We confirm your order, deliver in '+esc(CONFIG.deliveryDays)+', and you pay in cash when it arrives'+(CARD()?' or by card online at checkout':'')+'.</p></li></ol>';
+  '<li><h3>Pay on delivery</h3><p>We confirm your order, deliver in '+esc(CONFIG.deliveryDays)+', and you pay in cash when it arrives'+(zinaOn()?' or by card online at checkout':'')+'.</p></li></ol>';
 }
 function trust(){
   return '<div class="trust"><div class="wrap"><ul>'+TEXT.trust.map(function(t){return '<li><strong>'+esc(t.title)+'</strong><span>'+esc(t.text)+'</span></li>'}).join('')+'</ul></div></div>';
@@ -1813,7 +1791,7 @@ pages.piece=function(id){
     var on=pSizes[s]!==false;
     return '<label class="'+(on?'':'unavailable')+'" title="'+(on?'':'Unavailable in this piece')+'"><input type="radio" name="size" value="'+esc(s)+'"'+(on&&opts.length===1?' checked':'')+(on?'':' disabled aria-label="'+esc(s)+', unavailable"')+'><span>'+esc(s)+'</span></label>';
   }).join('');
-  var pay=[]; if(CONFIG.payments.cod)pay.push("Cash on delivery"); if(CONFIG.payments.cardOnDelivery)pay.push("card on delivery"); if(CARD())pay.push("card online");
+  var pay=[]; if(CONFIG.payments.cod)pay.push("Cash on delivery"); if(CONFIG.payments.cardOnDelivery)pay.push("card on delivery"); if(zinaOn())pay.push("online by card");
   var buyBlock;
   if(oos){
     var msgLink=hasWA()?waLink("Hello SH Branding Store, I'd like to know when "+p.name+" will be back in stock."):"#/contact";
@@ -1842,7 +1820,7 @@ pages.piece=function(id){
   '<div class="accs"><details class="acc" open><summary>About this '+noun+'</summary><div class="body"><p>'+esc(p.long)+'</p><ul>'+p.details.map(function(d){return '<li>'+esc(d)+'</li>'}).join('')+'</ul></div></details>'+
   '<details class="acc" id="size-guide"><summary>Size guide</summary><div class="body">'+sizeGuideBody+'</div></details>'+
   '<details class="acc"><summary>Care</summary><div class="body">'+careBody+'</div></details>'+
-  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is AED 15, and free across the UAE on jewellery orders of 100 AED or more, clothing orders of 200 AED or more, and mixed orders of 250 AED or more. '+(CARD()?'You can pay by card online at checkout, or in cash to the courier when your order arrives.':'You pay in cash to the courier when your order arrives.')+'</p></div></details></div></div></div></div></div>'+
+  '<details class="acc"><summary>Delivery &amp; payment</summary><div class="body"><p>Delivery takes '+esc(CONFIG.deliveryDays)+' and is AED 15, and free across the UAE on jewellery orders of 100 AED or more, clothing orders of 200 AED or more, and mixed orders of 250 AED or more. '+(zinaOn()?'You can pay by card online at checkout, or in cash to the courier when your order arrives.':'You pay in cash to the courier when your order arrives.')+'</p></div></details></div></div></div></div></div>'+
   '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>How to order</h2><p>Four steps, and you pay on delivery.</p></div>'+orderSteps()+'</div></section>'+
   '<section class="section on-sand" style="padding-top:0"><div class="wrap"><div class="sec-head"><h2>You may also like</h2><p></p></div><div class="cards" style="grid-template-columns:repeat(3,minmax(0,1fr))">'+others.map(card).join('')+'</div></div></section>', init:function(){
     var qty=1,root=$(".pdp");
@@ -1875,7 +1853,7 @@ pages.cart=function(){
   '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span>Cart</nav><h1>Your cart</h1></div>'+
   '<div class="cart-grid"><div id="lines">'+lines+'<p style="margin-top:24px"><a href="#/collections" class="link">Continue shopping</a></p></div>'+
   '<aside class="summary" aria-label="Order summary"><h2>Order summary</h2><div class="sum-row"><span>Subtotal</span><span>'+money(t.sub)+'</span></div><div class="sum-row"><span>Delivery</span><span>'+shipText(t)+'</span></div><div class="sum-row total"><span>Total</span><strong style="font-weight:400">'+money(t.total)+'</strong></div>'+
-  ''+shipHint(t)+'<p class="sum-note">'+(CARD()?'Pay by card online at checkout, or in cash on delivery.':'Payment is cash on delivery. You will not be charged online.')+'</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
+  ''+shipHint(t)+'<p class="sum-note">'+(zinaOn()?'Pay by card online at checkout, or in cash on delivery.':'Payment is cash on delivery. You will not be charged online.')+'</p><a class="btn block" href="#/checkout">Proceed to checkout</a></aside></div></div></div>'};
 };
 
 function fld(id,label,o){
@@ -1899,11 +1877,10 @@ function summaryMini(){
 pages.checkout=function(){
   if(!cart.length){location.replace("#/cart");return {title:"Cart | SH Branding Store",html:""}}
   var t=totals();
-  var po=[];
-  if(CONFIG.payments.cod) po.push(["Cash on delivery","Cash on delivery","Pay in cash to our courier when your order arrives. Please keep the exact amount ready."]);
-  if(CARD()) po.push(["Card online (Ziina)","Pay by card online","Pay now with your debit or credit card on Ziina’s secure payment page. You will return here when it is done."]);
-  if(CONFIG.payments.cardOnDelivery) po.push(["Card on delivery","Card on delivery","Pay by card using the courier’s card machine when your order arrives."]);
-  var pays=po.map(function(o,i){return '<label class="pay"><input type="radio" name="payment" value="'+o[0]+'"'+(i===0?' checked':'')+'><div><strong>'+o[1]+'</strong><span>'+o[2]+'</span></div></label>'}).join('');
+  var pays='',anyChecked=false;
+  if(zinaOn()){pays+='<label class="pay"><input type="radio" name="payment" value="Online payment" checked><div><strong>Pay online now</strong><span>Pay securely by card, Apple Pay or Google Pay. You will be redirected to our payment page.</span></div></label>';anyChecked=true}
+  if(CONFIG.payments.cod) pays+='<label class="pay"><input type="radio" name="payment" value="Cash on delivery"'+(anyChecked?'':' checked')+'><div><strong>Cash on delivery</strong><span>Pay in cash to our courier when your order arrives. Please keep the exact amount ready.</span></div></label>';
+  if(CONFIG.payments.cardOnDelivery) pays+='<label class="pay"><input type="radio" name="payment" value="Card on delivery"'+(anyChecked||CONFIG.payments.cod?'':' checked')+'><div><strong>Card on delivery</strong><span>Pay by card using the courier’s card machine when your order arrives.</span></div></label>';
   return {title:"Checkout | SH Branding Store",html:
   '<div class="on-sand"><div class="wrap"><div class="page-head"><nav class="crumbs" aria-label="Breadcrumb"><a href="#/">Home</a><span>/</span><a href="#/cart">Cart</a><span>/</span>Checkout</nav><h1>Checkout</h1></div>'+
   '<div class="checkout-grid"><form id="co" novalidate>'+
@@ -1923,14 +1900,14 @@ pages.checkout=function(){
   fld("mapLink","Google Maps location link",{type:"url",req:false,full:true,ph:"Optional: share your pin to help the courier"})+
   fld("deliveryNotes","Delivery instructions",{area:true,req:false,full:true,ph:"Gate code, best time to call, anything the courier should know"})+
   '</div></fieldset>'+
-  '<fieldset><legend>Payment</legend><p class="hint">'+(CARD()?'Choose how you would like to pay.':'No online payment is taken.')+'</p>'+pays+'</fieldset>'+
+  '<fieldset><legend>Payment</legend><p class="hint">'+(zinaOn()?'You can pay securely online now, or choose to pay when your order arrives.':'No online payment is taken.')+'</p>'+pays+'</fieldset>'+
   '<fieldset><legend>Anything else?</legend><div class="fields"><div class="f full"><label for="orderNote">Order note <i>(optional)</i></label><textarea id="orderNote" name="orderNote" placeholder="Height, gift note, or questions about your order"></textarea></div></div></fieldset>'+
   '<label class="check"><input type="checkbox" id="agree" required aria-describedby="e-agree"><span>I have checked my details and agree to the <a href="#/terms" target="_blank">terms &amp; conditions</a> and <a href="#/privacy" target="_blank">privacy policy</a>.</span></label><p class="err" id="e-agree" style="margin-bottom:22px"></p>'+
   '<button class="btn block" type="submit" id="place">Place order &middot; '+money(t.total)+'</button><p class="err" id="formerr" role="alert" style="margin-top:12px"></p></form>'+
   summaryMini()+'</div></div></div>', init:function(){
     $("#co").addEventListener("submit",submitOrder);
     $("#co").addEventListener("input",function(e){var id=e.target.id;if(id){setErr(id,"")}});
-    $("#co").addEventListener("change",function(e){if(e.target.name==="payment"){$("#place").textContent=(/^Card online/.test(e.target.value)?"Pay by card · ":"Place order · ")+money(t.total)}});
+    $("#co").addEventListener("change",function(e){if(e.target.name==="payment"){$("#place").textContent=(e.target.value==="Online payment"?"Pay online · ":"Place order · ")+money(t.total)}});
   }};
 };
 
@@ -1957,6 +1934,20 @@ function orderText(o){
   if(o.note)L.push("Note: "+o.note);
   return L.filter(function(x,i,a){return x!==""||a[i-1]!==""}).join("\n");
 }
+function orderSheetPayload(order){
+  return {type:"order",orderId:order.id,date:order.date,name:order.customer.fullName,phone:order.customer.phone,whatsapp:order.customer.whatsapp,email:order.customer.email,
+    emirate:order.address.emirate,area:order.address.area,street:order.address.street,unit:order.address.unit,landmark:order.address.landmark,mapLink:order.address.mapLink,deliveryNotes:order.address.notes,
+    items:order.items.map(function(i){return i.name+" | Size "+i.size+" | Qty "+i.qty+" | "+money(i.price*i.qty)}).join("\n"),
+    itemCount:order.items.reduce(function(a,i){return a+i.qty},0),subtotal:order.totals.sub,delivery:order.totals.ship,total:order.totals.total,payment:order.payment,orderNote:order.note,
+    paymentIntentId:order.paymentIntentId||""};
+}
+function finalizeOrder(order,sent){
+  order.sent=sent;
+  var all=store(true,"shbs_orders")||[];all.push(order);store(false,"shbs_orders",all);
+  store(false,"shbs_last",order);
+  cart=[];saveCart();lastOrder=order;
+  location.hash="#/confirmation";
+}
 function submitOrder(e){
   e.preventDefault();
   var g=function(id){var el=document.getElementById(id);return el?el.value:""};
@@ -1972,31 +1963,34 @@ function submitOrder(e){
   var order={id:id,date:d.toISOString(),customer:{fullName:v.fullName.trim(),phone:v.phone.trim(),whatsapp:v.whatsapp.trim(),email:v.email.trim()},
     address:{emirate:v.emirate,area:v.area.trim(),street:v.street.trim(),unit:v.unit.trim(),landmark:v.landmark.trim(),mapLink:v.mapLink.trim(),notes:v.deliveryNotes.trim(),country:"United Arab Emirates"},
     items:cart.map(function(l){var p=byId(l.id);return {id:l.id,name:p.name,size:l.size,qty:l.qty,price:p.price}}),totals:t,payment:pm?pm.value:"Cash on delivery",note:v.orderNote.trim(),sent:false};
-  var isCard=!!(pm&&/^Card online/.test(pm.value));
-  var btn=$("#place");btn.disabled=true;btn.textContent=isCard?"Opening secure payment…":"Placing your order…";
-  function finish(sent){
-    order.sent=sent;
-    var all=store(true,"shbs_orders")||[];all.push(order);store(false,"shbs_orders",all);
-    store(false,"shbs_last",order);
-    cart=[];saveCart();lastOrder=order;
-    location.hash="#/confirmation";
-  }
-  var pl={type:"order",orderId:order.id,date:order.date,name:order.customer.fullName,phone:order.customer.phone,whatsapp:order.customer.whatsapp,email:order.customer.email,
-    emirate:order.address.emirate,area:order.address.area,street:order.address.street,unit:order.address.unit,landmark:order.address.landmark,mapLink:order.address.mapLink,deliveryNotes:order.address.notes,
-    items:order.items.map(function(i){return i.name+" | Size "+i.size+" | Qty "+i.qty+" | "+money(i.price*i.qty)}).join("\n"),
-    itemCount:order.items.reduce(function(a,i){return a+i.qty},0),subtotal:order.totals.sub,delivery:order.totals.ship,total:order.totals.total,payment:order.payment,orderNote:order.note};
-  if(isCard){
-    pl.type="createPayment";pl.returnUrl=location.href.split(/[?#]/)[0];
-    store(false,"shbs_pending",order);
-    startCardPayment(pl).then(function(r){
-      if(r&&r.ok&&r.redirectUrl){location.href=r.redirectUrl}else throw new Error("no link");
+  var payVal=pm?pm.value:"Cash on delivery";
+  order.payment=payVal;
+  var btn=$("#place");btn.disabled=true;
+
+  if(payVal==="Online payment"&&zinaOn()){
+    btn.textContent="Redirecting to secure payment…";
+    var base=location.href.split("#")[0];
+    var successUrl=base+"#/payment-return?order="+encodeURIComponent(id);
+    var cancelUrl=base+"#/payment-return?order="+encodeURIComponent(id)+"&cancelled=1";
+    store(false,"shbs_pending_order",order);
+    postSheetJSON({type:"payment_intent",orderId:id,amount:Math.round(t.total*100),successUrl:successUrl,cancelUrl:cancelUrl}).then(function(res){
+      if(res&&res.ok&&res.redirect_url){
+        store(false,"shbs_pending_pi",res.id||"");
+        window.location.href=res.redirect_url;
+      } else {
+        btn.disabled=false;btn.textContent="Pay online · "+money(t.total);
+        $("#formerr").textContent=(res&&res.error)||"Could not start online payment. Please try again or choose cash on delivery.";
+      }
     }).catch(function(){
-      btn.disabled=false;btn.textContent="Pay by card · "+money(t.total);
-      $("#formerr").textContent="We could not open the card payment page. Please try again, or choose cash on delivery.";
+      btn.disabled=false;btn.textContent="Pay online · "+money(t.total);
+      $("#formerr").textContent="Could not reach the payment system. Please check your connection and try again.";
     });
     return;
   }
-  if(sheetOn()) sendOrQueue(pl).then(finish); else finish(false);
+
+  btn.textContent="Placing your order…";
+  if(sheetOn()) sendOrQueue(orderSheetPayload(order)).then(function(sent){finalizeOrder(order,sent)});
+  else finalizeOrder(order,false);
 }
 
 var lastOrder=null;
@@ -2014,12 +2008,12 @@ pages.confirmation=function(){
     send='<div class="notice no-print"><strong>'+(sheetOn()?'We could not reach our order system.':'One last step: send us your order.')+'</strong> '+(sheetOn()?'Your order is saved on this device and will retry automatically. To be safe, tap a button below so we receive it right away.':'Tap a button below so your order reaches us and we can confirm it with you.')+'</div><div class="actions no-print" style="justify-content:flex-start;margin:0 0 10px">'+btns+'</div>';
   }
   return {title:"Order received | SH Branding Store",html:
-  '<div class="on-sand"><div class="narrow done" style="padding:clamp(50px,7vw,90px) 0 clamp(70px,9vw,120px)"><h1>Thank you, '+esc(first)+'.</h1><p class="lede">We have your order and will contact you to confirm it. Keep your phone nearby, '+(o.paid?'and thank you for paying online.':'and please have the cash ready for delivery.')+'</p><span class="orderid">'+esc(o.id)+'</span>'+
+  '<div class="on-sand"><div class="narrow done" style="padding:clamp(50px,7vw,90px) 0 clamp(70px,9vw,120px)"><h1>Thank you, '+esc(first)+'.</h1><p class="lede">We have your order and will contact you to confirm it. Keep your phone nearby, '+(o.payment==="Online payment"?'and thank you for paying online.':'and please have the cash ready for delivery.')+'</p><span class="orderid">'+esc(o.id)+'</span>'+
   '<div style="margin-top:30px">'+send+'</div>'+
   '<div class="box"><h2>Order details</h2><dl>'+o.items.map(function(i){return '<dt>'+esc(i.name)+'</dt><dd>Size '+esc(i.size)+' &middot; Qty '+i.qty+' &middot; '+money(i.price*i.qty)+'</dd>'}).join('')+
-  '<dt>Delivery fee</dt><dd>'+(o.totals.ship?money(o.totals.ship):"Free")+'</dd><dt>'+(o.paid?'Total paid':'Total to pay')+'</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
+  '<dt>Delivery fee</dt><dd>'+(o.totals.ship?money(o.totals.ship):"Free")+'</dd><dt>'+(o.payment==="Online payment"?'Total paid':'Total to pay')+'</dt><dd><strong>'+money(o.totals.total)+'</strong> ('+esc(o.payment)+')</dd></dl></div>'+
   '<div class="box"><h2>Delivering to</h2><dl><dt>Name</dt><dd>'+esc(o.customer.fullName)+'</dd><dt>Mobile</dt><dd>'+esc(o.customer.phone)+'</dd><dt>Email</dt><dd>'+esc(o.customer.email)+'</dd><dt>Address</dt><dd>'+esc([o.address.street,o.address.unit,o.address.area,o.address.emirate,"United Arab Emirates"].filter(Boolean).join(", "))+'</dd>'+(o.address.landmark?'<dt>Landmark</dt><dd>'+esc(o.address.landmark)+'</dd>':'')+'</dl></div>'+
-  '<h2 style="font-size:32px;margin:44px 0 6px">What happens next</h2><ul class="next"><li>We contact you by phone or WhatsApp to confirm your order and address.</li><li>We prepare and dispatch your order. Delivery takes '+esc(CONFIG.deliveryDays)+'.</li><li>The courier calls you on arrival. Check your piece'+(o.paid?'.':', then pay '+money(o.totals.total)+' in cash.')+'</li></ul>'+
+  '<h2 style="font-size:32px;margin:44px 0 6px">What happens next</h2><ul class="next"><li>We contact you by phone or WhatsApp to confirm your order and address.</li><li>We prepare and dispatch your order. Delivery takes '+esc(CONFIG.deliveryDays)+'.</li><li>The courier calls you on arrival. Check your piece'+(o.payment==="Online payment"?'.':', then pay '+money(o.totals.total)+' in cash.')+'</li></ul>'+
   '<div class="actions no-print" style="justify-content:flex-start"><button class="btn" type="button" onclick="window.print()">Print this page</button><a class="btn" href="#/collections">Continue shopping</a></div></div></div>'};
 };
 
@@ -2173,19 +2167,77 @@ pages.privacy=function(){return policy("Privacy policy","",[
 pages.terms=function(){return policy("Terms &amp; conditions","",[
  ["Orders","<p>Placing an order is an offer to buy. An order is confirmed once we contact you and confirm your details and availability. We may cancel an order if an item is unavailable or we cannot reach you.</p>"],
  ["Prices","<p>All prices are in "+esc(CONFIG.currency)+". Prices may change without notice, but the price shown at the time you place your order applies to that order.</p>"],
- ["Payment","<p>Payment is made on delivery"+(CARD()?", or online by card through Ziina, our secure payment provider. We never see or store your card details":"")+". The total shown at checkout is the amount to pay.</p>"],
+ ["Payment","<p>Payment is made on delivery"+(zinaOn()?", or online by card through Ziina, our secure payment provider. We never see or store your card details":"")+". The total shown at checkout is the amount to pay.</p>"],
  ["Product images and colours","<p>We do our best to show our jewellery and clothing accurately. Colours and finishes may look slightly different on different screens.</p>"],
  ["Delivery","<p>Please see our <a href=\"#/shipping\">shipping &amp; delivery</a> page for delivery details.</p>"],
  ["Contact","<p>Questions about these terms? Email us at "+esc(CONFIG.email)+".</p>"]])};
+pages["payment-return"]=function(arg,arg2,qs){
+  return {title:"Confirming payment | SH Branding Store",html:
+  '<div class="on-sand"><div class="narrow" style="padding:clamp(60px,8vw,110px) 0;text-align:center"><h1 id="pr-h">Confirming your payment…</h1>'+
+  '<p class="lede" id="pr-p">Please wait a moment, this only takes a few seconds.</p>'+
+  '<div class="actions" id="pr-actions" style="justify-content:center;margin-top:24px"></div></div></div>',
+  init:function(){handlePaymentReturn(qs||"")}};
+};
+function prSet(h,p,actionsHtml){
+  var H=$("#pr-h"),P=$("#pr-p"),A=$("#pr-actions");
+  if(H)H.textContent=h; if(P)P.textContent=p; if(A)A.innerHTML=actionsHtml||"";
+}
+function prHelpLink(orderId){
+  return hasWA()?'<a class="btn solid" href="'+waLink("Hello SH Branding Store, I paid online for order "+orderId+" and need help confirming it.")+'" target="_blank" rel="noopener">Message us on WhatsApp</a> ':'';
+}
+function handlePaymentReturn(qs){
+  var qp=new URLSearchParams(qs),orderId=qp.get("order")||"",cancelled=qp.get("cancelled");
+  if(cancelled){
+    prSet("Payment cancelled","You have not been charged. Your items are still in your cart, so you can try again or choose cash on delivery instead.",
+      '<a class="btn solid" href="#/checkout">Back to checkout</a>');
+    return;
+  }
+  var pending=store(true,"shbs_pending_order");
+  if(!pending||pending.id!==orderId){
+    prSet("We could not find that order","If you completed a payment, please contact us with your order reference so we can confirm it for you.",
+      prHelpLink(orderId)+'<a class="btn" href="#/collections">Continue shopping</a>');
+    return;
+  }
+  var piId=store(true,"shbs_pending_pi"),tries=0,maxTries=12;
+  function check(){
+    tries++;
+    postSheetJSON({type:"payment_status",paymentIntentId:piId}).then(function(res){
+      var status=res&&res.ok?res.status:null;
+      if(status==="completed"){
+        prSet("Finishing your order…","Payment received, thank you. Saving your order now.","");
+        pending.paymentIntentId=piId;
+        sendOrQueue(orderSheetPayload(pending)).then(function(sent){
+          store(false,"shbs_pending_order",null);store(false,"shbs_pending_pi",null);
+          finalizeOrder(pending,sent);
+        });
+      } else if(status==="failed"||status==="canceled"){
+        prSet("Payment was not completed","You have not been charged. Your items are still in your cart. You can try again or choose cash on delivery.",
+          '<a class="btn solid" href="#/checkout">Back to checkout</a>');
+      } else if(tries<maxTries){
+        setTimeout(check,2500);
+      } else {
+        prSet("Still confirming your payment","This is taking longer than usual. If money left your account, please contact us with your order reference and we will confirm it right away.",
+          prHelpLink(orderId)+'<a class="btn" href="#/collections">Continue shopping</a>');
+      }
+    }).catch(function(){
+      if(tries<maxTries) setTimeout(check,2500);
+      else prSet("We could not confirm your payment","Please check your connection, or contact us with your order reference.",
+        prHelpLink(orderId)+'<a class="btn" href="#/collections">Continue shopping</a>');
+    });
+  }
+  check();
+}
+
 pages.notfound=function(){return {title:"Page not found | SH Branding Store",html:'<div class="on-sand"><div class="wrap empty"><h1 style="font-size:clamp(40px,5vw,64px)">We could not find that page</h1><p>The page may have moved. Try the collections instead.</p><a class="btn solid" href="#/collections">Shop the collections</a></div></div>'}};
 
 /* ---------- router ---------- */
 var current=null;
 function route(){
   var h=(location.hash||"#/").replace(/^#\/?/,"");
+  var qs="",qi=h.indexOf("?"); if(qi>-1){qs=h.slice(qi+1);h=h.slice(0,qi)}
   var parts=h.split("/"),name=parts[0]||"home",arg=parts[1],arg2=parts[2];
   var fn=pages[name]; if(!fn||name==="notfound"||name==="piece"&&!arg){fn=pages.notfound;name="notfound"}
-  var pg=fn(arg,arg2); if(!pg)return;
+  var pg=fn(arg,arg2,qs); if(!pg)return;
   var m=$("#main");
   m.innerHTML=pg.html; document.title=pg.title;
   m.classList.remove("page-in"); void m.offsetWidth; m.classList.add("page-in");
@@ -2212,7 +2264,7 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape"){$("#menu").
 
 /* validate cart against products (in case products changed) */
 cart=cart.filter(function(l){var p=byId(l.id);return p&&l.qty>0&&p.sizeOptions.indexOf(l.size)>-1});saveCart();
-renderFooter(); renderNavDropdowns(); updateBadge(); handlePaymentReturn(); route(); flushQueue();
+renderFooter(); renderNavDropdowns(); updateBadge(); route(); flushQueue();
 })();
 </script>
 <script>
